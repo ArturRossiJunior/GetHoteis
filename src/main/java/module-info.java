@@ -1,4 +1,5 @@
 module com.mycompany.hotelaria {
+    requires java.sql;
     requires javafx.controls;
     requires javafx.fxml;
 
