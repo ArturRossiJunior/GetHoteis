@@ -7,10 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import DAO.ConexaoDAO;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     private static Scene scene;
@@ -20,6 +20,8 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
+        
+        testarConexao();
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -34,5 +36,19 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
+    
+    private void testarConexao() {
+        try {
+            Connection conexao;
+            conexao = ConexaoDAO.obterConexao();
+            if (conexao != null) {
+                System.out.println("Conexão com o banco de dados estabelecida com sucesso!");
+                conexao.close(); // Fechando a conexão após o teste
+            } else {
+                System.out.println("Falha ao conectar-se ao banco de dados.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao conectar-se ao banco de dados: " + e.getMessage());
+        }
+    }
 }

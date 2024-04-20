@@ -20,6 +20,12 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>10.2.2.jre17</version> <!-- Verifique a versão mais recente no site da Microsoft -->
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
