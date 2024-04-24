@@ -5,25 +5,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import DAO.ConexaoDAO;
 import java.io.IOException;
-import java.sql.Connection;
 
-/**
- * JavaFX App
- */
+
 public class App extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("Login"), 320, 200);
         stage.setScene(scene);
+        stage.setTitle("Login");
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void changeScene(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
