@@ -1,8 +1,8 @@
-module com.mycompany.hotelaria {
-    requires java.sql;
+module com.n2.hotelaria {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
-    opens com.mycompany.hotelaria to javafx.fxml;
-    exports com.mycompany.hotelaria;
+    opens com.n2.hotelaria to javafx.fxml;
+    exports com.n2.hotelaria;
 }

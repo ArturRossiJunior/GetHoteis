@@ -1,4 +1,4 @@
-package com.mycompany.hotelaria;
+package com.n2.hotelaria;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
