@@ -4,21 +4,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+import javafx.scene.control.Alert;
 import java.io.IOException;
-
 import com.n2.hotelaria.App;
-
 import DAO.*;
 
 public class LoginController extends PadraoController {
 
     @FXML
     private Button cadastroButton;
-
     @FXML
     private TextField usuarioField;
-
     @FXML
     private PasswordField senhaField;
 
@@ -28,16 +24,15 @@ public class LoginController extends PadraoController {
         loginDao = new LoginDAO();
     }
 
-
     @FXML
     private void handleLogin() {
         String usuario = usuarioField.getText();
         String senha = senhaField.getText();
 
         if (loginDao.login(usuario, senha)) {
-            showAlert("Login bem-sucedido!");
+            showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Login bem-sucedido!");
         } else {
-            showAlert("Nome de usuário ou senha incorretos!");
+            showAlert(Alert.AlertType.ERROR, "Erro", "Email ou senha incorretos!");
         }
     }
 

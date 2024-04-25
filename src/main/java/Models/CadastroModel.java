@@ -2,15 +2,21 @@ package Models;
 
 import lombok.Getter;
 import lombok.Setter;
+import java.time.LocalDate;
 
 public class CadastroModel extends PadraoModel {
-    
-    public CadastroModel(String usuario , String senha) {
-        this.usuario = usuario;
+
+    public CadastroModel(String nomeCompleto, String email, String CPF, LocalDate dataNascimento, String senha) {
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.CPF = CPF;
+        this.dataNascimento = dataNascimento;
         this.senha = senha;
     }
 
-    @Getter @Setter public String usuario;
-    @Getter @Setter public String senha;
-
+    @Getter @Setter private String nomeCompleto;
+    @Getter @Setter private String email;
+    @Getter @Setter private String CPF;
+    @Getter @Setter private LocalDate dataNascimento;
+    @Getter @Setter private String senha;
 }
