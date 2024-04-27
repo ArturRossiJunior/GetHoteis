@@ -22,30 +22,21 @@ public class CadastroController extends PadraoController<CadastroModel> {
     @FXML
     private Button cadastrarButton, voltarButton;
 
-    private final CadastroDAO dao = new CadastroDAO();
-
-    @FXML
-    private void initialize() {
-        cadastrarButton.setOnAction(event -> handleCadastro());
-        voltarButton.setOnAction(event -> handleVoltar());
-    }
+    private final CadastroDAO cadastroDao = new CadastroDAO();
 
     @FXML
     private void handleCadastro() {
         try {
-            LocalDate data = LocalDate.parse(dataNascimentoField.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            if (validacaoCadastro(dao, emailField.getText(), cpfField.getText(), data)) {
-                if (dao.inserirUsuario(new CadastroModel(nomeCompletoField.getText(), emailField.getText(), cpfField.getText(), data, senhaField.getText()))) {
+            if (validacaoCadastro(cadastroDao, emailField.getText(), cpfField.getText(), dataNascimentoField.getText())) {
+                if (cadastroDao.inserirUsuario(new CadastroModel(nomeCompletoField.getText(), emailField.getText(), cpfField.getText(), dataNascimentoField.getText(), senhaField.getText()))) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cadastro bem-sucedido!");
                     App.changeScene("Login");
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Erro", "Usuário ou senha inválidos");
                 }
             }
-        } catch (DateTimeParseException e) {
-            showAlert(Alert.AlertType.ERROR, "Erro", "Formato de data inválido. Use o formato dd/MM/yyyy.");
         } catch (IOException e) {
-            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena.");
+            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }
     }
 
@@ -54,7 +45,7 @@ public class CadastroController extends PadraoController<CadastroModel> {
         try {
             App.changeScene("Login");
         } catch (IOException e) {
-            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena.");
+            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }
     }
 }

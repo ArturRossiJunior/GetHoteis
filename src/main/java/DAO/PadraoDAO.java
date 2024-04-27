@@ -9,10 +9,6 @@ public abstract class PadraoDAO {
 
     protected Connection conexao;
 
-    public PadraoDAO() {
-        this.conexao = ConexaoDAO.conectar();
-    }
-
     private void setParametros(PreparedStatement stmt, Object... parametros) throws SQLException {
         for (int i = 0; i < parametros.length; i++) {
             stmt.setObject(i + 1, parametros[i]);
@@ -20,8 +16,7 @@ public abstract class PadraoDAO {
     }
 
     protected boolean executarAtualizacao(String sql, Object... parametros) {
-        try {
-            PreparedStatement stmt = conexao.prepareStatement(sql);
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             setParametros(stmt, parametros);
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0;
@@ -32,9 +27,9 @@ public abstract class PadraoDAO {
     }
 
     protected boolean executarConsulta(String sql, Object... parametros) {
-        try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
-            setParametros(preparedStatement, parametros);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            setParametros(stmt, parametros);
+            ResultSet resultSet = stmt.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
             System.err.println("Erro ao executar consulta: " + e.getMessage());

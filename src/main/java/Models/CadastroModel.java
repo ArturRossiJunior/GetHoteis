@@ -2,11 +2,10 @@ package Models;
 
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDate;
 
 public class CadastroModel extends PadraoModel {
 
-    public CadastroModel(String nomeCompleto, String email, String CPF, LocalDate dataNascimento, String senha) {
+    public CadastroModel(String nomeCompleto, String email, String CPF, String dataNascimento, String senha) {
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.CPF = CPF;
@@ -17,6 +16,6 @@ public class CadastroModel extends PadraoModel {
     @Getter @Setter private String nomeCompleto;
     @Getter @Setter private String email;
     @Getter @Setter private String CPF;
-    @Getter @Setter private LocalDate dataNascimento;
+    @Getter @Setter private String dataNascimento;
     @Getter @Setter private String senha;
 }
