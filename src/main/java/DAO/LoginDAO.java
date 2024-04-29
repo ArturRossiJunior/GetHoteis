@@ -1,28 +1,10 @@
 package DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class LoginDAO {
+public class LoginDAO extends PadraoDAO {
 
     public boolean login(String usuario, String senha) {
-        String query = "SELECT * FROM usuarios WHERE usuario = ? AND senha = ?";
-        
-        try (Connection connection = ConexaoDAO.conectar();
-            PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            
-            preparedStatement.setString(1, usuario);
-            preparedStatement.setString(2, senha);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            
-            return resultSet.next();
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        conexao = ConexaoDAO.conectar();
+        String query = "SELECT * FROM Usuarios WHERE email = ? AND senha = ?";
+        return executarConsulta(query, usuario, senha);
     }
-    // Aqui você pode adicionar outros métodos DAO, como para inserir, atualizar ou excluir usuários
 }
