@@ -24,7 +24,7 @@ public class RecuperarSenhaController extends PadraoController<PadraoModel> {
     @FXML
     private void handleRecuperarSenha() {
         try{
-            if(validaRecuperarSenha(senhaNovaField.getText(), confirmarSenhaNovaField.getText())){
+            if(validaRecuperarSenha(senhaAntigaField.getText(), senhaNovaField.getText(), confirmarSenhaNovaField.getText())){
                 if (recuperarSenhaDAO.recuperarSenha(emailField.getText(), senhaAntigaField.getText(), senhaNovaField.getText())) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Senha alterada com sucesso.");
                     App.changeScene("Login");

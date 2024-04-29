@@ -17,25 +17,26 @@ public class PadraoController<T extends PadraoModel> {
         alert.showAndWait();
     }
 
-    protected boolean validaRecuperarSenha(String senhaNova, String confirmarSenhaNova) {
-
+    protected boolean validaRecuperarSenha(String senhaAntiga, String senhaNova, String confirmarSenhaNova) {
         if (!senhaNova.equals(confirmarSenhaNova)) {
-            showAlert(Alert.AlertType.ERROR, "Erro", "As novas senhas não coincidem.");
+            showAlert(Alert.AlertType.ERROR, "Erro", "As novas senhas não coincidem");
+            return false;
+        }
+        if(senhaNova.equals(senhaAntiga)){
+            showAlert(Alert.AlertType.ERROR, "Erro", "Senha nova não pode ser igual a antiga");
             return false;
         }
         return true;
     }
 
     protected boolean regexEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        Pattern pattern = Pattern.compile(emailRegex);
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
 
     protected boolean regexData(String data){
-        String dateRegex = "(\\d{2})/(\\d{2})/(\\d{4})";
-        Pattern pattern = Pattern.compile(dateRegex);
+        Pattern pattern = Pattern.compile("(\\d{2})/(\\d{2})/(\\d{4})");
         Matcher matcher = pattern.matcher(data); 
         if (matcher.matches()) {
             LocalDate dataLD = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -44,6 +45,11 @@ public class PadraoController<T extends PadraoModel> {
         return false;
     }
 
+    protected boolean regexCPF(String cpf){
+        Pattern pattern =  Pattern.compile("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
+        Matcher matcher = pattern.matcher(cpf);
+        return matcher.matches();
+    }
 
     protected boolean validacaoCadastro(CadastroDAO dao, String email, String cpf, String data) {
         if (!regexData(data)) {
@@ -52,6 +58,10 @@ public class PadraoController<T extends PadraoModel> {
         }
         if (!regexEmail(email)) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Email inválido");
+            return false;
+        }
+        if(!regexCPF(cpf)){
+            showAlert(Alert.AlertType.ERROR, "Erro", "CPF inválido");
             return false;
         }
         if (dao.consultaEmailouCPF(email, cpf)) {
