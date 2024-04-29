@@ -1,9 +1,10 @@
 package Models;
-
-import lombok.Getter;
-import lombok.Setter;
-
 public class CadastroModel extends PadraoModel {
+    private String nomeCompleto;
+    private String email;
+    private String CPF;
+    private String dataNascimento;
+    private String senha;
 
     public CadastroModel(String nomeCompleto, String email, String CPF, String dataNascimento, String senha) {
         this.nomeCompleto = nomeCompleto;
@@ -13,9 +14,43 @@ public class CadastroModel extends PadraoModel {
         this.senha = senha;
     }
 
-    @Getter @Setter private String nomeCompleto;
-    @Getter @Setter private String email;
-    @Getter @Setter private String CPF;
-    @Getter @Setter private String dataNascimento;
-    @Getter @Setter private String senha;
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 }
