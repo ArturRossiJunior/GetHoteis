@@ -22,9 +22,17 @@ public class RecuperarSenhaController extends PadraoController<PadraoModel> {
     private RecuperarSenhaDAO recuperarSenhaDAO = new RecuperarSenhaDAO();
 
     @FXML
+    private void initialize() {
+        mascaraEmail(emailField);
+        mascaraSenha(senhaAntigaField);
+        mascaraSenha(senhaNovaField);
+        mascaraSenha(confirmarSenhaNovaField);
+    }
+
+    @FXML
     private void handleRecuperarSenha() {
         try{
-            if(validaRecuperarSenha(senhaAntigaField.getText(), senhaNovaField.getText(), confirmarSenhaNovaField.getText())){
+            if(validacaoRecuperarSenha(emailField.getText(), senhaAntigaField.getText(), senhaNovaField.getText(), confirmarSenhaNovaField.getText())){
                 if (recuperarSenhaDAO.recuperarSenha(emailField.getText(), senhaAntigaField.getText(), senhaNovaField.getText())) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Senha alterada com sucesso.");
                     App.changeScene("Login");

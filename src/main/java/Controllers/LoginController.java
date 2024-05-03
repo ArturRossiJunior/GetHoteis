@@ -13,15 +13,21 @@ public class LoginController extends PadraoController {
     @FXML
     private Button recuperarSenhaButton;
     @FXML
-    private TextField usuarioField;
+    private TextField emailField;
     @FXML
     private PasswordField senhaField;
 
     private LoginDAO loginDao = new LoginDAO();
 
     @FXML
+    private void initialize() {
+        mascaraEmail(emailField);
+        mascaraSenha(senhaField);
+    }
+
+    @FXML
     private void handleLogin() {
-        if (loginDao.login(usuarioField.getText(), senhaField.getText())) {
+        if (loginDao.login(emailField.getText(), senhaField.getText())) {
             showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Login bem-sucedido!");
         } else {
             showAlert(Alert.AlertType.ERROR, "Erro", "Email ou senha incorretos!");

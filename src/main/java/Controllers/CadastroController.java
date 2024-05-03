@@ -1,17 +1,11 @@
 package Controllers;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import com.n2.hotelaria.App;
-import DAO.CadastroDAO;
-import Models.CadastroModel;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import java.io.*;
+import com.n2.hotelaria.*;
+import DAO.*;
+import Models.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
 
 public class CadastroController extends PadraoController<CadastroModel> {
 
@@ -25,9 +19,18 @@ public class CadastroController extends PadraoController<CadastroModel> {
     private final CadastroDAO cadastroDao = new CadastroDAO();
 
     @FXML
+    private void initialize() {
+        mascaraCPF(cpfField);
+        mascaraData(dataNascimentoField);
+        mascaraNome(nomeCompletoField);
+        mascaraEmail(emailField);
+        mascaraSenha(senhaField);
+    }
+
+    @FXML
     private void handleCadastro() {
         try {
-            if (validacaoCadastro(cadastroDao, emailField.getText(), cpfField.getText(), dataNascimentoField.getText())) {
+            if (validacaoCadastro(cadastroDao, nomeCompletoField.getText(), emailField.getText(), cpfField.getText(), dataNascimentoField.getText(), senhaField.getText())) {
                 if (cadastroDao.inserirUsuario(new CadastroModel(nomeCompletoField.getText(), emailField.getText(), cpfField.getText(), dataNascimentoField.getText(), senhaField.getText()))) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cadastro bem-sucedido!");
                     App.changeScene("Login");
