@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.security.*;
 import java.time.*;
 import java.time.format.*;
 import java.util.regex.*;
@@ -122,6 +123,28 @@ public class PadraoController<T extends PadraoModel> {
         });
     }    
 
+    protected String criptogafarSenha(String senha){
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            
+            byte[] encodedHash = digest.digest(senha.getBytes());
+            
+            StringBuilder hexString = new StringBuilder();
+            for (byte hashByte : encodedHash) {
+                String hex = Integer.toHexString(0xff & hashByte);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     protected boolean validacaoCadastro(CadastroDAO dao, String nome, String email, String cpf, String data, String senha) {
         if (nome.length() < 1 || !regexEmail(email) || !regexCPF(cpf) || !regexData(data) || senha.length() < 6 || dao.consultaEmailouCPF(email, cpf)) {
             showAlert(Alert.AlertType.ERROR, "Erro", 
