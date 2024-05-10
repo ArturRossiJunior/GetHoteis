@@ -6,10 +6,21 @@ import java.time.format.*;
 import java.util.regex.*;
 import DAO.*;
 import Models.*;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class PadraoController<T extends PadraoModel> {
 
+    @FXML
+    protected ComboBox<String> perguntaSegurancaCombo;
+    
+    protected void perguntaSegurancaCombo(){
+        perguntaSegurancaCombo.getItems().addAll(
+            "Qual é o nome do seu cachorro?",
+            "Qual é o nome da sua mãe?",
+            "Qual é a sua cor preferida?"
+        );
+    }
     protected void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -18,10 +29,42 @@ public class PadraoController<T extends PadraoModel> {
         alert.showAndWait();
     }
 
-    protected boolean regexEmail(String email) {
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
-        Matcher matcher = pattern.matcher(email);
+    protected boolean regexCPF(String cpf){
+        Pattern pattern =  Pattern.compile("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
+        Matcher matcher = pattern.matcher(cpf);
         return matcher.matches();
+    }
+
+    protected void mascaraCPF(TextField cpfField){
+        cpfField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
+            if (novoValor == null) return;
+            String numeros = novoValor.replaceAll("[^\\d]", "");
+            
+            if (numeros.length() > 11) 
+                numeros = numeros.substring(0, 11);
+            
+            StringBuilder mascaraCPF = new StringBuilder(numeros);
+
+            if (numeros.length() > 3) mascaraCPF.insert(3, '.');
+            if (numeros.length() > 6) mascaraCPF.insert(7, '.');
+            if (numeros.length() > 9) mascaraCPF.insert(11, '-');
+
+            cpfField.setText(mascaraCPF.toString());
+            cpfField.positionCaret(mascaraCPF.length());
+        });
+    }
+
+    protected void mascaraNome(TextField nomeField) {
+        nomeField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
+            if (novoValor == null) return;
+            String nome = novoValor.replaceAll("\\s+", " ").replaceAll("[^\\p{L}\\s]", "");
+            
+            if (nome.length() > 35)
+                nome = nome.substring(0, 35);
+            
+            nomeField.setText(nome);
+            nomeField.positionCaret(nome.length());
+        });
     }
 
     protected boolean regexData(String data){
@@ -45,57 +88,6 @@ public class PadraoController<T extends PadraoModel> {
         return false;
     }
 
-    protected boolean regexCPF(String cpf){
-        Pattern pattern =  Pattern.compile("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
-        Matcher matcher = pattern.matcher(cpf);
-        return matcher.matches();
-    }
-
-    protected void mascaraNome(TextField nomeField) {
-        nomeField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
-            if (novoValor == null) return;
-            String nome = novoValor.replaceAll("\\s+", " ").replaceAll("[^\\p{L}\\s]", "");
-            
-            if (nome.length() > 35)
-                nome = nome.substring(0, 35);
-            
-            nomeField.setText(nome);
-            nomeField.positionCaret(nome.length());
-        });
-    }    
-
-    protected void mascaraEmail(TextField emailField) {
-        emailField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
-            if (novoValor == null) return;
-            String email = novoValor.replaceAll("[^a-zA-Z0-9._@-]", "");
-            
-            if (email.length() > 35)
-                email = email.substring(0, 35);
-            
-            emailField.setText(email);
-            emailField.positionCaret(email.length());
-        });
-    }    
-    
-    protected void mascaraCPF(TextField cpfField){
-        cpfField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
-            if (novoValor == null) return;
-            String numeros = novoValor.replaceAll("[^\\d]", "");
-            
-            if (numeros.length() > 11) 
-                numeros = numeros.substring(0, 11);
-            
-            StringBuilder mascaraCPF = new StringBuilder(numeros);
-
-            if (numeros.length() > 3) mascaraCPF.insert(3, '.');
-            if (numeros.length() > 6) mascaraCPF.insert(7, '.');
-            if (numeros.length() > 9) mascaraCPF.insert(11, '-');
-
-            cpfField.setText(mascaraCPF.toString());
-            cpfField.positionCaret(mascaraCPF.length());
-        });
-    }
-
     protected void mascaraData(TextField dataField){
         dataField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
             if (novoValor == null) return;
@@ -114,6 +106,25 @@ public class PadraoController<T extends PadraoModel> {
         });
     }
 
+    protected boolean regexEmail(String email) {
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    protected void mascaraEmail(TextField emailField) {
+        emailField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
+            if (novoValor == null) return;
+            String email = novoValor.replaceAll("[^a-zA-Z0-9._@-]", "");
+            
+            if (email.length() > 35)
+                email = email.substring(0, 35);
+            
+            emailField.setText(email);
+            emailField.positionCaret(email.length());
+        });
+    }
+   
     protected void mascaraSenha(PasswordField senhaField) {
         senhaField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
             if (novoValor == null) return;
@@ -121,9 +132,18 @@ public class PadraoController<T extends PadraoModel> {
             if (novoValor.length() > 15)
                 senhaField.setText(novoValor.substring(0, 15));
         });
-    }    
+    }
 
-    protected String criptogafarSenha(String senha){
+    protected void mascaraResposta(TextField respostaField) {
+        respostaField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
+            if (novoValor == null) return;
+            
+            if (novoValor.length() > 15)
+                respostaField.setText(novoValor.substring(0, 15));
+        });
+    }
+
+    protected String criptogafar(String senha){
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             
@@ -145,26 +165,32 @@ public class PadraoController<T extends PadraoModel> {
         }
     }
     
-    protected boolean validacaoCadastro(CadastroDAO dao, String nome, String email, String cpf, String data, String senha) {
-        if (nome.length() < 1 || !regexEmail(email) || !regexCPF(cpf) || !regexData(data) || senha.length() < 6 || dao.consultaEmailouCPF(email, cpf)) {
+    protected boolean validacaoCadastro(CadastroDAO dao, String cpf, String nome, String data, String email, String senha) {
+        if (!regexCPF(cpf) || nome.length() < 1 || !nome.contains(" ") || !regexData(data) || !regexEmail(email) || senha.length() < 6 || dao.consultaEmailouCPF(email, cpf.replaceAll("[.\\-]", ""))) {
             showAlert(Alert.AlertType.ERROR, "Erro", 
-                (nome.length() < 1) ? "Nome deve conter ao menos 1 carácter" :
-                !regexEmail(email) ? "Email inválido" :
                 !regexCPF(cpf) ? "CPF inválido" :
+                (nome.length() < 1 || !nome.contains(" ")) ? "Nome completo obrigatório" :
                 !regexData(data) ? "Data inválida" :
+                !regexEmail(email) ? "Email inválido" :
                 (senha.length() < 6) ? "Senha deve conter ao menos 6 carácteres" :
-                "Este e-mail ou CPF já está cadastrado");
+                dao.consultaEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) ? "Este e-mail ou CPF já está cadastrado" :
+                "Erro");
             return false;
         }
         return true;
     }
 
-    protected boolean validacaoRecuperarSenha(String email, String senhaAntiga, String senhaNova, String confirmarSenhaNova) {
-        if (email.length() < 1 || senhaAntiga.length() < 6 || senhaNova.length() < 6 || !senhaNova.equals(confirmarSenhaNova) || senhaNova.equals(senhaAntiga)) {
+    protected boolean validacaoRecuperarSenha(RecuperarSenhaDAO dao, String email, String senhaNova, String confirmarSenhaNova, String perguntaSeguranca, String resposta) {
+        if (dao.consultaCampo("Senha", email).equals(criptogafar(senhaNova)) || !regexEmail(email) || senhaNova.length() < 6 || !senhaNova.equals(confirmarSenhaNova) || 
+                !dao.consultaCampo("Pergunta_Seguranca", email).equals(perguntaSeguranca) || !dao.consultaCampo("Resposta", email).equals(criptogafar(resposta))) {
+
             showAlert(Alert.AlertType.ERROR, "Erro", 
+                dao.consultaCampo("Senha", email).equals(criptogafar(senhaNova)) ? "Senha nova não pode ser igual a antiga" :
+                !regexEmail(email) ? "Email inválido" :
                 (senhaNova.length() < 6 ) ? "A senha deve conter ao menos carácteres" :
                 !senhaNova.equals(confirmarSenhaNova) ? "As novas senhas não coincidem" :
-                "Senha nova não pode ser igual a antiga");
+                !dao.consultaCampo("Pergunta_Seguranca", email).equals(perguntaSeguranca) || !dao.consultaCampo("Resposta", email).equals(resposta) ? "Palavra-Chave incorreta" :
+                "Erro");
             return false;
         }
         return true;

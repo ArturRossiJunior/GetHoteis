@@ -1,33 +1,21 @@
 package Models;
 public class CadastroModel extends PadraoModel {
-    private String nomeCompleto;
-    private String email;
     private String CPF;
+    private String nomeCompleto;
     private String dataNascimento;
+    private String email;
     private String senha;
+    private String perguntaSeguranca;
+    private String resposta;
 
-    public CadastroModel(String nomeCompleto, String email, String CPF, String dataNascimento, String senha) {
-        this.nomeCompleto = nomeCompleto;
-        this.email = email;
+    public CadastroModel(String CPF, String nomeCompleto, String dataNascimento, String email, String senha, String perguntaSeguranca, String resposta) {
         this.CPF = CPF;
-        this.dataNascimento = dataNascimento;
-        this.senha = senha;
-    }
-
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public void setNomeCompleto(String nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
+        this.dataNascimento = dataNascimento;
         this.email = email;
+        this.senha = senha;
+        this.perguntaSeguranca = perguntaSeguranca;
+        this.resposta = resposta;
     }
 
     public String getCPF() {
@@ -38,6 +26,14 @@ public class CadastroModel extends PadraoModel {
         this.CPF = CPF;
     }
 
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
     public String getDataNascimento() {
         return dataNascimento;
     }
@@ -46,11 +42,35 @@ public class CadastroModel extends PadraoModel {
         this.dataNascimento = dataNascimento;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getPerguntaSeguranca() {
+        return perguntaSeguranca;
+    }
+
+    public void setPerguntaSeguranca(String perguntaSeguranca) {
+        this.perguntaSeguranca = perguntaSeguranca;
+    }
+
+    public String getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(String resposta) {
+        this.resposta = resposta;
     }
 }

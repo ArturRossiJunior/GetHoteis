@@ -27,7 +27,7 @@ public class LoginController extends PadraoController {
 
     @FXML
     private void handleLogin() {
-        if (loginDao.login(emailField.getText(), criptogafarSenha(senhaField.getText()))) {
+        if (loginDao.login(emailField.getText(), criptogafar(senhaField.getText()))) {
             showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Login bem-sucedido!");
         } else {
             showAlert(Alert.AlertType.ERROR, "Erro", "Email ou senha incorretos!");

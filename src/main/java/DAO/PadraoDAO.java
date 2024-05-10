@@ -7,33 +7,43 @@ import java.sql.SQLException;
 
 public abstract class PadraoDAO {
 
-    protected Connection conexao;
-
     private void setParametros(PreparedStatement stmt, Object... parametros) throws SQLException {
         for (int i = 0; i < parametros.length; i++) {
             stmt.setObject(i + 1, parametros[i]);
         }
     }
 
-    protected boolean executarAtualizacao(String sql, Object... parametros) {
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+    protected boolean executarOperacao(String sql, Object... parametros) {
+        try (Connection conexao = ConexaoDAO.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
             setParametros(stmt, parametros);
-            int linhasAfetadas = stmt.executeUpdate();
-            return linhasAfetadas > 0;
+            if (sql.trim().toLowerCase().startsWith("select")) {
+                try (ResultSet resultSet = stmt.executeQuery()) {
+                    return resultSet.next();
+                }
+            } else {
+                int linhasAfetadas = stmt.executeUpdate();
+                return linhasAfetadas > 0;
+            }
         } catch (SQLException e) {
-            System.err.println("Erro ao executar atualização: " + e.getMessage());
+            System.err.println("Erro ao executar operação: " + e.getMessage());
             return false;
         }
     }
 
-    protected boolean executarConsulta(String sql, Object... parametros) {
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            setParametros(stmt, parametros);
-            ResultSet resultSet = stmt.executeQuery();
-            return resultSet.next();
+    protected String consultarCampo(String sql, String email) {
+        try (Connection conexao = ConexaoDAO.conectar(); 
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1); 
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
-            System.err.println("Erro ao executar consulta: " + e.getMessage());
-            return false;
+            e.printStackTrace();
+            return null;
         }
     }
 }

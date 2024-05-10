@@ -1,12 +1,12 @@
 package Models;
 public class PadraoModel {
-    private int id;
+    private int ID;
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }
