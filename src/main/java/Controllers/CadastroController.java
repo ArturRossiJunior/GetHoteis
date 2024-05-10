@@ -12,7 +12,7 @@ public class CadastroController extends PadraoController<CadastroModel> {
     @FXML
     private TextField cpfField, nomeCompletoField, dataNascimentoField, emailField, respostaField;
     @FXML
-    private PasswordField senhaField;
+    private PasswordField senhaField, confirmaSenhaField;
     @FXML
     private Button cadastrarButton, voltarButton;
 
@@ -32,7 +32,7 @@ public class CadastroController extends PadraoController<CadastroModel> {
     @FXML
     private void handleCadastro() {
         try {
-            if (validacaoCadastro(cadastroDao, cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText(), emailField.getText(), senhaField.getText())) {
+            if (validacaoCadastro(cadastroDao, cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText(), emailField.getText(), senhaField.getText(), confirmaSenhaField.getText())) {
                 if (cadastroDao.inserirUsuario(new CadastroModel(cpfField.getText().replaceAll("[.\\-]", ""), nomeCompletoField.getText(), dataNascimentoField.getText(), 
                         emailField.getText(), criptogafar(senhaField.getText()), perguntaSegurancaCombo.getValue(), criptogafar(respostaField.getText())))) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cadastro bem-sucedido");

@@ -20,7 +20,7 @@
       <Label layoutX="66.0" layoutY="360.0" text="Senha:" />
       <PasswordField fx:id="senhaField" layoutX="66.0" layoutY="380.0" prefWidth="200.0" />
       <Label layoutX="66.0" layoutY="430.0" text="Confirmar Senha:" />
-      <PasswordField fx:id="confirmarSenhaField" layoutX="66.0" layoutY="450.0" prefWidth="200.0" />
+      <PasswordField fx:id="confirmaSenhaField" layoutX="66.0" layoutY="450.0" prefWidth="200.0" />
       <Label layoutX="66.0" layoutY="500.0" text="Pergunta de Segurança:" />
       <ComboBox fx:id="perguntaSegurancaCombo" layoutX="66.0" layoutY="520.0" prefWidth="200.0" />
       <TextField fx:id="respostaField" layoutX="66.0" layoutY="570.0" prefWidth="200.0" />

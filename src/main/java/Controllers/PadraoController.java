@@ -165,8 +165,9 @@ public class PadraoController<T extends PadraoModel> {
         }
     }
     
-    protected boolean validacaoCadastro(CadastroDAO dao, String cpf, String nome, String data, String email, String senha) {
-        if (!regexCPF(cpf) || nome.length() < 1 || !nome.contains(" ") || !regexData(data) || !regexEmail(email) || senha.length() < 6 || dao.consultaEmailouCPF(email, cpf.replaceAll("[.\\-]", ""))) {
+    protected boolean validacaoCadastro(CadastroDAO dao, String cpf, String nome, String data, String email, String senha, String confirmaSenha) {
+        if (!regexCPF(cpf) || nome.length() < 1 || !nome.contains(" ") || !regexData(data) || !regexEmail(email) || senha.length() < 6 
+                || dao.consultaEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) || !senha.equals(confirmaSenha)) {
             showAlert(Alert.AlertType.ERROR, "Erro", 
                 !regexCPF(cpf) ? "CPF inválido" :
                 (nome.length() < 1 || !nome.contains(" ")) ? "Nome completo obrigatório" :
@@ -174,6 +175,7 @@ public class PadraoController<T extends PadraoModel> {
                 !regexEmail(email) ? "Email inválido" :
                 (senha.length() < 6) ? "Senha deve conter ao menos 6 carácteres" :
                 dao.consultaEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) ? "Este e-mail ou CPF já está cadastrado" :
+                !senha.equals(confirmaSenha) ? "As senhas não coincidem" :
                 "Erro");
             return false;
         }
