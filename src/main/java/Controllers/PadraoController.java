@@ -5,7 +5,9 @@ import java.time.*;
 import java.time.format.*;
 import java.util.regex.*;
 import DAO.*;
+import javafx.animation.*;
 import Models.*;
+import javafx.util.Duration;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -13,6 +15,25 @@ public class PadraoController<T extends PadraoModel> {
 
     @FXML
     protected ComboBox<String> perguntaSegurancaCombo;
+
+    protected void exibirPopupTemporizado(long duracao, TextField[] camposTexto, Button... botoes) {
+        for (TextField campo : camposTexto) 
+            campo.setDisable(true);
+    
+        for (Button botao : botoes) 
+            botao.setDisable(true);
+    
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(duracao), event -> {
+            for (TextField campo : camposTexto) 
+                campo.setDisable(false);
+    
+            for (Button botao : botoes) 
+                botao.setDisable(false);
+            
+        }));
+        timeline.setCycleCount(1);
+        timeline.play();
+    }    
     
     protected void perguntaSegurancaCombo(){
         perguntaSegurancaCombo.getItems().addAll(
@@ -21,6 +42,7 @@ public class PadraoController<T extends PadraoModel> {
             "Qual é a sua cor preferida?"
         );
     }
+
     protected void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -124,11 +146,22 @@ public class PadraoController<T extends PadraoModel> {
             emailField.positionCaret(email.length());
         });
     }
+
+    protected boolean regexSenha(String senha) {
+        Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{6,}$");
+        Matcher matcher = pattern.matcher(senha);
+        return matcher.matches();
+    }    
    
     protected void mascaraSenha(PasswordField senhaField) {
         senhaField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
             if (novoValor == null) return;
             
+            if (novoValor.contains(" ")) {
+                novoValor = novoValor.replaceAll("\\s", "");
+                senhaField.setText(novoValor);
+            }
+
             if (novoValor.length() > 15)
                 senhaField.setText(novoValor.substring(0, 15));
         });
@@ -143,7 +176,7 @@ public class PadraoController<T extends PadraoModel> {
         });
     }
 
-    protected String criptogafar(String senha){
+    protected String criptografar(String senha){
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             
@@ -166,33 +199,43 @@ public class PadraoController<T extends PadraoModel> {
     }
     
     protected boolean validacaoCadastro(CadastroDAO dao, String cpf, String nome, String data, String email, String senha, String confirmaSenha) {
-        if (!regexCPF(cpf) || nome.length() < 1 || !nome.contains(" ") || !regexData(data) || !regexEmail(email) || senha.length() < 6 
-                || dao.consultaEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) || !senha.equals(confirmaSenha)) {
+        if (!regexCPF(cpf) || dao.existeEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) || nome.length() < 1 || !nome.contains(" ") || 
+                !regexData(data) || !regexEmail(email) || !regexSenha(senha) ||!senha.equals(confirmaSenha)) {
             showAlert(Alert.AlertType.ERROR, "Erro", 
                 !regexCPF(cpf) ? "CPF inválido" :
+                dao.existeEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) ? "Este e-mail ou CPF já está cadastrado" :
                 (nome.length() < 1 || !nome.contains(" ")) ? "Nome completo obrigatório" :
                 !regexData(data) ? "Data inválida" :
                 !regexEmail(email) ? "Email inválido" :
-                (senha.length() < 6) ? "Senha deve conter ao menos 6 carácteres" :
-                dao.consultaEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) ? "Este e-mail ou CPF já está cadastrado" :
+                !regexSenha(senha) ? "A senha deve conter no mínimo 6 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial" :
                 !senha.equals(confirmaSenha) ? "As senhas não coincidem" :
-                "Erro");
+                "Erro não tratado ainda");
             return false;
         }
         return true;
     }
 
-    protected boolean validacaoRecuperarSenha(RecuperarSenhaDAO dao, String email, String senhaNova, String confirmarSenhaNova, String perguntaSeguranca, String resposta) {
-        if (dao.consultaCampo("Senha", email).equals(criptogafar(senhaNova)) || !regexEmail(email) || senhaNova.length() < 6 || !senhaNova.equals(confirmarSenhaNova) || 
-                !dao.consultaCampo("Pergunta_Seguranca", email).equals(perguntaSeguranca) || !dao.consultaCampo("Resposta", email).equals(criptogafar(resposta))) {
-
+    protected boolean validacaoEnvioEmail(String email, EnvioEmailDAO dao) {
+        if (!regexEmail(email) || !dao.existeEmail(email)) {
             showAlert(Alert.AlertType.ERROR, "Erro", 
-                dao.consultaCampo("Senha", email).equals(criptogafar(senhaNova)) ? "Senha nova não pode ser igual a antiga" :
                 !regexEmail(email) ? "Email inválido" :
-                (senhaNova.length() < 6 ) ? "A senha deve conter ao menos carácteres" :
-                !senhaNova.equals(confirmarSenhaNova) ? "As novas senhas não coincidem" :
+                !dao.existeEmail(email) ? "Email inexistente":
+                "Erro não tratado ainda");
+            return false;
+        }
+        return true;
+    }
+
+    protected boolean validacaoPerguntaSeguranca(PerguntaSegurancaDAO dao, String email, String senhaNova, String confirmarSenhaNova, String perguntaSeguranca, String resposta) {
+        if (!regexEmail(email) || dao.consultaCampo("Senha", email).equals(criptografar(senhaNova)) || !regexSenha(senhaNova) || !senhaNova.equals(confirmarSenhaNova) || 
+                !dao.consultaCampo("Pergunta_Seguranca", email).equals(perguntaSeguranca) || !dao.consultaCampo("Resposta", email).equals(criptografar(resposta))) {
+            showAlert(Alert.AlertType.ERROR, "Erro", 
+                !regexEmail(email) ? "Email inválido" :
+                dao.consultaCampo("Senha", email).equals(criptografar(senhaNova)) ? "Senha nova não pode ser igual a antiga" :
+                !regexSenha(senhaNova) ? "A senha deve conter no mínimo 6 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial" :
+                !senhaNova.equals(confirmarSenhaNova) ? "As senhas não coincidem" :
                 !dao.consultaCampo("Pergunta_Seguranca", email).equals(perguntaSeguranca) || !dao.consultaCampo("Resposta", email).equals(resposta) ? "Palavra-Chave incorreta" :
-                "Erro");
+                "Erro não tratado ainda");
             return false;
         }
         return true;

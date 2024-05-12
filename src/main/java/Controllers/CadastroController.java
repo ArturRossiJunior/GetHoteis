@@ -34,7 +34,7 @@ public class CadastroController extends PadraoController<CadastroModel> {
         try {
             if (validacaoCadastro(cadastroDao, cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText(), emailField.getText(), senhaField.getText(), confirmaSenhaField.getText())) {
                 if (cadastroDao.inserirUsuario(new CadastroModel(cpfField.getText().replaceAll("[.\\-]", ""), nomeCompletoField.getText(), dataNascimentoField.getText(), 
-                        emailField.getText(), criptogafar(senhaField.getText()), perguntaSegurancaCombo.getValue(), criptogafar(respostaField.getText())))) {
+                        emailField.getText(), criptografar(senhaField.getText()), perguntaSegurancaCombo.getValue(), criptografar(respostaField.getText())))) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cadastro bem-sucedido");
                     App.changeScene("Login");
                 } else {

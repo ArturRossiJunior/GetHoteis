@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RecuperarSenhaController">
+<AnchorPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PerguntaSegurancaController">
    <children>
       <Label layoutX="50.0" layoutY="40.0" text="Esqueci minha senha" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
       <Label layoutX="50.0" layoutY="80.0" text="Email:" />
@@ -19,7 +19,7 @@
       <ComboBox fx:id="perguntaSegurancaCombo" layoutX="50.0" layoutY="280.0" prefWidth="300.0" />
       <Label layoutX="50.0" layoutY="320.0" text="Resposta:" />
       <TextField fx:id="respostaField" layoutX="50.0" layoutY="340.0" prefWidth="300.0" />
-      <Button fx:id="recuperarSenhaButton" layoutX="50.0" layoutY="380.0" prefWidth="150.0" mnemonicParsing="false" onAction="#handleRecuperarSenha" text="Recuperar Senha" />
+      <Button fx:id="recuperarSenhaButton" layoutX="50.0" layoutY="380.0" prefWidth="150.0" mnemonicParsing="false" onAction="#handlePerguntaSeguranca" text="Recuperar Senha" />
       <Button fx:id="voltarButton" layoutX="220.0" layoutY="380.0" prefWidth="150.0" mnemonicParsing="false" onAction="#handleVoltar" text="Voltar" />
    </children>
 </AnchorPane>

@@ -7,7 +7,7 @@ import com.n2.hotelaria.*;
 import DAO.*;
 import Models.*;
 
-public class RecuperarSenhaController extends PadraoController<PadraoModel> {
+public class PerguntaSegurancaController extends PadraoController<PadraoModel> {
 
     @FXML
     private Button recuperarSenhaButton, voltarButton;
@@ -16,7 +16,7 @@ public class RecuperarSenhaController extends PadraoController<PadraoModel> {
     @FXML
     private PasswordField senhaNovaField, confirmarSenhaNovaField;
 
-    private RecuperarSenhaDAO recuperarSenhaDAO = new RecuperarSenhaDAO();
+    private PerguntaSegurancaDAO perguntaSegurancaDAO = new PerguntaSegurancaDAO();
 
 
     @FXML
@@ -29,10 +29,10 @@ public class RecuperarSenhaController extends PadraoController<PadraoModel> {
     }
 
     @FXML
-    private void handleRecuperarSenha() {
+    private void handlePerguntaSeguranca() {
         try{
-            if(validacaoRecuperarSenha(recuperarSenhaDAO, emailField.getText(), senhaNovaField.getText(), confirmarSenhaNovaField.getText(), perguntaSegurancaCombo.getValue(), respostaField.getText())){
-                if (recuperarSenhaDAO.recuperarSenha(emailField.getText(), criptogafar(senhaNovaField.getText()), perguntaSegurancaCombo.getValue(), criptogafar(respostaField.getText()))) {
+            if(validacaoPerguntaSeguranca(perguntaSegurancaDAO, emailField.getText(), senhaNovaField.getText(), confirmarSenhaNovaField.getText(), perguntaSegurancaCombo.getValue(), respostaField.getText())){
+                if (perguntaSegurancaDAO.reuperarSenhaPerguntaSeguranca(emailField.getText(), criptografar(senhaNovaField.getText()), perguntaSegurancaCombo.getValue(), criptografar(respostaField.getText()))) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Senha alterada com sucesso");
                     App.changeScene("Login");
                 } else{

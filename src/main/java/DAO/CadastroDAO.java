@@ -9,7 +9,7 @@ public class CadastroDAO extends PadraoDAO {
         return executarOperacao(sql, usuario.getCPF(), usuario.getNomeCompleto(), usuario.getDataNascimento(), usuario.getEmail(), usuario.getSenha(), usuario.getPerguntaSeguranca(), usuario.getResposta());
     }
 
-    public boolean consultaEmailouCPF(String email, String cpf) {
+    public boolean existeEmailouCPF(String email, String cpf) {
         String sql = "SELECT * FROM Usuario WHERE Email = ? OR CPF = ?";
         return executarOperacao(sql, email, cpf);
     }
