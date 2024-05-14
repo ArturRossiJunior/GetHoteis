@@ -1,5 +1,5 @@
 package Models;
-public class CadastroModel extends PadraoModel {
+public class UsuarioModel extends PadraoModel {
     private String CPF;
     private String nomeCompleto;
     private String dataNascimento;
@@ -8,7 +8,7 @@ public class CadastroModel extends PadraoModel {
     private String perguntaSeguranca;
     private String resposta;
 
-    public CadastroModel(String CPF, String nomeCompleto, String dataNascimento, String email, String senha, String perguntaSeguranca, String resposta) {
+    public UsuarioModel(String CPF, String nomeCompleto, String dataNascimento, String email, String senha, String perguntaSeguranca, String resposta) {
         this.CPF = CPF;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;

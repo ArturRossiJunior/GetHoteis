@@ -7,7 +7,7 @@ import Models.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 
-public class CadastroController extends PadraoController<CadastroModel> {
+public class CadastroController extends PadraoController<UsuarioModel> {
 
     @FXML
     private TextField cpfField, nomeCompletoField, dataNascimentoField, emailField, respostaField;
@@ -33,7 +33,7 @@ public class CadastroController extends PadraoController<CadastroModel> {
     private void handleCadastro() {
         try {
             if (validacaoCadastro(cadastroDao, cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText(), emailField.getText(), senhaField.getText(), confirmaSenhaField.getText())) {
-                if (cadastroDao.inserirUsuario(new CadastroModel(cpfField.getText().replaceAll("[.\\-]", ""), nomeCompletoField.getText(), dataNascimentoField.getText(), 
+                if (cadastroDao.inserirUsuario(new UsuarioModel(cpfField.getText().replaceAll("[.\\-]", ""), nomeCompletoField.getText(), dataNascimentoField.getText(), 
                         emailField.getText(), criptografar(senhaField.getText()), perguntaSegurancaCombo.getValue(), criptografar(respostaField.getText())))) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cadastro bem-sucedido");
                     App.changeScene("Login");
