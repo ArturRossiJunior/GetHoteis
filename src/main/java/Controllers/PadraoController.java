@@ -11,7 +11,7 @@ import javafx.util.Duration;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class PadraoController<T extends PadraoModel> {
+public class PadraoController <T extends PadraoModel> {
 
     @FXML
     protected ComboBox<String> perguntaSegurancaCombo;

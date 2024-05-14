@@ -1,10 +1,14 @@
-import org.junit.Test;
+import Models.*;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 public class LoginTest {
     
+    private UsuarioModel usuario;
+    
     @Test
     public void loginSucesso(){
-        assertTrue(true);
+        assertNotNull(usuario.getCPF());
+        System.out.println("teste");
     }
 }
