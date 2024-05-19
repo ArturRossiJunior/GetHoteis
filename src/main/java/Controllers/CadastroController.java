@@ -1,18 +1,18 @@
 package Controllers;
 
-import java.io.*;
+import java.io.IOException;
 import com.n2.hotelaria.*;
 import DAO.*;
 import Models.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 
-public class CadastroController extends PadraoController<CadastroModel> {
+public class CadastroController extends PadraoController<UsuarioModel> {
 
     @FXML
-    private TextField nomeCompletoField, emailField, cpfField, dataNascimentoField;
+    private TextField cpfField, nomeCompletoField, dataNascimentoField, emailField, respostaField;
     @FXML
-    private PasswordField senhaField;
+    private PasswordField senhaField, confirmaSenhaField;
     @FXML
     private Button cadastrarButton, voltarButton;
 
@@ -21,21 +21,24 @@ public class CadastroController extends PadraoController<CadastroModel> {
     @FXML
     private void initialize() {
         mascaraCPF(cpfField);
-        mascaraData(dataNascimentoField);
         mascaraNome(nomeCompletoField);
+        mascaraData(dataNascimentoField);
         mascaraEmail(emailField);
         mascaraSenha(senhaField);
+        mascaraResposta(respostaField);
+        perguntaSegurancaCombo();
     }
 
     @FXML
     private void handleCadastro() {
         try {
-            if (validacaoCadastro(cadastroDao, nomeCompletoField.getText(), emailField.getText(), cpfField.getText(), dataNascimentoField.getText(), senhaField.getText())) {
-                if (cadastroDao.inserirUsuario(new CadastroModel(nomeCompletoField.getText(), emailField.getText(), cpfField.getText(), dataNascimentoField.getText(), criptogafarSenha(senhaField.getText())))) {
-                    showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cadastro bem-sucedido!");
+            if (validacaoCadastro(cadastroDao, cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText(), emailField.getText(), senhaField.getText(), confirmaSenhaField.getText())) {
+                if (cadastroDao.inserirUsuario(new UsuarioModel(cpfField.getText().replaceAll("[.\\-]", ""), nomeCompletoField.getText(), dataNascimentoField.getText(), 
+                        emailField.getText(), criptografar(senhaField.getText()), perguntaSegurancaCombo.getValue(), criptografar(respostaField.getText())))) {
+                    showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cadastro bem-sucedido");
                     App.changeScene("Login");
                 } else {
-                    showAlert(Alert.AlertType.ERROR, "Erro", "Usuário ou senha inválidos");
+                    showAlert(Alert.AlertType.ERROR, "Erro", "Falha ao cadastrar");
                 }
             }
         } catch (IOException e) {
