@@ -14,7 +14,7 @@ AnchorPane
 
 .label.titulo
 {
-    -fx-font-size: 30pt;
+    -fx-font-size: 20pt;
     -fx-font-weight: bold;
     -fx-text-fill: #282525;
     
@@ -43,5 +43,5 @@ AnchorPane
     -fx-hgap: 15;
     -fx-vgap: 10;
     -fx-pref-width: 550;
-
 }
+
