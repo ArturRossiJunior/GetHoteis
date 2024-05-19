@@ -4,8 +4,11 @@ import java.io.IOException;
 import com.n2.hotelaria.*;
 import DAO.*;
 import Models.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class CadastroController extends PadraoController<UsuarioModel> {
 
@@ -47,9 +50,10 @@ public class CadastroController extends PadraoController<UsuarioModel> {
     }
 
     @FXML
-    private void handleVoltar() {
+    private void handleVoltar(ActionEvent event) {
         try {
-            App.changeScene("Login");
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            App.changeScene("Login", stage);
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }

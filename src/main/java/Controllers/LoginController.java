@@ -9,9 +9,17 @@ import java.io.*;
 import java.util.*;
 import com.n2.hotelaria.*;
 import DAO.*;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class LoginController extends PadraoController {
-
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    
     @FXML
     private Button loginButton, cadastroButton, esqueciMinhaSenhaButton;
     @FXML
@@ -51,9 +59,11 @@ public class LoginController extends PadraoController {
     }
 
     @FXML
-    private void handleCadastro() {
+    private void handleCadastro(ActionEvent event) {
         try {
-            App.changeScene("Cadastro");
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        App.changeScene("Cadastro", stage);
+            
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }

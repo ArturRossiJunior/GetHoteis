@@ -1,0 +1,18 @@
+AnchorPane
+{
+    -fx-background-color:#FAF9F6;
+    -fx-background-image:url("logo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size:50px 100px;
+    
+}
+
+.pane{
+     -fx-background-color:#FAF9F6;
+    -fx-background-image:url("logo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size:50px 100px;
+    
+}
