@@ -11,7 +11,6 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-
     
     @Override
     public void start(Stage stage) throws IOException {
@@ -23,17 +22,12 @@ public class App extends Application {
         stage.show();
     }
 
-   public static void changeScene(String fxml) throws IOException {
-    Stage stage = (Stage) scene.getWindow();
-    changeScene(fxml, stage);
-}
-
-public static void changeScene(String fxml, Stage stage) throws IOException {
-    Parent root = loadFXML(fxml);
-    Scene newScene = new Scene(root);
-    stage.setScene(newScene);
-    stage.sizeToScene(); // Ajusta o tamanho da janela para corresponder ao tamanho do conteúdo
-}
+    public static void changeScene(String fxml, Stage... optionalStage) throws IOException {
+        Stage stage = (optionalStage.length > 0 && optionalStage[0] != null) ? optionalStage[0] : (Stage) scene.getWindow();
+        stage.setScene(new Scene(loadFXML(fxml)));
+        stage.sizeToScene();
+    }
+    
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
@@ -43,6 +37,4 @@ public static void changeScene(String fxml, Stage stage) throws IOException {
     public static void main(String[] args) {
         launch();
     }
-    
-    
 }

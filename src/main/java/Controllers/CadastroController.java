@@ -4,10 +4,10 @@ import java.io.IOException;
 import com.n2.hotelaria.*;
 import DAO.*;
 import Models.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.Node;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
 public class CadastroController extends PadraoController<UsuarioModel> {
@@ -33,13 +33,13 @@ public class CadastroController extends PadraoController<UsuarioModel> {
     }
 
     @FXML
-    private void handleCadastro() {
+    private void handleCadastro(ActionEvent event) {
         try {
             if (validacaoCadastro(cadastroDao, cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText(), emailField.getText(), senhaField.getText(), confirmaSenhaField.getText())) {
                 if (cadastroDao.inserirUsuario(new UsuarioModel(cpfField.getText().replaceAll("[.\\-]", ""), nomeCompletoField.getText(), dataNascimentoField.getText(), 
                         emailField.getText(), criptografar(senhaField.getText()), perguntaSegurancaCombo.getValue(), criptografar(respostaField.getText())))) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cadastro bem-sucedido");
-                    App.changeScene("Login");
+                    App.changeScene("Login", (Stage)((Node)event.getSource()).getScene().getWindow());
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Erro", "Falha ao cadastrar");
                 }
@@ -52,8 +52,7 @@ public class CadastroController extends PadraoController<UsuarioModel> {
     @FXML
     private void handleVoltar(ActionEvent event) {
         try {
-             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            App.changeScene("Login", stage);
+            App.changeScene("Login", (Stage)((Node)event.getSource()).getScene().getWindow());
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }

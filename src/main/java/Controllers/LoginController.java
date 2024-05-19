@@ -11,14 +11,9 @@ import com.n2.hotelaria.*;
 import DAO.*;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class LoginController extends PadraoController {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
     
     @FXML
     private Button loginButton, cadastroButton, esqueciMinhaSenhaButton;
@@ -61,16 +56,14 @@ public class LoginController extends PadraoController {
     @FXML
     private void handleCadastro(ActionEvent event) {
         try {
-         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        App.changeScene("Cadastro", stage);
-            
+            App.changeScene("Cadastro", (Stage)((Node)event.getSource()).getScene().getWindow());
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }
     }
 
     @FXML
-    private void handleRecuperarSenha() {
+    private void handleRecuperarSenha(ActionEvent event) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Esqueci minha senha");
         dialog.setHeaderText("Escolha uma opção:");
@@ -84,9 +77,9 @@ public class LoginController extends PadraoController {
         result.ifPresent(buttonType -> {
             try {
                 if (buttonType == enviarEmailButtonType) 
-                    App.changeScene("EnvioEmail");
+                    App.changeScene("EnvioEmail", (Stage)((Node)event.getSource()).getScene().getWindow());
                 else if (buttonType == mudarCenaButtonType)
-                    App.changeScene("PerguntaSeguranca");
+                    App.changeScene("PerguntaSeguranca", (Stage)((Node)event.getSource()).getScene().getWindow());
                  else if (buttonType == voltarButtonType) 
                     dialog.close();
             } catch (IOException e) {
