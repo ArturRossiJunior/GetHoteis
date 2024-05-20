@@ -1,0 +1,47 @@
+AnchorPane
+{
+    -fx-background-color:#FAF9F6;
+    
+   }
+
+.label{
+
+    -fx-text-fill: #282525;
+    -fx-font-size: 18pt;
+    -fx-font-family:"Comic Sans MS", SansSerif;
+    
+}
+
+.label.titulo
+{
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #282525;
+    
+}
+
+.label.logo
+{
+    -fx-background-image:url("logo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size:50px 100px;
+}
+
+.button
+{
+        -fx-text-fill: #FAF9F6;
+        -fx-font-size: 10pt;
+       -fx-font-family:"Comic Sans MS", SansSerif;
+       -fx-size: 230px 25px;
+       -fx-background-color: #282525;
+       
+}
+
+.gridPaneCadastro{
+
+    -fx-hgap: 15;
+    -fx-vgap: 10;
+    -fx-pref-width: 550;
+}
+
