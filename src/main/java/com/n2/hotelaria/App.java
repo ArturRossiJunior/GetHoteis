@@ -11,18 +11,23 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-
+    
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Login"), 700, 700);
+        scene = new Scene(loadFXML("Login"));
         stage.setScene(scene);
         stage.setTitle("Login");
+        stage.setMinHeight(400);
+        stage.setMinWidth(300);
         stage.show();
     }
 
-    public static void changeScene(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    public static void changeScene(String fxml, Stage... optionalStage) throws IOException {
+        Stage stage = (optionalStage.length > 0 && optionalStage[0] != null) ? optionalStage[0] : (Stage) scene.getWindow();
+        stage.setScene(new Scene(loadFXML(fxml)));
+        stage.sizeToScene();
     }
+    
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));

@@ -5,6 +5,9 @@ import com.n2.hotelaria.*;
 import DAO.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 
 public class EnvioEmailController extends PadraoController {
 
@@ -19,11 +22,11 @@ public class EnvioEmailController extends PadraoController {
     }
 
     @FXML
-    void handleEnviar() {
+    void handleEnviar(ActionEvent event) {
         try {
             if(validacaoEnvioEmail(emailField.getText(), dao)) {
                 showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Email para alteração de senha enviado com sucesso");
-                App.changeScene("Login");
+                App.changeScene("Login", (Stage)((Node)event.getSource()).getScene().getWindow());
             }
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
@@ -31,9 +34,9 @@ public class EnvioEmailController extends PadraoController {
     }
 
     @FXML
-    private void handleVoltar() {
+    private void handleVoltar(ActionEvent event) {
         try {
-            App.changeScene("Login");
+            App.changeScene("Login", (Stage)((Node)event.getSource()).getScene().getWindow());
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }
