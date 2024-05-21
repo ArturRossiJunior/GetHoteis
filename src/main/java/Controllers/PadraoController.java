@@ -128,7 +128,7 @@ public class PadraoController <T extends PadraoModel> {
         });
     }
     
-    public static String inverterData(String dataOriginal) {
+    public String inverterData(String dataOriginal) {
         String[] partes = dataOriginal.split("/");
         int dia = Integer.parseInt(partes[0]);
         int mes = Integer.parseInt(partes[1]);
