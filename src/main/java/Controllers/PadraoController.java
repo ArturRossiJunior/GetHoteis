@@ -127,6 +127,17 @@ public class PadraoController <T extends PadraoModel> {
             dataField.positionCaret(mascaraData.length());
         });
     }
+    
+    public static String inverterData(String dataOriginal) {
+        String[] partes = dataOriginal.split("/");
+        int dia = Integer.parseInt(partes[0]);
+        int mes = Integer.parseInt(partes[1]);
+        int ano = Integer.parseInt(partes[2]);
+        
+        LocalDate data = LocalDate.of(ano, mes, dia);
+        String dataInvertida = data.toString();
+        return dataInvertida;
+    }
 
     protected boolean regexEmail(String email) {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
