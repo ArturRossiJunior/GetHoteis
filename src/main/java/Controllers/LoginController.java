@@ -56,7 +56,7 @@ public class LoginController extends PadraoController {
     @FXML
     private void handleCadastro(ActionEvent event) {
         try {
-            App.changeScene("Cadastro", (Stage)((Node)event.getSource()).getScene().getWindow());
+            App.changeScene("CadastroUsuario", (Stage)((Node)event.getSource()).getScene().getWindow());
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }

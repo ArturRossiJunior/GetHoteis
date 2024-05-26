@@ -10,7 +10,7 @@ import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
-public class CadastroController extends PadraoController<UsuarioModel> {
+public class CadastroUsuarioController extends PadraoController<UsuarioModel> {
 
     @FXML
     private TextField cpfField, nomeCompletoField, dataNascimentoField, emailField, respostaField;
@@ -19,7 +19,7 @@ public class CadastroController extends PadraoController<UsuarioModel> {
     @FXML
     private Button cadastrarButton, voltarButton;
 
-    private final CadastroDAO cadastroDao = new CadastroDAO();
+    private final CadastroUsuarioDAO cadastroDao = new CadastroUsuarioDAO();
 
     @FXML
     private void initialize() {

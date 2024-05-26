@@ -209,7 +209,7 @@ public class PadraoController <T extends PadraoModel> {
         }
     }
     
-    protected boolean validacaoCadastro(CadastroDAO dao, String cpf, String nome, String data, String email, String senha, String confirmaSenha) {
+    protected boolean validacaoCadastro(CadastroUsuarioDAO dao, String cpf, String nome, String data, String email, String senha, String confirmaSenha) {
         if (!regexCPF(cpf) || dao.existeEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) || nome.length() < 1 || !nome.contains(" ") || 
                 !regexData(data) || !regexEmail(email) || !regexSenha(senha) ||!senha.equals(confirmaSenha)) {
             showAlert(Alert.AlertType.ERROR, "Erro", 
