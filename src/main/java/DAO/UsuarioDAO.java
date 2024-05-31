@@ -1,8 +1,8 @@
 package DAO;
 
-import Models.UsuarioModel;
+import Models.*;
 
-public class CadastroUsuarioDAO extends PadraoDAO {
+public class UsuarioDAO extends PadraoDAO {
 
     public boolean inserirUsuario(UsuarioModel usuario) {
         String sql = "INSERT INTO Usuario (CPF, Nome_Completo, Data_Nascimento, Email, Senha, Pergunta_Seguranca, Resposta) VALUES (?, ?, ?, ?, ?, ?, ?)";

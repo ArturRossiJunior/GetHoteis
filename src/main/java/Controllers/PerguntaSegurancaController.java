@@ -6,9 +6,9 @@ import java.io.*;
 import com.n2.hotelaria.*;
 import DAO.*;
 import Models.*;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.stage.Stage;
+import javafx.event.*;
+import javafx.scene.*;
+import javafx.stage.*;
 
 public class PerguntaSegurancaController extends PadraoController<PadraoModel> {
 

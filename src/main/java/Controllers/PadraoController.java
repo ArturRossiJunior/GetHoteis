@@ -128,7 +128,7 @@ public class PadraoController <T extends PadraoModel> {
         });
     }
     
-    public String inverterData(String dataOriginal) {
+    protected String inverterData(String dataOriginal) {
         String[] partes = dataOriginal.split("/");
         int dia = Integer.parseInt(partes[0]);
         int mes = Integer.parseInt(partes[1]);
@@ -208,8 +208,27 @@ public class PadraoController <T extends PadraoModel> {
             return null;
         }
     }
+
+    protected void mascaraNumero(TextField numeroField) {
+        numeroField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
+            if (novoValor == null) return;
+            String numeros = novoValor.replaceAll("[^\\d]", "");
+            
+            numeroField.setText(numeros);
+        });
+    }
     
-    protected boolean validacaoCadastro(CadastroUsuarioDAO dao, String cpf, String nome, String data, String email, String senha, String confirmaSenha) {
+    protected void mascaraValor(TextField valorField) {
+        valorField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
+            if (novoValor == null) return;
+    
+            String numeros = novoValor.replaceAll("(\\d{1,8})(\\.\\d{0,2})?.*|[^\\d.]+", "$1$2");
+    
+            valorField.setText(numeros);
+        });
+    }
+    
+    protected boolean validacaoCadastro(UsuarioDAO dao, String cpf, String nome, String data, String email, String senha, String confirmaSenha) {
         if (!regexCPF(cpf) || dao.existeEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) || nome.length() < 1 || !nome.contains(" ") || 
                 !regexData(data) || !regexEmail(email) || !regexSenha(senha) ||!senha.equals(confirmaSenha)) {
             showAlert(Alert.AlertType.ERROR, "Erro", 
@@ -238,17 +257,48 @@ public class PadraoController <T extends PadraoModel> {
     }
 
     protected boolean validacaoPerguntaSeguranca(PerguntaSegurancaDAO dao, String email, String senhaNova, String confirmarSenhaNova, String perguntaSeguranca, String resposta) {
-        if (!regexEmail(email) || dao.consultaCampo("Senha", email).equals(criptografar(senhaNova)) || !regexSenha(senhaNova) || !senhaNova.equals(confirmarSenhaNova) || 
-                !dao.consultaCampo("Pergunta_Seguranca", email).equals(perguntaSeguranca) || !dao.consultaCampo("Resposta", email).equals(criptografar(resposta))) {
+        if (!regexEmail(email) || dao.consultaEmail("Senha", email).equals(criptografar(senhaNova)) || !regexSenha(senhaNova) || !senhaNova.equals(confirmarSenhaNova) || 
+                !dao.consultaEmail("Pergunta_Seguranca", email).equals(perguntaSeguranca) || !dao.consultaEmail("Resposta", email).equals(criptografar(resposta))) {
             showAlert(Alert.AlertType.ERROR, "Erro", 
                 !regexEmail(email) ? "Email inválido" :
-                dao.consultaCampo("Senha", email).equals(criptografar(senhaNova)) ? "Senha nova não pode ser igual a antiga" :
+                dao.consultaEmail("Senha", email).equals(criptografar(senhaNova)) ? "Senha nova não pode ser igual a antiga" :
                 !regexSenha(senhaNova) ? "A senha deve conter no mínimo 6 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial" :
                 !senhaNova.equals(confirmarSenhaNova) ? "As senhas não coincidem" :
-                !dao.consultaCampo("Pergunta_Seguranca", email).equals(perguntaSeguranca) || !dao.consultaCampo("Resposta", email).equals(resposta) ? "Palavra-Chave incorreta" :
+                !dao.consultaEmail("Pergunta_Seguranca", email).equals(perguntaSeguranca) || !dao.consultaEmail("Resposta", email).equals(resposta) ? "Palavra-Chave incorreta" :
                 "Erro não tratado ainda");
             return false;
         }
         return true;
+    }
+
+    protected boolean validacaoCadastroTipoQuarto(TipoQuartoDAO dao, String nomeTipoQuarto, String quantidadeCamas, String valorDiaria, String descricao) {
+        int quantidade = Integer.parseInt(quantidadeCamas);
+        double valor = Double.parseDouble(valorDiaria);
+    
+        if (nomeTipoQuarto.isEmpty() || quantidade <= 0 || quantidade > 5 || valor < 0 || descricao.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Erro", 
+                nomeTipoQuarto.isEmpty() ? "Nome inválido" :
+                quantidade <= 0 || quantidade > 5 ? "Quantidade de camas deve ser entre 1 e 5" :
+                valor < 0 ? "Valor inválido" :
+                descricao.isEmpty() ? "Descrição inválida" :
+                "Por favor, verifique os campos inseridos");
+            return false;
+        }
+        return true;
+    }
+
+    protected String formatarQuarto(QuartoModel quarto) {
+        return "Número do Quarto: " + quarto.getNumeroQuarto() +
+               " - Nome do Tipo: " + quarto.getTipoQuarto().getNome() +
+               " - Quantidade de Camas: " + quarto.getTipoQuarto().getQuantidadeCamas() +
+               " - Valor da Diária: R$" + quarto.getTipoQuarto().getValorDiaria() +
+               " - Descrição: " + quarto.getTipoQuarto().getDescricao();
+    }
+
+    protected String formatarTipoQuarto(TipoQuartoModel quarto) {
+        return "Nome do Tipo: " + quarto.getNome() +
+               " - Quantidade de Camas: " + quarto.getQuantidadeCamas() +
+               " - Valor da Diária: R$" + quarto.getValorDiaria() +
+               " - Descrição: " + quarto.getDescricao();
     }
 }

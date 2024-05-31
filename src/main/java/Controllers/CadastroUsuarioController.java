@@ -1,14 +1,14 @@
 package Controllers;
 
-import java.io.IOException;
+import java.io.*;
 import com.n2.hotelaria.*;
 import DAO.*;
 import Models.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.Node;
-import javafx.event.ActionEvent;
-import javafx.stage.Stage;
+import javafx.scene.*;
+import javafx.event.*;
+import javafx.stage.*;
 
 public class CadastroUsuarioController extends PadraoController<UsuarioModel> {
 
@@ -19,7 +19,7 @@ public class CadastroUsuarioController extends PadraoController<UsuarioModel> {
     @FXML
     private Button cadastrarButton, voltarButton;
 
-    private final CadastroUsuarioDAO cadastroDao = new CadastroUsuarioDAO();
+    private final UsuarioDAO cadastroDao = new UsuarioDAO();
 
     @FXML
     private void initialize() {
