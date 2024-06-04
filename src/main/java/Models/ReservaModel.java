@@ -76,4 +76,6 @@ public class ReservaModel extends PadraoModel {
     public void setDiaCheckOut(String diaCheckOut) {
         this.diaCheckOut = diaCheckOut;
     }
+    
+    
 }

@@ -184,5 +184,22 @@ public abstract class PadraoDAO {
             e.printStackTrace();
         }
         return reservas;
+    }
+
+protected Map<String, Integer> consultarReservasPorMes(String sql) {
+        Map<String, Integer> reservasPorMes = new HashMap<>();
+        try (Connection conexao = ConexaoDAO.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String mes = rs.getString("mes");
+                int quantidade = rs.getInt("quantidade");
+                reservasPorMes.put(mes, quantidade);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reservasPorMes;
     }    
 }

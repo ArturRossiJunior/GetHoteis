@@ -1,6 +1,8 @@
 package DAO;
 
 import Models.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReservaDAO extends PadraoDAO {
 
@@ -26,4 +28,15 @@ public class ReservaDAO extends PadraoDAO {
         String sql = "UPDATE Reserva SET Quarto_ID = ?, Cliente_ID = ?, Qtd_Pessoas = ?, Valor_Entrada = ?, Data_Reserva = ?, Dia_CheckIn = ?, Dia_CheckOut = ? WHERE ID = ?";
         return executarOperacao(sql, reservaModel.getQuarto().getID(), reservaModel.getCliente().getID(), reservaModel.getQtdPessoas(), reservaModel.getValorEntrada(), reservaModel.getDataReserva(), reservaModel.getDiaCheckIn(), reservaModel.getDiaCheckOut(), ID);
     }
-}
+    
+     public Map<String, Integer> getReservasPorMes() {
+        String sql = "SELECT FORMAT(Data_Reserva, 'yyyy-MM') as mes, COUNT(*) as quantidade " +
+                     "FROM Reserva " +
+                     "GROUP BY FORMAT(Data_Reserva, 'yyyy-MM') " +
+                     "ORDER BY mes";
+        return consultarReservasPorMes(sql);
+    }
+   
+    }
+   
+   
