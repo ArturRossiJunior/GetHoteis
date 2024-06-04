@@ -2,31 +2,129 @@
 
 <?import java.lang.*?>
 <?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.HomeController">
+<AnchorPane fx:id="rootPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="true" prefHeight="1000.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.HomeController">
   <children>
-    <VBox alignment="CENTER" prefHeight="487.0" prefWidth="451.0" spacing="20.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="292.5" AnchorPane.rightAnchor="55.5" AnchorPane.topAnchor="158.0">
-      <children>
-        <HBox spacing="10.0">
+    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" styleClass="AnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0">
           <children>
-            <Button fx:id="cadastroQuartoButton" onAction="#openCadastroQuarto" text="Cadastrar um Quarto" />
-            <Button fx:id="modificarQuartoButton" onAction="#modificarQuartoSelecionado" text="Modificar Quarto" />
-            <Button fx:id="excluirQuartoButton" onAction="#excluirQuartoSelecionado" text="Excluir Quarto" />
+            <StackPane fx:id="telaHome" prefHeight="900.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
           </children>
-        </HBox>
-        <ListView fx:id="quartosListView" prefHeight="200.0" prefWidth="800.0" />
-        <HBox spacing="10.0">
+        </AnchorPane>
+      </center>
+      <left>
+        <AnchorPane fx:id="slider" prefHeight="300.0" prefWidth="204.0" styleClass="pane_menu">
           <children>
-            <Button fx:id="cadastroTipoQuartoButton" onAction="#openCadastroTipoQuarto" text="Cadastrar Tipo de Quarto" />
-            <Button fx:id="modificarTipoQuartoButton" onAction="#modificarTipoQuartoSelecionado" text="Modificar Tipo de Quarto" />
-            <Button fx:id="excluirTipoQuartoButton" onAction="#excluirTipoQuartoSelecionado" text="Excluir Tipo de Quarto" />
+            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+              <children>
+                <Button fx:id="btnClientes_Menu" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showCliente" onMouseClicked="#showCliente" prefHeight="40.0" prefWidth="200.0" styleClass="button-menuLateral" text="Clientes">
+                  <graphic>
+                    <ImageView fitHeight="50.0" fitWidth="20.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@Icons/users.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                  <VBox.margin>
+                    <Insets left="5.0" right="5.0" fx:id="x1" />
+                  </VBox.margin>
+                </Button>
+                <Button fx:id="btnQuartos_Menu" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#showQuarto" prefHeight="40.0" prefWidth="200.0" styleClass="button-menuLateral" text="Quartos" VBox.margin="$x1">
+                  <graphic>
+                    <ImageView fitHeight="50.0" fitWidth="20.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@Icons/bed-alt.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="btnFuncionarios_Menu" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#showFuncionario" prefHeight="40.0" prefWidth="200.0" styleClass="button-menuLateral" text="Funcionarios" VBox.margin="$x1">
+                  <graphic>
+                    <ImageView fitHeight="50.0" fitWidth="20.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@Icons/employee-man-alt.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+              </children>
+            </VBox>
           </children>
-        </HBox>
-        <ListView fx:id="tiposQuartoListView" prefHeight="200.0" prefWidth="800.0" />
-      </children>
-    </VBox>
+        </AnchorPane>
+      </left>
+      <top>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1000.0" styleClass="AnchorPane-MenuSuperior">
+          <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" style="" styleClass="pane_superior" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" spacing="5.0" styleClass="AnchorPane-MenuSuperior" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+              <children>
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="200.0" styleClass="pane-Menubtn">
+                  <children>
+                    <Label id="menu" fx:id="Menu" alignment="CENTER" contentDisplay="LEFT" layoutX="55.0" layoutY="10.0" onMouseClicked="#modificarQuartoSelecionado" text="MENU">
+                      <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@Icons/list.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Label>
+                  </children>
+                  <padding>
+                    <Insets />
+                  </padding>
+                </Pane>
+                <Button fx:id="btnReserva_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="Reserva">
+                  <graphic>
+                    <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@Icons/room-service.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                  <HBox.margin>
+                    <Insets />
+                  </HBox.margin>
+                </Button>
+                <Button fx:id="btnCheckIn_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="CHECK-IN">
+                  <graphic>
+                    <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@Icons/list.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="btnCheckOut_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="CHECK-OUT">
+                  <graphic>
+                    <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@Icons/list.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="btnDashboard_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="Dashboard">
+                  <graphic>
+                    <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@Icons/list.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </top>
+    </BorderPane>
   </children>
   <stylesheets>
     <URL value="@Style.css" />

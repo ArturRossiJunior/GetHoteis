@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.QuartoController">
+  <children>
+    <Button fx:id="btnCadastrarQuarto" layoutX="613.0" layoutY="31.0" mnemonicParsing="false" onAction="#irTelaQuarto" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Cadastrar Quarto" />
+    <TextField fx:id="consultaQuartoField" layoutX="32.0" layoutY="76.0" prefWidth="200.0" />
+    <Label layoutX="32.0" layoutY="44.0" text="Consultar Quarto:" />
+    <ListView fx:id="quartosListView" layoutX="70.0" layoutY="200.0" prefHeight="200.0" prefWidth="428.0" />
+    <Button layoutX="250.0" layoutY="79.0" mnemonicParsing="false" onAction="#consultarQuarto" styleClass="button-padrao" text="Consultar Quarto" />
+    <Button layoutX="613.0" layoutY="98.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Alterar Quarto" />
+  </children>
+  <stylesheets>
+    <URL value="@Style.css" />
+  </stylesheets>
+</AnchorPane>

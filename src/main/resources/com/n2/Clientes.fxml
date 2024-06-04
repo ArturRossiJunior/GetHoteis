@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="800" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="" styleClass="AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.ClienteController">
+  <children>
+    <Button layoutX="593.0" layoutY="21.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Cadastrar Cliente" />
+    <TextField fx:id="consultaClienteField" layoutX="175.0" layoutY="38.0" prefWidth="200.0" />
+    <Label layoutX="14.0" layoutY="34.0" text="Consultar Cliente:" />
+    <ListView fx:id="clientesListView" layoutX="20.0" layoutY="86.0" prefHeight="200.0" prefWidth="448.0" />
+    <Button fx:id="btnConsultar_Cliente" layoutX="383.0" layoutY="38.0" mnemonicParsing="false" onAction="#consultarCliente" styleClass="button-padrao" text="Consultar" />
+    <Button layoutX="593.0" layoutY="95.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="AlterarCliente" />
+  </children>
+  <stylesheets>
+    <URL value="@Style.css" />
+  </stylesheets>
+</AnchorPane>

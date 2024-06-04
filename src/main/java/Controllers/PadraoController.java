@@ -139,6 +139,12 @@ public class PadraoController <T extends PadraoModel> {
         return dataInvertida;
     }
 
+    protected String desinverterData(String dataInvertida) {
+        LocalDate data = LocalDate.parse(dataInvertida);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return data.format(formatter);
+    }
+
     protected boolean regexEmail(String email) {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
         Matcher matcher = pattern.matcher(email);
@@ -300,5 +306,21 @@ public class PadraoController <T extends PadraoModel> {
                " - Quantidade de Camas: " + quarto.getQuantidadeCamas() +
                " - Valor da Diária: R$" + quarto.getValorDiaria() +
                " - Descrição: " + quarto.getDescricao();
+    }
+
+    protected String formatarCliente(ClienteModel cliente) {
+        return  "Nome do Cliente: " + cliente.getNome() + 
+                " - CPF do Cliente: " + cliente.getCpf();
+    }
+
+    protected String formatarReserva(ReservaModel reserva) {
+        return  "ID: " + reserva.getID() +
+                " - Nome do Cliente: " + reserva.getCliente().getNome() +
+                " - Numero do Quarto: " + reserva.getQuarto().getNumeroQuarto() +
+                " - Quantidade de Pessoas: " + reserva.getQtdPessoas() +
+                " - Valor Entrada: " + reserva.getValorEntrada() + 
+                " - Data da Reserva: " + reserva.getDataReserva().replaceAll("-", "/") +
+                " - Check-In: " + reserva.getDiaCheckIn().replaceAll("-", "/") +
+                " - Check-Out: " + reserva.getDiaCheckOut().replaceAll("-", "/");
     }
 }

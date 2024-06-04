@@ -1,5 +1,7 @@
 package DAO;
 
+import java.util.List;
+
 import Models.*;
 
 public class UsuarioDAO extends PadraoDAO {
@@ -12,5 +14,10 @@ public class UsuarioDAO extends PadraoDAO {
     public boolean existeEmailouCPF(String email, String cpf) {
         String sql = "SELECT * FROM Usuario WHERE Email = ? OR CPF = ?";
         return executarOperacao(sql, email, cpf);
+    }
+
+    public List<UsuarioModel> listaUsuarios() {
+        String sql = "SELECT * FROM Usuario";
+        return montaListaModelUsuario(sql);
     }
 }

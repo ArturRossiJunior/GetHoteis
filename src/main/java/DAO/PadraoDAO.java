@@ -68,7 +68,7 @@ public abstract class PadraoDAO {
         return tiposDeQuarto;
     }
 
-    protected List<QuartoModel> montaListaQuartos(String sql, Object... parametros) {
+    protected List<QuartoModel> montaListaModelQuartos(String sql, Object... parametros) {
         List<QuartoModel> quartos = new ArrayList<>();
         try (Connection conexao = ConexaoDAO.conectar();
                 PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -93,5 +93,96 @@ public abstract class PadraoDAO {
             e.printStackTrace();
         }
         return quartos;
+    }
+
+    protected List<ClienteModel> montaListaModelCliente(String sql, Object... parametros) {
+        List<ClienteModel> clientes = new ArrayList<>();
+        try (Connection conexao = ConexaoDAO.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            setParametros(stmt, parametros);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ClienteModel clienteModel = new ClienteModel(
+                    rs.getString("CPF"),
+                    rs.getString("Nome"),
+                    rs.getString("Data_Nascimento"),
+                    rs.getString("Endereco")
+                );
+                clienteModel.setID(rs.getInt("ID"));
+                clientes.add(clienteModel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clientes;
+    }
+
+    protected List<UsuarioModel> montaListaModelUsuario(String sql, Object... parametros){
+        List<UsuarioModel> usuarios = new ArrayList<>();
+        try (Connection conexao = ConexaoDAO.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            setParametros(stmt, parametros);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                UsuarioModel usuarioModel = new UsuarioModel(
+                    rs.getString("CPF"), 
+                    rs.getString("Nome_Completo"), 
+                    rs.getString("Data_Nascimento"), 
+                    rs.getString("Email"), 
+                    rs.getString("Senha"),
+                    rs.getString("Pergunta_Seguranca"),
+                    rs.getString("Resposta")
+                    );
+                usuarioModel.setID(rs.getInt("ID"));
+                usuarios.add(usuarioModel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuarios;
+    }
+
+    protected List<ReservaModel> montaListaModelReserva(String sql, Object... parametros) {
+        List<ReservaModel> reservas = new ArrayList<>();
+        try (Connection conexao = ConexaoDAO.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            setParametros(stmt, parametros);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                TipoQuartoModel tipoQuarto = new TipoQuartoModel(
+                    rs.getString("TipoQuartoNome"),
+                    rs.getInt("Quantidade_Camas"),
+                    rs.getDouble("Valor_Diaria"),
+                    rs.getString("Descricao")
+                );
+                tipoQuarto.setID(rs.getInt("TipoQuartoID"));
+                QuartoModel quarto = new QuartoModel(
+                    rs.getInt("Numero_Quarto"),
+                    tipoQuarto
+                );
+                quarto.setID(rs.getInt("QuartoID"));
+                ClienteModel cliente = new ClienteModel(
+                    rs.getString("CPF"),
+                    rs.getString("Nome"),
+                    rs.getString("Data_Nascimento"),
+                    rs.getString("Endereco")
+                );
+                cliente.setID(rs.getInt("ClienteID"));
+                ReservaModel reserva = new ReservaModel(
+                    quarto,
+                    cliente,
+                    rs.getInt("Qtd_Pessoas"),
+                    rs.getDouble("Valor_Entrada"),
+                    rs.getString("Data_Reserva"),
+                    rs.getString("Dia_CheckIn"),
+                    rs.getString("Dia_CheckOut")
+                );
+                reserva.setID(rs.getInt("ReservaID"));
+                reservas.add(reserva);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reservas;
     }    
 }

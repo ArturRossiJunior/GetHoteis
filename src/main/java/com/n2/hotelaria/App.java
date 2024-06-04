@@ -29,7 +29,12 @@ public class App extends Application {
         stage.sizeToScene();
     }
     
-
+public static void openNewWindow(String fxml) throws IOException {
+    Stage newStage = new Stage();
+    newStage.setScene(new Scene(loadFXML(fxml)));
+    newStage.sizeToScene();
+    newStage.show();
+}
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();

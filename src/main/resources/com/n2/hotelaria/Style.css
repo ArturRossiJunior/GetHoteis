@@ -1,8 +1,50 @@
-AnchorPane
+
+/*#region panes*/ 
+.AnchorPane
 {
     -fx-background-color:#FAF9F6;
     
    }
+
+   .AnchorPane-MenuSuperior
+{
+    -fx-background-color: #0C090A;
+    -fx-border-color: #0C090A;
+    -fx-border-width: 1.5;   
+    -fx-border-style: solid;
+    
+   }
+
+   .pane-Menubtn{
+    -fx-border-color: #0C090A;
+    -fx-border-width: 1.5;   
+    -fx-border-style: solid;
+    -fx-background-color: #FAF9F6;
+   }
+
+   .gridPaneCadastro{
+
+    -fx-hgap: 15;
+    -fx-vgap: 10;
+    -fx-pref-width: 550;
+}
+
+.pane_superior
+{
+    -fx-background-color:  #0C090A;
+}
+
+.pane_menu
+{
+    -fx-background-color:  #0C090A;
+}
+
+
+/*#endregion Panes*/
+
+
+/*#region Labels*/
+
 
 .label{
 
@@ -25,22 +67,70 @@ AnchorPane
     -fx-background-image:url("logo.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
-    -fx-background-size:50px 100px;
+    -fx-background-size:100px 100px;
 }
 
-.button
+/*#endregion Labels*/
+
+
+
+/*#region Botões*/
+.button-padrao
 {
         -fx-text-fill: #FAF9F6;
         -fx-font-size: 10pt;
        -fx-font-family:"Comic Sans MS", SansSerif;
        -fx-size: 230px 25px;
-       -fx-background-color: #282525;
+       -fx-background-color: #0C090A;
        
 }
 
-.gridPaneCadastro{
-
-    -fx-hgap: 15;
-    -fx-vgap: 10;
-    -fx-pref-width: 550;
+.button-menuLateral
+{
+        -fx-text-fill: #0C090A;
+        -fx-font-size: 18pt;
+       -fx-font-family:"Comic Sans MS", SansSerif;
+       -fx-size: 230px 25px;
+       -fx-background-color: #F9F5FA;
 }
+
+.button-menuSuperior
+{
+        -fx-text-fill: #0C090A;
+        -fx-font-size: 18pt;
+       -fx-font-family:"Comic Sans MS", SansSerif;
+       -fx-size: 230px 25px;
+       -fx-background-color: #F9F5FA;
+}
+
+
+/*#endregion Botões*/
+
+
+/*#region Menu*/
+.menu-item{
+    -fx-background: darkgray ;
+}
+.menu-button:showing {
+    -fx-base: rgb(252, 15, 15) ;
+  }
+
+.menu-button{
+            
+       -fx-background-color: #4c76c5;
+}
+.menu-button .label {
+    -fx-text-fill: #FAF9F6;
+    -fx-font-size: 12pt;
+    -fx-font-family:"Comic Sans MS", SansSerif;
+}
+.menu{
+    -fx-text-fill: #FAF9F6;
+}
+
+/*#endregion Menu*/
+
+
+
+
+

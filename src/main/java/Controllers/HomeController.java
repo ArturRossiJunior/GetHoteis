@@ -10,8 +10,32 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.stage.*;
 import DAO.*;
+import java.net.URL;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+import javafx.animation.TranslateTransition;
+import javafx.scene.layout.StackPane;
 
 public class HomeController extends PadraoController {
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private Label Menu , MenuBack;
+    
+     @FXML
+    private Button btnCheckIn_Menu, btnCheckOut_Menu, btnClientes_Menu,btnDashboard_Menu,btnFuncionarios_Menu,
+             btnQuartos_Menu, btnReserva_Menu;
+
+    @FXML
+    private AnchorPane slider,rootPane;;
+    
+      @FXML
+    private StackPane telaHome;
 
     @FXML
     private ListView<String> quartosListView, tiposQuartoListView;
@@ -25,17 +49,95 @@ public class HomeController extends PadraoController {
     @FXML
     private List<TipoQuartoModel> tiposQuartos = homeDAO.listaTiposQuartos();
 
+  private boolean MenuVisivel = true;
+    
     @FXML
     private void initialize() {
-        for (QuartoModel quarto : quartos) {
-            quartosListView.getItems().add(formatarQuarto(quarto));
-        }
-        for (TipoQuartoModel tipoQuarto : tiposQuartos) {
-            tiposQuartoListView.getItems().add(formatarTipoQuarto(tipoQuarto));
-        }  
-    }
+       
+       // MenuBack.setVisible(false);
+        slider.setTranslateX(-200);
+        Menu.setOnMouseClicked(event ->esconderMenu());
+        //MenuBack.setOnMouseClicked(event ->esconderMenu());
+        MenuVisivel=true;
+         }
+    
+    
+    
 
+    
     @FXML
+    private void esconderMenu(){
+                              
+            TranslateTransition slide = new TranslateTransition();
+            slide.setDuration(Duration.seconds(0.4));
+            slide.setNode(slider);
+            
+            if(MenuVisivel){
+            slide.setToX(0);
+            slider.setTranslateX(-200);
+            MenuVisivel = false;
+            }
+            else{
+             slide.setToX(-200);
+             slider.setTranslateX(0);
+            MenuVisivel = true;
+            }
+            slide.play();
+               
+    }
+       
+    
+    @FXML
+    private void showCliente(javafx.event.ActionEvent event) throws IOException {
+       
+        try{
+        Parent fxml = FXMLLoader.load(App.class.getResource("Clientes_dois.fxml"));
+        telaHome.getChildren().removeAll();
+        telaHome.getChildren().setAll(fxml);
+        
+        }catch (IOException exception){
+            System.out.println(exception.getMessage());
+        }
+
+    }
+    
+    @FXML
+    private void showQuarto(javafx.event.ActionEvent event) throws IOException {
+       
+        try{
+        Parent fxml = FXMLLoader.load(App.class.getResource("Quartos.fxml"));
+        telaHome.getChildren().removeAll();
+        telaHome.getChildren().setAll(fxml);
+        
+        }catch (IOException exception){
+            System.out.println(exception.getMessage());
+        }
+
+    }
+    
+     @FXML
+       private void showFuncionario(javafx.event.ActionEvent event) throws IOException {
+       
+        try{
+        Parent fxml = FXMLLoader.load(App.class.getResource("Funcionarios.fxml"));
+        telaHome.getChildren().removeAll();
+        telaHome.getChildren().setAll(fxml);
+        
+        }catch (IOException exception){
+            System.out.println(exception.getMessage());
+        }
+
+    }
+     
+    @FXML
+    private void irTelaClientes(ActionEvent event){
+     try {
+        App.openNewWindow("Clientes");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }}
+       
+       @FXML
     private void modificarQuartoSelecionado(ActionEvent event) {
         try{
             int selectedIndex = quartosListView.getSelectionModel().getSelectedIndex();
@@ -78,7 +180,7 @@ public class HomeController extends PadraoController {
             e.printStackTrace();
         }
     }
-    
+
 
     @FXML
     private void excluirQuartoSelecionado(ActionEvent event) {
@@ -134,4 +236,6 @@ public class HomeController extends PadraoController {
             e.printStackTrace();
         }
     }
+
+
 }
