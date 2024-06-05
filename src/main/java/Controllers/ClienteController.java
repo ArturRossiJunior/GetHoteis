@@ -13,6 +13,8 @@ import DAO.*;
 import java.util.stream.Collectors;
 
 public class ClienteController extends PadraoController {
+    
+    private Stage cadastroClienteStage;
 
    @FXML
     private ListView<String> clientesListView;
@@ -96,13 +98,17 @@ public class ClienteController extends PadraoController {
         }
     }
     
-    
-     @FXML
-    private void irCadastroCliente(ActionEvent event){
-     try {
-        App.openNewWindow("CadastroCliente");
-    } catch (IOException e) {
-        e.printStackTrace();
-    }}
+    @FXML
+     private void irCadastroCliente(ActionEvent event) {
+        try {
+            cadastroClienteStage = App.openNewWindow("CadastroCliente");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Stage getCadastroClienteStage() {
+        return cadastroClienteStage;
+    }
 
 }

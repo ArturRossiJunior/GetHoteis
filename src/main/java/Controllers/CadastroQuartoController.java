@@ -77,11 +77,10 @@ public class CadastroQuartoController extends PadraoController<QuartoModel> {
     
     
     @FXML
-    private void handleVoltar(ActionEvent event) {
-        try {
-            App.changeScene("Home", (Stage)((Node)event.getSource()).getScene().getWindow());
-        } catch (IOException e) {
-            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
-        }
+    private void handleCloseButtonAction() {
+        // Obtém o Stage atual a partir do botão
+        Stage stage = (Stage) voltarButton.getScene().getWindow();
+        // Fecha a janela
+        stage.close();
     }
 }

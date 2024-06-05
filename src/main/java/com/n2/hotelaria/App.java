@@ -30,11 +30,12 @@ public class App extends Application {
         stage.sizeToScene();
     }
     
-public static void openNewWindow(String fxml) throws IOException {
+public static Stage openNewWindow(String fxml) throws IOException {
     Stage newStage = new Stage();
     newStage.setScene(new Scene(loadFXML(fxml)));
     newStage.sizeToScene();
     newStage.show();
+    return newStage;
 }
  public static void closeWindow(Stage stage) {
         if (stage != null) {

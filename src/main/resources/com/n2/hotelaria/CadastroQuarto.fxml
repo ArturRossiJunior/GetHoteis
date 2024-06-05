@@ -14,7 +14,7 @@
         <Label text="Número do Quarto:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField fx:id="numeroQuartoField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
         <Label text="Tipo do Quarto:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <ComboBox fx:id="tipoQuartoComboNome" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <ComboBox fx:id="tipoQuartoComboNome" prefWidth="200.0" styleClass="button-padrao" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
@@ -25,8 +25,8 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Button fx:id="cadastrarButton" minWidth="100.0" onAction="#handleCadastroQuarto" text="Cadastrar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="250.0" />
-    <Button fx:id="voltarButton" minWidth="100.0" onAction="#handleVoltar" text="Voltar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="350.0" />
+    <Button fx:id="cadastrarButton" minWidth="100.0" onAction="#handleCadastroQuarto" styleClass="button-padrao" text="Cadastrar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="250.0" />
+    <Button fx:id="voltarButton" minWidth="100.0" onAction="#handleCloseButtonAction" styleClass="button-padrao" text="Voltar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="350.0" />
   </children>
   <stylesheets>
     <URL value="@Style.css" />

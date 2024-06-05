@@ -53,6 +53,15 @@
                     </ImageView>
                   </graphic>
                 </Button>
+                <Button id="btnTipoQuartos_Menu" fx:id="btnTipoQuarto" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#showQuarto" prefHeight="40.0" prefWidth="200.0" styleClass="button-menuLateral" text="Tipo de Quartos">
+                  <graphic>
+                    <ImageView fitHeight="50.0" fitWidth="20.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@Icons/bed-empty.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
               </children>
             </VBox>
           </children>

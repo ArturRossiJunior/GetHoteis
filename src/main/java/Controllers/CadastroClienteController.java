@@ -16,7 +16,7 @@ public class CadastroClienteController extends PadraoController<ClienteModel>{
     private TextField nomeCompletoField, cpfField, dataNascimentoField, enderecoField;
 
     @FXML
-    private Button cadastrarButton;
+    private Button cadastrarButton, voltarButton;
 
     private ClienteModel clienteSelecionado;
     ClienteDAO clienteDAO = new ClienteDAO();
@@ -71,4 +71,13 @@ private void closeCadastroCliente(ActionEvent event){
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     App.closeWindow(stage);
 }
+
+
+    @FXML
+    private void handleCloseButtonAction() {
+        // Obtém o Stage atual a partir do botão
+        Stage stage = (Stage) voltarButton.getScene().getWindow();
+        // Fecha a janela
+        stage.close();
+    }
 }

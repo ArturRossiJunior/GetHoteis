@@ -10,9 +10,9 @@
     <GridPane hgap="10.0" vgap="10.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
       <children>
         <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <ComboBox fx:id="clienteComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <ComboBox fx:id="clienteComboBox" prefWidth="200.0" styleClass="button-padrao" GridPane.columnIndex="1" GridPane.rowIndex="0" />
         <Label text="Quarto:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <ComboBox fx:id="quartoComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <ComboBox fx:id="quartoComboBox" prefWidth="200.0" styleClass="button-padrao" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <Label text="Quantidade de Pessoas:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <TextField fx:id="qtdPessoasField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Label text="Valor de Entrada:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
@@ -39,8 +39,8 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Button fx:id="cadastrarButton" minWidth="100.0" onAction="#handleCadastroReserva" text="Cadastrar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="250.0" />
-    <Button fx:id="voltarButton" minWidth="100.0" onAction="#handleVoltar" text="Voltar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="450.0" />
+    <Button fx:id="cadastrarButton" minWidth="100.0" onAction="#handleCadastroReserva" styleClass="button-padrao" text="Cadastrar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="250.0" />
+    <Button fx:id="voltarButton" minWidth="100.0" onAction="#handleCloseButtonAction" styleClass="button-padrao" text="Voltar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="450.0" />
   </children>
   <stylesheets>
     <URL value="@Style.css" />
