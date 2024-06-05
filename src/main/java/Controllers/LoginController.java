@@ -9,11 +9,12 @@ import java.io.*;
 import java.util.*;
 import com.n2.hotelaria.*;
 import DAO.*;
+import Models.UsuarioModel;
 import javafx.event.*;
 import javafx.scene.*;
 import javafx.stage.*;
 
-public class LoginController extends PadraoController {
+public class LoginController extends PadraoController<UsuarioModel> {
     
     @FXML
     private Button loginButton, cadastroButton, esqueciMinhaSenhaButton;

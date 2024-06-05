@@ -1,7 +1,6 @@
 package DAO;
 
 import Models.*;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ReservaDAO extends PadraoDAO {
@@ -14,7 +13,7 @@ public class ReservaDAO extends PadraoDAO {
     public ReservaModel montaReservaModel(int ID){
         String sql =    "SELECT " +
                         "Cliente.ID AS ClienteID, Cliente.CPF, Cliente.Nome, Cliente.Data_Nascimento, Cliente.Endereco, " +
-                        "Quarto.ID AS QuartoID, Quarto.Numero_Quarto, Quarto.Numero_Andar, Quarto.Ramal, " +
+                        "Quarto.ID AS QuartoID, Quarto.Numero_Quarto, " +
                         "Tipo_Quarto.ID AS TipoQuartoID, Tipo_Quarto.Nome AS TipoQuartoNome, Tipo_Quarto.Quantidade_Camas, Tipo_Quarto.Valor_Diaria, Tipo_Quarto.Descricao, " +
                         "Reserva.ID AS ReservaID, Reserva.Qtd_Pessoas, Reserva.Valor_Entrada, Reserva.Data_Reserva, Reserva.Dia_CheckIn, Reserva.Dia_CheckOut " +
                         "FROM Reserva " +
@@ -29,14 +28,11 @@ public class ReservaDAO extends PadraoDAO {
         return executarOperacao(sql, reservaModel.getQuarto().getID(), reservaModel.getCliente().getID(), reservaModel.getQtdPessoas(), reservaModel.getValorEntrada(), reservaModel.getDataReserva(), reservaModel.getDiaCheckIn(), reservaModel.getDiaCheckOut(), ID);
     }
     
-     public Map<String, Integer> getReservasPorMes() {
+    public Map<String, Integer> getReservasPorMes() {
         String sql = "SELECT FORMAT(Data_Reserva, 'yyyy-MM') as mes, COUNT(*) as quantidade " +
                      "FROM Reserva " +
                      "GROUP BY FORMAT(Data_Reserva, 'yyyy-MM') " +
                      "ORDER BY mes";
         return consultarReservasPorMes(sql);
     }
-   
-    }
-   
-   
+}

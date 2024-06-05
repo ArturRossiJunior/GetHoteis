@@ -76,14 +76,14 @@ public abstract class PadraoDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 TipoQuartoModel tipoQuarto = new TipoQuartoModel(
-                        rs.getString("Nome"),
-                        rs.getInt("Quantidade_Camas"),
-                        rs.getDouble("Valor_Diaria"),
-                        rs.getString("Descricao")
+                    rs.getString("Nome"),
+                    rs.getInt("Quantidade_Camas"),
+                    rs.getDouble("Valor_Diaria"),
+                    rs.getString("Descricao")
                 );
                 QuartoModel quarto = new QuartoModel(
-                        rs.getInt("Numero_Quarto"),
-                        tipoQuarto
+                    rs.getInt("Numero_Quarto"),
+                    tipoQuarto
                 );
                 tipoQuarto.setID(rs.getInt("ID"));
                 quarto.setID(rs.getInt("QuartoID"));
@@ -186,12 +186,11 @@ public abstract class PadraoDAO {
         return reservas;
     }
 
-protected Map<String, Integer> consultarReservasPorMes(String sql) {
+    protected Map<String, Integer> consultarReservasPorMes(String sql) {
         Map<String, Integer> reservasPorMes = new HashMap<>();
         try (Connection conexao = ConexaoDAO.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
-
             while (rs.next()) {
                 String mes = rs.getString("mes");
                 int quantidade = rs.getInt("quantidade");
@@ -200,6 +199,6 @@ protected Map<String, Integer> consultarReservasPorMes(String sql) {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return reservasPorMes;
+        return reservasPorMes;  
     }    
 }

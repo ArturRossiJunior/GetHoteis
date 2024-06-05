@@ -14,7 +14,7 @@ import javafx.stage.*;
 import DAO.*;
 import java.util.stream.Collectors;
 
-public class ReservaController extends PadraoController<PadraoModel> {
+public class ReservaController extends PadraoController<ReservaModel> {
 
    
 @FXML
@@ -30,14 +30,12 @@ public class ReservaController extends PadraoController<PadraoModel> {
 
     @FXML
     private void initialize() {
-        
         for (ReservaModel reserva : reservas) {
             reservasListView.getItems().add(formatarReserva(reserva));
         }
     }
-
     
-      @FXML
+    @FXML
     private void consultarReserva() {
         String codReserva = consultaReservaField.getText().replaceAll("[.\\-]", "");
         List<ReservaModel> reservasFiltradas = reservas.stream()
@@ -77,7 +75,6 @@ public class ReservaController extends PadraoController<PadraoModel> {
         }
     }
 
-
     @FXML
     private void excluirReservaSelecionada() {
         int selectedIndex = reservasListView.getSelectionModel().getSelectedIndex();
@@ -98,12 +95,12 @@ public class ReservaController extends PadraoController<PadraoModel> {
         }
     }
 
-  @FXML
+    @FXML
     private void irCadastroReserva(ActionEvent event){
-     try {
-        App.openNewWindow("CadastroReserva");
-    } catch (IOException e) {
-        e.printStackTrace();
-    }}
-
+        try {
+            App.openNewWindow("CadastroReserva");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

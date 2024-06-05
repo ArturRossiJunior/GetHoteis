@@ -21,7 +21,6 @@ public class PerguntaSegurancaController extends PadraoController<PadraoModel> {
 
     private PerguntaSegurancaDAO perguntaSegurancaDAO = new PerguntaSegurancaDAO();
 
-
     @FXML
     private void initialize() {
         mascaraEmail(emailField);

@@ -75,7 +75,6 @@ public class CadastroQuartoController extends PadraoController<QuartoModel> {
         }
     }
     
-    
     @FXML
     private void handleVoltar(ActionEvent event) {
         try {

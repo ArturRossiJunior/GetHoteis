@@ -12,9 +12,9 @@ import javafx.scene.control.*;
 import javafx.stage.*;
 import DAO.*;
 
-public class QuartoController extends PadraoController {
+public class QuartoController extends PadraoController<QuartoModel> {
 
-      @FXML
+    @FXML
     private TextField consultaQuartoField;
 
     @FXML
@@ -24,22 +24,20 @@ public class QuartoController extends PadraoController {
     private final HomeDAO homeDAO = new HomeDAO();
 
     @FXML
-    private List<QuartoModel> quartos = homeDAO.listaQuartos();
+    private List<QuartoModel> quartos = homeDAO.listaQuartosDisponiveis();
   
-    
-
+    @FXML
+    private List<ReservaModel> quartoIndisponiveis = homeDAO.listaReservas();
     @FXML
     private void initialize() {
-        
         mascaraNumero(consultaQuartoField);
-        
         for (QuartoModel quarto : quartos) {
-            quartosListView.getItems().add(formatarQuarto(quarto));
+            quartosListView.getItems().add("Dispoível - " + formatarQuarto(quarto));
         }
-        
+        for (ReservaModel quarto : quartoIndisponiveis){
+            quartosListView.getItems().add("Indisponível - " + formatarQuarto(quarto.getQuarto()));
+        }
     }
-
-    
     
     @FXML
     private void consultarQuarto() {
@@ -58,13 +56,15 @@ public class QuartoController extends PadraoController {
             }
         }
     }
-   @FXML
+    
+    @FXML
     private void irTelaQuarto(ActionEvent event){
-     try {
-        App.openNewWindow("CadastroQuarto");
-    } catch (IOException e) {
-        e.printStackTrace();
-    }}
+        try {
+            App.openNewWindow("CadastroQuarto");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void modificarQuartoSelecionado(ActionEvent event) {
@@ -88,8 +88,6 @@ public class QuartoController extends PadraoController {
         }
     }
 
-
-
     @FXML
     private void excluirQuartoSelecionado() {
         int selectedIndex = quartosListView.getSelectionModel().getSelectedIndex();
@@ -106,5 +104,4 @@ public class QuartoController extends PadraoController {
             showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, selecione um quarto para excluir");
         }
     }
-
 }

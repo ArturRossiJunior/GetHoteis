@@ -12,7 +12,7 @@ import javafx.stage.*;
 import DAO.*;
 import java.util.stream.Collectors;
 
-public class ClienteController extends PadraoController {
+public class ClienteController extends PadraoController<ClienteModel> {
 
    @FXML
     private ListView<String> clientesListView;
