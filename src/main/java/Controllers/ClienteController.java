@@ -13,13 +13,7 @@ import javafx.stage.*;
 import DAO.*;
 import java.util.stream.*;
 
-<<<<<<< HEAD
-public class ClienteController extends PadraoController {
-    
-    private Stage cadastroClienteStage;
-=======
 public class ClienteController extends PadraoController<ClienteModel> {
->>>>>>> fa3a532a38284228a4792077d1e72f52bd117376
 
     @FXML
     private ListView<String> clientesListView;
@@ -130,28 +124,15 @@ public class ClienteController extends PadraoController<ClienteModel> {
     }
     
     @FXML
-<<<<<<< HEAD
-     private void irCadastroCliente(ActionEvent event) {
-        try {
-            cadastroClienteStage = App.openNewWindow("CadastroCliente");
-=======
     private void irCadastroCliente(ActionEvent event){
         try {
             if(!tiposQuartos.isEmpty())
                 App.openNewWindow("CadastroCliente");
             else
                 showAlert(Alert.AlertType.ERROR, "Erro", "Necessário criar ao menos um tipo de quarto");
->>>>>>> fa3a532a38284228a4792077d1e72f52bd117376
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
 
-    public Stage getCadastroClienteStage() {
-        return cadastroClienteStage;
-    }
-
-=======
->>>>>>> fa3a532a38284228a4792077d1e72f52bd117376
 }

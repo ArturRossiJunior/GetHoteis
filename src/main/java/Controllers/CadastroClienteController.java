@@ -67,26 +67,9 @@ public class CadastroClienteController extends PadraoController<ClienteModel>{
         }
     }
 
-<<<<<<< HEAD
-private void closeCadastroCliente(ActionEvent event){
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    App.closeWindow(stage);
-}
-
-
     @FXML
     private void handleCloseButtonAction() {
-        // Obtém o Stage atual a partir do botão
         Stage stage = (Stage) voltarButton.getScene().getWindow();
-        // Fecha a janela
         stage.close();
     }
 }
-=======
-    @FXML
-    private void closeCadastroCliente(ActionEvent event){
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        App.closeWindow(stage);
-    }
-}
->>>>>>> fa3a532a38284228a4792077d1e72f52bd117376

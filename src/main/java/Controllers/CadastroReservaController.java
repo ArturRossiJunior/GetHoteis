@@ -14,7 +14,6 @@ import Models.*;
 
 public class CadastroReservaController extends PadraoController<ReservaModel>{
 
-    private Stage stage;
     @FXML
     private ComboBox<String> clienteComboBox, quartoComboBox;
 
@@ -103,9 +102,7 @@ public class CadastroReservaController extends PadraoController<ReservaModel>{
 
     @FXML
     private void handleCloseButtonAction() {
-        // Obtém o Stage atual a partir do botão
-        Stage stage = (Stage) voltarButton.getScene().getWindow();
-        // Fecha a janela
-        stage.close();
-    }
+            Stage stage = (Stage) voltarButton.getScene().getWindow();
+            stage.close();
+        }
     }

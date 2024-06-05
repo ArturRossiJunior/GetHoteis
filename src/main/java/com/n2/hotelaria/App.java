@@ -29,16 +29,6 @@ public class App extends Application {
         stage.sizeToScene();
     }
     
-<<<<<<< HEAD
-public static Stage openNewWindow(String fxml) throws IOException {
-    Stage newStage = new Stage();
-    newStage.setScene(new Scene(loadFXML(fxml)));
-    newStage.sizeToScene();
-    newStage.show();
-    return newStage;
-}
- public static void closeWindow(Stage stage) {
-=======
     public static void openNewWindow(String fxml) throws IOException {
         Stage newStage = new Stage();
         newStage.setScene(new Scene(loadFXML(fxml)));
@@ -46,16 +36,6 @@ public static Stage openNewWindow(String fxml) throws IOException {
         newStage.show();
     }
 
-    public static void closeWindow(Stage stage) {
->>>>>>> fa3a532a38284228a4792077d1e72f52bd117376
-        if (stage != null) {
-            stage.close();
-        }
-    }
-
-    public static void setPrimaryStage(Stage stage) {
-        primaryStage = stage;
-    }
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
