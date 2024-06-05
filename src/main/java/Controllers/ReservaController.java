@@ -44,8 +44,8 @@ public class ReservaController extends PadraoController<ReservaModel> {
             }
         } else {
             List<ReservaModel> reservasFiltradas = reservas.stream()
-                    .filter(reserva -> String.valueOf(reserva.getID()).equals(consultaReservaField.getText()))
-                    .collect(Collectors.toList());
+                .filter(reserva -> String.valueOf(reserva.getID()).equals(consultaReservaField.getText()))
+                .collect(Collectors.toList());
 
             if (reservasFiltradas.isEmpty()) {
                 showAlert(Alert.AlertType.WARNING, "Aviso", "Reserva não encontrada");

@@ -28,7 +28,7 @@ public class HomeController extends PadraoController<PadraoModel> {
     private Label Menu, MenuBack;
     
      @FXML
-    private Button btnCheckIn_Menu, btnCheckOut_Menu, btnClientes_Menu,btnDashboard_Menu,btnFuncionarios_Menu, btnQuartos_Menu, btnReserva_Menu;
+    private Button btnCheckIn_Menu, btnCheckOut_Menu, btnClientes_Menu, btnDashboard_Menu, btnFuncionarios_Menu, btnQuartos_Menu, btnReserva_Menu;
 
     @FXML
     private AnchorPane slider,rootPane;;

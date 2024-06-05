@@ -8,6 +8,7 @@ import com.n2.hotelaria.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.*;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.*;
 import DAO.*;
@@ -24,7 +25,7 @@ public class QuartoController extends PadraoController<QuartoModel> {
     private final HomeDAO homeDAO = new HomeDAO();
 
     @FXML
-    private List<QuartoModel> quartos = homeDAO.listaQuartosDisponiveis();
+    private List<QuartoModel> quartosDisponiveis = homeDAO.listaQuartosDisponiveis();
   
     @FXML
     private List<ReservaModel> quartoIndisponiveis = homeDAO.listaReservas();
@@ -32,8 +33,8 @@ public class QuartoController extends PadraoController<QuartoModel> {
     @FXML
     private void initialize() {
         mascaraNumero(consultaQuartoField);
-        for (QuartoModel quarto : quartos) {
-            quartosListView.getItems().add("Dispoível - " + formatarQuarto(quarto));
+        for (QuartoModel quarto : quartosDisponiveis) {
+            quartosListView.getItems().add("Disponível - " + formatarQuarto(quarto));
         }
         for (ReservaModel quarto : quartoIndisponiveis){
             quartosListView.getItems().add("Indisponível - " + formatarQuarto(quarto.getQuarto()));
@@ -42,22 +43,37 @@ public class QuartoController extends PadraoController<QuartoModel> {
     
     @FXML
     private void consultarQuarto() {
-        String numeroQuarto = consultaQuartoField.getText();
-        List<QuartoModel> quartosFiltrados = quartos.stream()
-                 .filter(quarto -> Integer.toString(quarto.getNumeroQuarto()).equals(numeroQuarto))
+        if (consultaQuartoField.getText().isEmpty()) {
+            quartosListView.getItems().clear();
+            for (QuartoModel quarto : quartosDisponiveis) {
+                quartosListView.getItems().add("Disponível - " + formatarQuarto(quarto));
+            }
+            for (ReservaModel quarto : quartoIndisponiveis){
+                quartosListView.getItems().add("Indisponível - " + formatarQuarto(quarto.getQuarto()));
+            }
+        } else {
+            List<QuartoModel> quartosDisponiveisFiltrados = quartosDisponiveis.stream()
+                .filter(quarto -> String.valueOf(quarto.getNumeroQuarto()).equals(consultaQuartoField.getText()))
                 .collect(Collectors.toList());
 
-        quartosListView.getItems().clear();
+            List<ReservaModel> quartosIndisponiveisFiltrados = quartoIndisponiveis.stream()
+                .filter(quarto -> String.valueOf(quarto.getQuarto().getNumeroQuarto()).equals(consultaQuartoField.getText()))
+                .collect(Collectors.toList());
 
-        if (quartosFiltrados.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Erro", "Quarto não encontrado");
-        } else {
-            for (QuartoModel quarto : quartosFiltrados) {
-                quartosListView.getItems().add(formatarQuarto(quarto));
+            quartosListView.getItems().clear();
+            if (quartosDisponiveisFiltrados.isEmpty() && quartosIndisponiveisFiltrados.isEmpty()) {
+                showAlert(Alert.AlertType.WARNING, "Aviso", "Quarto não encontrado");
+            } else {
+                for (QuartoModel quarto : quartosDisponiveisFiltrados) {
+                    quartosListView.getItems().add("Disponível - " + formatarQuarto(quarto));
+                }
+                for (ReservaModel quarto : quartosIndisponiveisFiltrados){
+                    quartosListView.getItems().add("Indisponível - " + formatarQuarto(quarto.getQuarto()));
+                }
             }
         }
     }
-    
+
     @FXML
     private void irTelaQuarto(ActionEvent event){
         try {
@@ -76,7 +92,7 @@ public class QuartoController extends PadraoController<QuartoModel> {
 
                 Parent root = loader.load();
                 CadastroQuartoController controller = loader.getController();
-                controller.setQuartoSelecionado(quartos.get(selectedIndex).getID());
+                controller.setQuartoSelecionado(quartosDisponiveis.get(selectedIndex).getID());
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
@@ -93,10 +109,10 @@ public class QuartoController extends PadraoController<QuartoModel> {
     private void excluirQuartoSelecionado() {
         int selectedIndex = quartosListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex != -1) {
-            int quartoSelecionado = quartos.get(selectedIndex).getID();
+            int quartoSelecionado = quartosDisponiveis.get(selectedIndex).getID();
             if (homeDAO.excluirQuarto(quartoSelecionado)) {
                 quartosListView.getItems().remove(selectedIndex);
-                quartos = homeDAO.listaQuartos();
+                quartosDisponiveis = homeDAO.listaQuartos();
                 showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Quarto excluído com sucesso");
             } else {
                 showAlert(Alert.AlertType.ERROR, "Erro", "Falha ao excluir o quarto do banco de dados");
