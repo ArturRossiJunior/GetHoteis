@@ -14,7 +14,7 @@
     <Label layoutX="33.0" layoutY="42.0" text="Consultar Cliente:" />
     <ListView fx:id="clientesListView" layoutX="14.0" layoutY="194.0" prefHeight="200.0" prefWidth="448.0" />
     <Button id="btnConsultar_Cliente" layoutX="308.0" layoutY="85.0" mnemonicParsing="false" onAction="#consultarCliente" styleClass="button-padrao" text="Consultar" />
-    <Button fx:id="btnAlterarCliente" layoutX="518.0" layoutY="142.0" mnemonicParsing="false" onAction="#modificarClienteSelecionado" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="AlterarCliente" />
+    <Button fx:id="btnAlterarCliente" layoutX="518.0" layoutY="142.0" mnemonicParsing="false" onAction="#modificarClienteSelecionado" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Alterar Cliente" />
     <Button fx:id="btnExcluirCliente" layoutX="511.0" layoutY="209.0" mnemonicParsing="false" onAction="#excluirClienteSelecionado" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Excluir Cliente" />
   </children>
   <stylesheets>

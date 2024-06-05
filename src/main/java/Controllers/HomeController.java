@@ -16,7 +16,7 @@ import javafx.util.Duration;
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 
-public class HomeController extends PadraoController {
+public class HomeController extends PadraoController<PadraoModel> {
 
     @FXML
     private ResourceBundle resources;
@@ -25,16 +25,15 @@ public class HomeController extends PadraoController {
     private URL location;
 
     @FXML
-    private Label Menu , MenuBack;
+    private Label Menu, MenuBack;
     
      @FXML
-    private Button btnCheckIn_Menu, btnCheckOut_Menu, btnClientes_Menu,btnDashboard_Menu,btnFuncionarios_Menu,
-             btnQuartos_Menu, btnReserva_Menu;
+    private Button btnCheckIn_Menu, btnCheckOut_Menu, btnClientes_Menu, btnDashboard_Menu, btnFuncionarios_Menu, btnQuartos_Menu, btnReserva_Menu;
 
     @FXML
     private AnchorPane slider,rootPane;;
     
-      @FXML
+    @FXML
     private StackPane telaHome;
 
     @FXML
@@ -48,125 +47,98 @@ public class HomeController extends PadraoController {
 
     @FXML
     private List<TipoQuartoModel> tiposQuartos = homeDAO.listaTiposQuartos();
-
-  private boolean MenuVisivel = true;
+    
+    private boolean MenuVisivel = true;
     
     @FXML
     private void initialize() {
-       
-       // MenuBack.setVisible(false);
         slider.setTranslateX(-200);
         Menu.setOnMouseClicked(event ->esconderMenu());
-        //MenuBack.setOnMouseClicked(event ->esconderMenu());
         MenuVisivel=true;
-         }
-    
-    
-    
-
+    }
     
     @FXML
     private void esconderMenu(){
-                              
-            TranslateTransition slide = new TranslateTransition();
-            slide.setDuration(Duration.seconds(0.4));
-            slide.setNode(slider);
-            
-            if(MenuVisivel){
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(slider);
+        if(MenuVisivel){
             slide.setToX(0);
             slider.setTranslateX(-200);
             MenuVisivel = false;
-            }
-            else{
-             slide.setToX(-200);
-             slider.setTranslateX(0);
+        } else {
+            slide.setToX(-200);
+            slider.setTranslateX(0);
             MenuVisivel = true;
-            }
-            slide.play();
-               
+        }
+        slide.play();
     }
-       
     
     @FXML
     private void showCliente(javafx.event.ActionEvent event) throws IOException {
-       
         try{
         Parent fxml = FXMLLoader.load(App.class.getResource("Clientes.fxml"));
         telaHome.getChildren().removeAll();
         telaHome.getChildren().setAll(fxml);
-        
-        }catch (IOException exception){
+        } catch (IOException exception){
             System.out.println(exception.getMessage());
         }
-
     }
     
     @FXML
     private void showQuarto(javafx.event.ActionEvent event) throws IOException {
-       
         try{
         Parent fxml = FXMLLoader.load(App.class.getResource("Quartos.fxml"));
         telaHome.getChildren().removeAll();
         telaHome.getChildren().setAll(fxml);
-        
-        }catch (IOException exception){
+        } catch (IOException exception){
             System.out.println(exception.getMessage());
         }
-
     }
     
-     @FXML
-       private void showFuncionario(javafx.event.ActionEvent event) throws IOException {
-       
+    @FXML
+    private void showFuncionario(javafx.event.ActionEvent event) throws IOException {
         try{
         Parent fxml = FXMLLoader.load(App.class.getResource("Funcionarios.fxml"));
         telaHome.getChildren().removeAll();
         telaHome.getChildren().setAll(fxml);
-        
-        }catch (IOException exception){
+        } catch (IOException exception){
             System.out.println(exception.getMessage());
         }
-
     }
        
-           @FXML
-       private void showDash(javafx.event.ActionEvent event) throws IOException {
-       
-        try{
-        Parent fxml = FXMLLoader.load(App.class.getResource("Dashboard.fxml"));
-        telaHome.getChildren().removeAll();
-        telaHome.getChildren().setAll(fxml);
-        
-        }catch (IOException exception){
-            System.out.println(exception.getMessage());
+    @FXML
+    private void showDash(javafx.event.ActionEvent event) throws IOException {
+        try {
+            Parent fxml = FXMLLoader.load(App.class.getResource("Dashboard.fxml"));
+            telaHome.getChildren().removeAll();
+            telaHome.getChildren().setAll(fxml);
+        } catch (IOException e){
+            System.out.println(e.getMessage());
         }
-
     }
-            @FXML
-       private void showReserva(javafx.event.ActionEvent event) throws IOException {
-       
-        try{
-        Parent fxml = FXMLLoader.load(App.class.getResource("Reservas.fxml"));
-        telaHome.getChildren().removeAll();
-        telaHome.getChildren().setAll(fxml);
-        
-        }catch (IOException exception){
-            System.out.println(exception.getMessage());
+
+    @FXML
+    private void showReserva(javafx.event.ActionEvent event) throws IOException {
+        try {
+            Parent fxml = FXMLLoader.load(App.class.getResource("Reservas.fxml"));
+            telaHome.getChildren().removeAll();
+            telaHome.getChildren().setAll(fxml);
+        } catch (IOException e){
+            System.out.println(e.getMessage());
         }
-
     }
-       
-       
      
     @FXML
     private void irTelaClientes(ActionEvent event){
-     try {
-        App.openNewWindow("Clientes");
-    } catch (IOException e) {
-        e.printStackTrace();
-    }}
+        try {
+            App.openNewWindow("Clientes");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
        
-       @FXML
+    @FXML
     private void modificarQuartoSelecionado(ActionEvent event) {
         try{
             int selectedIndex = quartosListView.getSelectionModel().getSelectedIndex();
@@ -210,7 +182,6 @@ public class HomeController extends PadraoController {
         }
     }
 
-
     @FXML
     private void excluirQuartoSelecionado(ActionEvent event) {
         int selectedIndex = quartosListView.getSelectionModel().getSelectedIndex();
@@ -245,26 +216,24 @@ public class HomeController extends PadraoController {
         }
     }
 
-    @FXML
-    private void openCadastroQuarto(ActionEvent event) {
-        try {
-            if(!tiposQuartos.isEmpty())
-                App.changeScene("CadastroQuarto", (Stage)((Node)event.getSource()).getScene().getWindow());
-            else
-                showAlert(Alert.AlertType.ERROR, "Erro", "Necessário criar ao menos um tipo de quarto");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    // @FXML
+    // private void openCadastroQuarto(ActionEvent event) {
+    //     try {
+    //         if(!tiposQuartos.isEmpty())
+    //             App.changeScene("CadastroQuarto", (Stage)((Node)event.getSource()).getScene().getWindow());
+    //         else
+    //             showAlert(Alert.AlertType.ERROR, "Erro", "Necessário criar ao menos um tipo de quarto");
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 
-    @FXML
-    private void openCadastroTipoQuarto(ActionEvent event) {
-        try {
-            App.changeScene("CadastroTipoQuarto", (Stage)((Node)event.getSource()).getScene().getWindow());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
+    // @FXML
+    // private void openCadastroTipoQuarto(ActionEvent event) {
+    //     try {
+    //         App.changeScene("CadastroTipoQuarto", (Stage)((Node)event.getSource()).getScene().getWindow());
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 }

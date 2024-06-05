@@ -1,6 +1,7 @@
 package Controllers;
 
 import DAO.ReservaDAO;
+import Models.ReservaModel;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
@@ -11,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 
-public class DashController extends PadraoController implements Initializable {
+public class DashController extends PadraoController<ReservaModel> implements Initializable {
 
     @FXML
     private BarChart<String, Integer> chartReserva;
@@ -27,14 +28,11 @@ public class DashController extends PadraoController implements Initializable {
       
         Map<String, Integer> reservasPorMes = reservaDAO.getReservasPorMes();
 
-        
         chartReserva.getData().clear();
 
-          CategoryAxis xAxis = new CategoryAxis(); // Eixo X para meses
+        CategoryAxis xAxis = new CategoryAxis(); // Eixo X para meses
         NumberAxis yAxis = new NumberAxis(); // Eixo Y para números inteiros
        
-        
-        
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
         series.setName("Reservas por Mês");
 
@@ -43,8 +41,6 @@ public class DashController extends PadraoController implements Initializable {
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
 
-        
-   
         chartReserva.getData().add(series);
     }
 }

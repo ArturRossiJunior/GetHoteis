@@ -75,7 +75,6 @@ public class CadastroQuartoController extends PadraoController<QuartoModel> {
         }
     }
     
-    
     @FXML
     private void handleCloseButtonAction() {
         // Obtém o Stage atual a partir do botão
