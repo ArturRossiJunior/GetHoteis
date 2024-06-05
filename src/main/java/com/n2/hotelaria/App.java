@@ -11,7 +11,6 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-    private static Stage primaryStage;
     
     @Override
     public void start(Stage stage) throws IOException {
@@ -30,13 +29,14 @@ public class App extends Application {
         stage.sizeToScene();
     }
     
-public static void openNewWindow(String fxml) throws IOException {
-    Stage newStage = new Stage();
-    newStage.setScene(new Scene(loadFXML(fxml)));
-    newStage.sizeToScene();
-    newStage.show();
-}
- public static void closeWindow(Stage stage) {
+    public static void openNewWindow(String fxml) throws IOException {
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(loadFXML(fxml)));
+        newStage.sizeToScene();
+        newStage.show();
+    }
+
+    public static void closeWindow(Stage stage) {
         if (stage != null) {
             stage.close();
         }

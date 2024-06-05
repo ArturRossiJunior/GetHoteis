@@ -7,43 +7,43 @@ import com.n2.hotelaria.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.*;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.*;
 import DAO.*;
-import java.util.stream.Collectors;
+import java.util.stream.*;
 
 public class ClienteController extends PadraoController<ClienteModel> {
 
-   @FXML
+    @FXML
     private ListView<String> clientesListView;
   
-     @FXML
+    @FXML
     private TextField consultaClienteField;
      
-      @FXML
+    @FXML
     private final HomeDAO homeDAO = new HomeDAO();
+
+    @FXML
+    private List<ClienteModel> clientes = homeDAO.listaClientes();
+
+    @FXML
+    private List<TipoQuartoModel> tiposQuartos = homeDAO.listaTiposQuartos();
       
-      @FXML
-      private List<ClienteModel> clientes = homeDAO.listaClientes();
-      
-      
-       @FXML
+    @FXML
     private void initialize() {
        for (ClienteModel cliente : clientes) {
             clientesListView.getItems().add(formatarCliente(cliente));
         }
     }
     
-    
-     @FXML
+    @FXML
     private void consultarCliente() {
         String cpf = consultaClienteField.getText().replaceAll("[.\\-]", "");
         List<ClienteModel> clientesFiltrados = clientes.stream()
                 .filter(cliente -> cliente.getCpf().replaceAll("[.\\-]", "").equals(cpf))
                 .collect(Collectors.toList());
-
         clientesListView.getItems().clear();
-
         if (clientesFiltrados.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Erro", "CPF não encontrado");
         } else {
@@ -53,7 +53,7 @@ public class ClienteController extends PadraoController<ClienteModel> {
         }
     }
     
- @FXML
+    @FXML
     private void modificarClienteSelecionado(ActionEvent event) {
         try {
             int selectedIndex = clientesListView.getSelectionModel().getSelectedIndex();
@@ -75,8 +75,7 @@ public class ClienteController extends PadraoController<ClienteModel> {
         }
     }
     
-    
-     @FXML
+    @FXML
     private void excluirClienteSelecionado() {
         int selectedIndex = clientesListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex != -1) {
@@ -96,13 +95,15 @@ public class ClienteController extends PadraoController<ClienteModel> {
         }
     }
     
-    
-     @FXML
+    @FXML
     private void irCadastroCliente(ActionEvent event){
-     try {
-        App.openNewWindow("CadastroCliente");
-    } catch (IOException e) {
-        e.printStackTrace();
-    }}
-
+        try {
+            if(!tiposQuartos.isEmpty())
+                App.openNewWindow("CadastroCliente");
+            else
+                showAlert(Alert.AlertType.ERROR, "Erro", "Necessário criar ao menos um tipo de quarto");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

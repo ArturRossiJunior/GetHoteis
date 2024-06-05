@@ -28,6 +28,7 @@ public class QuartoController extends PadraoController<QuartoModel> {
   
     @FXML
     private List<ReservaModel> quartoIndisponiveis = homeDAO.listaReservas();
+    
     @FXML
     private void initialize() {
         mascaraNumero(consultaQuartoField);

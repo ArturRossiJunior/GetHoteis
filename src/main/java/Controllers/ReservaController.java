@@ -7,7 +7,6 @@ import com.n2.hotelaria.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.*;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.*;
@@ -30,6 +29,7 @@ public class ReservaController extends PadraoController<ReservaModel> {
 
     @FXML
     private void initialize() {
+        mascaraNumero(consultaReservaField);
         for (ReservaModel reserva : reservas) {
             reservasListView.getItems().add(formatarReserva(reserva));
         }
@@ -37,18 +37,23 @@ public class ReservaController extends PadraoController<ReservaModel> {
     
     @FXML
     private void consultarReserva() {
-        String codReserva = consultaReservaField.getText().replaceAll("[.\\-]", "");
-        List<ReservaModel> reservasFiltradas = reservas.stream()
-                .filter(reserva -> Integer.toString(reserva.getID()).equals(codReserva))
-                .collect(Collectors.toList());
-
-        reservasListView.getItems().clear();
-
-        if (reservasFiltradas.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Erro", "CPF não encontrado");
-        } else {
-            for (ReservaModel reserva : reservasFiltradas) {
+        if (consultaReservaField.getText().isEmpty()) {
+            reservasListView.getItems().clear();
+            for (ReservaModel reserva : reservas) {
                 reservasListView.getItems().add(formatarReserva(reserva));
+            }
+        } else {
+            List<ReservaModel> reservasFiltradas = reservas.stream()
+                    .filter(reserva -> String.valueOf(reserva.getID()).equals(consultaReservaField.getText()))
+                    .collect(Collectors.toList());
+
+            if (reservasFiltradas.isEmpty()) {
+                showAlert(Alert.AlertType.WARNING, "Aviso", "Reserva não encontrada");
+            } else {
+                reservasListView.getItems().clear();
+                for (ReservaModel reserva : reservasFiltradas) {
+                    reservasListView.getItems().add(formatarReserva(reserva));
+                }
             }
         }
     }

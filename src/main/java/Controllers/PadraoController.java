@@ -221,7 +221,6 @@ public class PadraoController <T extends PadraoModel> {
         numeroField.textProperty().addListener((observador, valorAntigo, novoValor) -> {
             if (novoValor == null) return;
             String numeros = novoValor.replaceAll("[^\\d]", "");
-            
             numeroField.setText(numeros);
         });
     }

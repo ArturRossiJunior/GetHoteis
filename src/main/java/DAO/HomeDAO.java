@@ -29,6 +29,11 @@ public class HomeDAO extends PadraoDAO{
         return montaListaModelCliente(sql);
     }
 
+    public List<ClienteModel> listaClientesDisponiveis(){
+        String sql = "SELECT * FROM Cliente WHERE ID NOT IN (SELECT DISTINCT Cliente_ID FROM Reserva);";
+        return montaListaModelCliente(sql);
+    }
+
     public List<ReservaModel> listaReservas(){
         String sql =    "SELECT " +
                         "Cliente.ID AS ClienteID, Cliente.CPF, Cliente.Nome, Cliente.Data_Nascimento, Cliente.Endereco, " +

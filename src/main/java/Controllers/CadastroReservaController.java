@@ -25,7 +25,7 @@ public class CadastroReservaController extends PadraoController<ReservaModel>{
 
     private ReservaModel reservaSelecionada;
     ReservaDAO reservaDAO = new ReservaDAO();
-    List<ClienteModel> clientes = new HomeDAO().listaClientes();
+    List<ClienteModel> clientes = new HomeDAO().listaClientesDisponiveis();
     List<QuartoModel> quartos = new HomeDAO().listaQuartosDisponiveis();
 
     public void setReservaSelecionada(int reservaSelecionadaID) {
@@ -43,7 +43,7 @@ public class CadastroReservaController extends PadraoController<ReservaModel>{
     }
 
     @FXML
-    private void initialize() { 
+    private void initialize() {
         mascaraNumero(qtdPessoasField);
         mascaraValor(valorEntradaField);
         mascaraData(dataReservaField);
