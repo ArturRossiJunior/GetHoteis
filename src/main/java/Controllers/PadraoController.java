@@ -236,7 +236,7 @@ public class PadraoController <T extends PadraoModel> {
         });
     }
     
-    protected boolean validacaoCadastro(UsuarioDAO dao, String cpf, String nome, String data, String email, String senha, String confirmaSenha) {
+    protected boolean validacaoCadastroUsuario(UsuarioDAO dao, String cpf, String nome, String data, String email, String senha, String confirmaSenha) {
         if (!regexCPF(cpf) || dao.existeEmailouCPF(email, cpf.replaceAll("[.\\-]", "")) || nome.length() < 1 || !nome.contains(" ") || 
                 !regexData(data) || !regexEmail(email) || !regexSenha(senha) ||!senha.equals(confirmaSenha)) {
             showAlert(Alert.AlertType.ERROR, "Erro", 
@@ -332,5 +332,17 @@ public class PadraoController <T extends PadraoModel> {
         confirmationAlert.setHeaderText(null);
         confirmationAlert.setContentText("Você tem certeza que deseja excluir?");
         return confirmationAlert.showAndWait();
+    }
+
+    protected boolean validarCadastroCliente(String cpf, String nome, String data){
+        if (!regexCPF(cpf) || nome.length() < 1 || !nome.contains(" ") || !regexData(data)){
+            showAlert(Alert.AlertType.ERROR, "Erro", 
+                !regexCPF(cpf) ? "CPF inválido" :
+                (nome.length() < 1 || !nome.contains(" ")) ? "Nome completo obrigatório" :
+                !regexData(data) ? "Data inválida" :
+                "Erro não tratado ainda");
+            return false;
+        }
+        return true;
     }
 }

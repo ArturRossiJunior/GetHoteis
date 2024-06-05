@@ -66,7 +66,12 @@ public class CadastroReservaController extends PadraoController<ReservaModel>{
             if (selectedIndexQuarto == -1 || selectedIndexCliente == -1 || clienteComboBox.getValue() == null || quartoComboBox.getValue() == null || 
                     qtdPessoasField.getText().isEmpty() || valorEntradaField.getText().isEmpty() || dataReservaField.getText().isEmpty() || diaCheckInField.getText().isEmpty() || 
                         diaCheckOutField.getText().isEmpty()) {
-                showAlert(Alert.AlertType.WARNING, "Aviso", "Por favor, preencha todos os campos obrigatórios.");
+                showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, preencha todos os campos obrigatórios");
+                return;
+            }
+
+            if(Integer.parseInt(qtdPessoasField.getText()) > quartos.get(selectedIndexQuarto).getTipoQuarto().getQuantidadeCamas()){
+                showAlert(Alert.AlertType.WARNING, "Erro", "Quantidade de pessoas acima da quantidade de camas disponíveis");
                 return;
             }
 

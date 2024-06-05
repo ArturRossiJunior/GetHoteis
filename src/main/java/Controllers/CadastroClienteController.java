@@ -42,26 +42,25 @@ public class CadastroClienteController extends PadraoController<ClienteModel>{
     @FXML
     private void handleCadastroCliente(ActionEvent event) {
         try {
-            String cpf = cpfField.getText().replaceAll("[.\\-]", "");
-            boolean cpfExistente = clienteDAO.consultaCPFCliente(cpf);
             boolean isCadastrar = cadastrarButton.getText().equals("Cadastrar");
 
-            if (cpfExistente) {
-                if (isCadastrar || (!isCadastrar && !clienteSelecionado.getCpf().replaceAll("[.\\-]", "").equals(cpf))) {
+            if (clienteDAO.consultaCPFCliente(cpfField.getText().replaceAll("[.\\-]", ""))) {
+                if (isCadastrar || (!isCadastrar && !clienteSelecionado.getCpf().replaceAll("[.\\-]", "").equals(cpfField.getText().replaceAll("[.\\-]", "")))) {
                     showAlert(Alert.AlertType.WARNING, "Erro", "CPF já existe");
                     return;
                 }
             }
-    
-            ClienteModel cliente = new ClienteModel(cpfField.getText().replaceAll("[.\\-]", ""), 
-                                                        nomeCompletoField.getText(), inverterData(dataNascimentoField.getText()), enderecoField.getText());
-            boolean sucesso = isCadastrar ? clienteDAO.inserirCliente(cliente) : clienteDAO.modificarCliente(clienteSelecionado.getID(), cliente);
-    
-            if (sucesso) {
-                showAlert(Alert.AlertType.INFORMATION, "Sucesso", isCadastrar ? "Cadastro de cliente bem-sucedido" : "Modificação de cliente bem-sucedida");
-                App.changeScene("Home", (Stage) ((Node) event.getSource()).getScene().getWindow());
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Erro", isCadastrar ? "Falha ao cadastrar o cliente" : "Falha ao modificar o cliente");
+            
+            if(validarCadastroCliente(cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText())){
+                ClienteModel cliente = new ClienteModel(cpfField.getText().replaceAll("[.\\-]", ""), 
+                nomeCompletoField.getText(), inverterData(dataNascimentoField.getText()), enderecoField.getText());
+                boolean sucesso = isCadastrar ? clienteDAO.inserirCliente(cliente) : clienteDAO.modificarCliente(clienteSelecionado.getID(), cliente);
+                if (sucesso) {
+                    showAlert(Alert.AlertType.INFORMATION, "Sucesso", isCadastrar ? "Cadastro de cliente bem-sucedido" : "Modificação de cliente bem-sucedida");
+                    App.changeScene("Home", (Stage) ((Node) event.getSource()).getScene().getWindow());
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Erro", isCadastrar ? "Falha ao cadastrar o cliente" : "Falha ao modificar o cliente");
+                }
             }
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
