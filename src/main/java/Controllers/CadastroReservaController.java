@@ -32,6 +32,11 @@ public class CadastroReservaController extends PadraoController<ReservaModel>{
     public void setReservaSelecionada(int reservaSelecionadaID) {
         reservaSelecionada = reservaDAO.montaReservaModel(reservaSelecionadaID);
         if (reservaSelecionada != null) {
+            clienteComboBox.getItems().add(reservaSelecionada.getCliente().getNome());
+            quartoComboBox.getItems().add(String.valueOf(reservaSelecionada.getQuarto().getNumeroQuarto()));
+            clientes.add(reservaSelecionada.getCliente());
+            quartos.add(reservaSelecionada.getQuarto());
+
             clienteComboBox.setValue(reservaSelecionada.getCliente().getNome());
             quartoComboBox.setValue(String.valueOf(reservaSelecionada.getQuarto().getNumeroQuarto()));
             qtdPessoasField.setText(String.valueOf(reservaSelecionada.getQtdPessoas()));
@@ -64,7 +69,7 @@ public class CadastroReservaController extends PadraoController<ReservaModel>{
             int selectedIndexQuarto = quartoComboBox.getSelectionModel().getSelectedIndex();
             int selectedIndexCliente = clienteComboBox.getSelectionModel().getSelectedIndex();
             
-            if (selectedIndexQuarto == -1 || selectedIndexCliente == -1 || clienteComboBox.getValue() == null || quartoComboBox.getValue() == null || 
+            if (clienteComboBox.getValue() == null || quartoComboBox.getValue() == null || 
                     qtdPessoasField.getText().isEmpty() || valorEntradaField.getText().isEmpty() || dataReservaField.getText().isEmpty() || diaCheckInField.getText().isEmpty() || 
                         diaCheckOutField.getText().isEmpty()) {
                 showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, preencha todos os campos obrigatórios");
