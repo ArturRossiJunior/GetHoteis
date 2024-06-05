@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.ReservaController">
+  <children>
+    <Button fx:id="cadastroReservaButton" layoutX="624.0" layoutY="74.0" onAction="#irCadastroReserva" prefWidth="124.0" styleClass="button-padrao" text="Cadastrar Reserva" />
+    <Button fx:id="modificarReservaButton" layoutX="633.0" layoutY="116.0" onAction="#modificarReservaSelecionada" prefWidth="117.0" styleClass="button-padrao" text="Modificar Reserva" />
+    <Button fx:id="excluirReservaButton" layoutX="633.0" layoutY="152.0" onAction="#excluirReservaSelecionada" prefWidth="115.0" styleClass="button-padrao" text="Excluir Reserva" />
+    <ListView fx:id="reservasListView" layoutX="22.0" layoutY="232.0" prefHeight="119.0" prefWidth="740.0" />
+    <Label layoutX="24.0" layoutY="15.0" text="Buscar Reservas:" />
+    <TextField fx:id="consultaReservaField" layoutX="24.0" layoutY="41.0" prefWidth="200.0" />
+    <Button fx:id="btnBuscarReserva" layoutX="233.0" layoutY="41.0" mnemonicParsing="false" onAction="#consultarReserva" styleClass="button-padrao" text="Buscar" />
+  </children>
+  <stylesheets>
+    <URL value="@Style.css" />
+  </stylesheets>
+</AnchorPane>

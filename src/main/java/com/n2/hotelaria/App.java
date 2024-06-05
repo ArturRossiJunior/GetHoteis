@@ -11,11 +11,12 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage primaryStage;
     
     @Override
     public void start(Stage stage) throws IOException {
         //scene = new Scene(loadFXML("Login"));
-        scene = new Scene(loadFXML("Dashboard"));
+        scene = new Scene(loadFXML("Home"));
         stage.setScene(scene);
         stage.setTitle("Login");
         stage.setMinHeight(400);
@@ -35,6 +36,15 @@ public static void openNewWindow(String fxml) throws IOException {
     newStage.sizeToScene();
     newStage.show();
 }
+ public static void closeWindow(Stage stage) {
+        if (stage != null) {
+            stage.close();
+        }
+    }
+
+    public static void setPrimaryStage(Stage stage) {
+        primaryStage = stage;
+    }
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();

@@ -68,12 +68,8 @@ public class CadastroClienteController extends PadraoController<ClienteModel>{
         }
     }
 
-    @FXML
-    private void handleVoltar(ActionEvent event) {
-        try {
-            App.changeScene("Home", (Stage)((Node)event.getSource()).getScene().getWindow());
-        } catch (IOException e) {
-            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
-        }
-    }
+private void closeCadastroCliente(ActionEvent event){
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    App.closeWindow(stage);
+}
 }

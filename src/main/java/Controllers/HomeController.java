@@ -91,7 +91,7 @@ public class HomeController extends PadraoController {
     private void showCliente(javafx.event.ActionEvent event) throws IOException {
        
         try{
-        Parent fxml = FXMLLoader.load(App.class.getResource("Clientes_dois.fxml"));
+        Parent fxml = FXMLLoader.load(App.class.getResource("Clientes.fxml"));
         telaHome.getChildren().removeAll();
         telaHome.getChildren().setAll(fxml);
         
@@ -128,6 +128,35 @@ public class HomeController extends PadraoController {
         }
 
     }
+       
+           @FXML
+       private void showDash(javafx.event.ActionEvent event) throws IOException {
+       
+        try{
+        Parent fxml = FXMLLoader.load(App.class.getResource("Dashboard.fxml"));
+        telaHome.getChildren().removeAll();
+        telaHome.getChildren().setAll(fxml);
+        
+        }catch (IOException exception){
+            System.out.println(exception.getMessage());
+        }
+
+    }
+            @FXML
+       private void showReserva(javafx.event.ActionEvent event) throws IOException {
+       
+        try{
+        Parent fxml = FXMLLoader.load(App.class.getResource("Reservas.fxml"));
+        telaHome.getChildren().removeAll();
+        telaHome.getChildren().setAll(fxml);
+        
+        }catch (IOException exception){
+            System.out.println(exception.getMessage());
+        }
+
+    }
+       
+       
      
     @FXML
     private void irTelaClientes(ActionEvent event){

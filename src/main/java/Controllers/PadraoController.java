@@ -3,6 +3,7 @@ package Controllers;
 import java.security.*;
 import java.time.*;
 import java.time.format.*;
+import java.util.Optional;
 import java.util.regex.*;
 import DAO.*;
 import javafx.animation.*;
@@ -10,6 +11,7 @@ import Models.*;
 import javafx.util.Duration;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 
 public class PadraoController <T extends PadraoModel> {
 
@@ -322,5 +324,13 @@ public class PadraoController <T extends PadraoModel> {
                 " - Data da Reserva: " + reserva.getDataReserva().replaceAll("-", "/") +
                 " - Check-In: " + reserva.getDiaCheckIn().replaceAll("-", "/") +
                 " - Check-Out: " + reserva.getDiaCheckOut().replaceAll("-", "/");
+    }
+
+    protected Optional<ButtonType> confirmaExclusao(){
+         Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmação de Exclusão");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Você tem certeza que deseja excluir?");
+        return confirmationAlert.showAndWait();
     }
 }

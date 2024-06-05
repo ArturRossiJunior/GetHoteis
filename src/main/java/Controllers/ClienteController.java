@@ -53,7 +53,7 @@ public class ClienteController extends PadraoController {
         }
     }
     
-    @FXML
+ @FXML
     private void modificarClienteSelecionado(ActionEvent event) {
         try {
             int selectedIndex = clientesListView.getSelectionModel().getSelectedIndex();
@@ -76,17 +76,20 @@ public class ClienteController extends PadraoController {
     }
     
     
-    @FXML
+     @FXML
     private void excluirClienteSelecionado() {
         int selectedIndex = clientesListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex != -1) {
-            int clienteSelecionado = clientes.get(selectedIndex).getID();
-            if (homeDAO.excluirCliente(clienteSelecionado)) {
-                clientesListView.getItems().remove(selectedIndex);
-                clientes = homeDAO.listaClientes();
-                showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cliente excluído com sucesso");
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Erro", "Falha ao excluir o cliente do banco de dados");
+            Optional<ButtonType> result = confirmaExclusao();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                int clienteSelecionado = clientes.get(selectedIndex).getID();
+                if (homeDAO.excluirCliente(clienteSelecionado)) {
+                    clientesListView.getItems().remove(selectedIndex);
+                    clientes = homeDAO.listaClientes();
+                    showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cliente excluído com sucesso");
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Erro", "Falha ao excluir o cliente do banco de dados");
+                }
             }
         } else {
             showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, selecione um cliente para excluir");
@@ -95,12 +98,11 @@ public class ClienteController extends PadraoController {
     
     
      @FXML
-    private void openCadastroCliente(ActionEvent event) {
-        try {
-            App.changeScene("CadastroCliente", (Stage)((Node)event.getSource()).getScene().getWindow());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    private void irCadastroCliente(ActionEvent event){
+     try {
+        App.openNewWindow("CadastroCliente");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }}
 
 }

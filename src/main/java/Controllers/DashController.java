@@ -8,6 +8,8 @@ import java.util.Map;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 
 public class DashController extends PadraoController implements Initializable {
 
@@ -22,22 +24,27 @@ public class DashController extends PadraoController implements Initializable {
     }
 
     private void preencherGraficoReservasPorMes() {
-        // Obtém os dados de reservas por mês
+      
         Map<String, Integer> reservasPorMes = reservaDAO.getReservasPorMes();
 
-        // Limpa o gráfico antes de adicionar novas séries
+        
         chartReserva.getData().clear();
 
-        // Cria uma nova série para adicionar ao gráfico
+          CategoryAxis xAxis = new CategoryAxis(); // Eixo X para meses
+        NumberAxis yAxis = new NumberAxis(); // Eixo Y para números inteiros
+       
+        
+        
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
         series.setName("Reservas por Mês");
 
-        // Adiciona os dados ao gráfico
+        
         for (Map.Entry<String, Integer> entry : reservasPorMes.entrySet()) {
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
 
-        // Adiciona a série ao gráfico
+        
+   
         chartReserva.getData().add(series);
     }
 }
