@@ -8,7 +8,6 @@ import com.n2.hotelaria.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.*;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.*;
 import DAO.*;
@@ -28,7 +27,7 @@ public class QuartoController extends PadraoController<QuartoModel> {
     private List<QuartoModel> quartosDisponiveis = homeDAO.listaQuartosDisponiveis();
   
     @FXML
-    private List<ReservaModel> quartoIndisponiveis = homeDAO.listaReservas();
+    private List<ReservaModel> quartosIndisponiveis = homeDAO.listaReservas();
     
     @FXML
     private void initialize() {
@@ -36,7 +35,7 @@ public class QuartoController extends PadraoController<QuartoModel> {
         for (QuartoModel quarto : quartosDisponiveis) {
             quartosListView.getItems().add("Disponível - " + formatarQuarto(quarto));
         }
-        for (ReservaModel quarto : quartoIndisponiveis){
+        for (ReservaModel quarto : quartosIndisponiveis){
             quartosListView.getItems().add("Indisponível - " + formatarQuarto(quarto.getQuarto()));
         }
     }
@@ -48,7 +47,7 @@ public class QuartoController extends PadraoController<QuartoModel> {
             for (QuartoModel quarto : quartosDisponiveis) {
                 quartosListView.getItems().add("Disponível - " + formatarQuarto(quarto));
             }
-            for (ReservaModel quarto : quartoIndisponiveis){
+            for (ReservaModel quarto : quartosIndisponiveis){
                 quartosListView.getItems().add("Indisponível - " + formatarQuarto(quarto.getQuarto()));
             }
         } else {
@@ -56,7 +55,7 @@ public class QuartoController extends PadraoController<QuartoModel> {
                 .filter(quarto -> String.valueOf(quarto.getNumeroQuarto()).equals(consultaQuartoField.getText()))
                 .collect(Collectors.toList());
 
-            List<ReservaModel> quartosIndisponiveisFiltrados = quartoIndisponiveis.stream()
+            List<ReservaModel> quartosIndisponiveisFiltrados = quartosIndisponiveis.stream()
                 .filter(quarto -> String.valueOf(quarto.getQuarto().getNumeroQuarto()).equals(consultaQuartoField.getText()))
                 .collect(Collectors.toList());
 
@@ -88,11 +87,19 @@ public class QuartoController extends PadraoController<QuartoModel> {
         try{
             int selectedIndex = quartosListView.getSelectionModel().getSelectedIndex();
             if (selectedIndex != -1) {
-                FXMLLoader loader = new FXMLLoader(App.class.getResource("CadastroQuarto.fxml"));
+                String selectedItem = quartosListView.getSelectionModel().getSelectedItem();
 
+                FXMLLoader loader = new FXMLLoader(App.class.getResource("CadastroQuarto.fxml"));
                 Parent root = loader.load();
                 CadastroQuartoController controller = loader.getController();
-                controller.setQuartoSelecionado(quartosDisponiveis.get(selectedIndex).getID());
+
+                if (selectedItem.startsWith("Disponível")) {
+                    QuartoModel quartoSelecionado = quartosDisponiveis.get(selectedIndex);
+                    controller.setQuartoSelecionado(quartoSelecionado.getID());
+                } else if (selectedItem.startsWith("Indisponível")) {
+                    QuartoModel quartoSelecionado = quartosIndisponiveis.get(selectedIndex - quartosDisponiveis.size()).getQuarto();
+                    controller.setQuartoSelecionado(quartoSelecionado.getID());
+                }
 
                 Stage newStage = new Stage();
                 newStage.setScene(new Scene(root));

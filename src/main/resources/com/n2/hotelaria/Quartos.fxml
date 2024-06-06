@@ -14,7 +14,7 @@
     <Label layoutX="32.0" layoutY="44.0" text="Consultar Quarto:" />
     <ListView fx:id="quartosListView" layoutX="70.0" layoutY="200.0" prefHeight="200.0" prefWidth="428.0" />
     <Button layoutX="250.0" layoutY="79.0" mnemonicParsing="false" onAction="#consultarQuarto" styleClass="button-padrao" text="Consultar Quarto" />
-    <Button layoutX="613.0" layoutY="98.0" mnemonicParsing="false" onAction="#irTelaQuarto" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Alterar Quarto" />
+    <Button layoutX="613.0" layoutY="98.0" mnemonicParsing="false" onAction="#modificarQuartoSelecionado" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Alterar Quarto" />
   </children>
   <stylesheets>
     <URL value="@Style.css" />

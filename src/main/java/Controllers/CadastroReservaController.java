@@ -1,12 +1,8 @@
 package Controllers;
 
-import java.io.*;
 import java.util.*;
-import com.n2.hotelaria.*;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.stage.*;
 import javafx.event.*;
 import DAO.*;
 import Models.*;

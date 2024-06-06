@@ -25,6 +25,8 @@ public class CadastroQuartoController extends PadraoController<QuartoModel> {
     public void setQuartoSelecionado(int quartoSelecionadoID) {
         quartoSelecionado = cadastroQuartoDAO.montaQuartoModel(quartoSelecionadoID);
         if (quartoSelecionado != null) {
+            tipoQuartoComboNome.getItems().add(quartoSelecionado.getTipoQuarto().getNome());
+            tiposDeQuarto.add(quartoSelecionado.getTipoQuarto());
             numeroQuartoField.setText(String.valueOf(quartoSelecionado.getNumeroQuarto()));
             tipoQuartoComboNome.setValue(quartoSelecionado.getTipoQuarto().getNome());
             cadastrarButton.setText("Modificar");

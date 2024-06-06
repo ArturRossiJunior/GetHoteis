@@ -35,7 +35,7 @@ public class CheckoutController extends PadraoController<PadraoModel>{
         for(ReservaModel reserva : reservas){
             if(reserva.getID() == Integer.parseInt(codigoReservaField.getText())){
                 reservaEncontrada = true;
-                showAlert(AlertType.CONFIRMATION, "Sucesso", "Checkout confirmado");
+                showAlert(AlertType.INFORMATION, "Sucesso", "Checkout confirmado");
                 showRatingPopup();
                 break;
             }
