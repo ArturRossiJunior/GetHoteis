@@ -65,20 +65,9 @@ public class CadastroTipoQuartoController extends PadraoController<TipoQuartoMod
             showAlert(Alert.AlertType.ERROR, "Erro", "Por favor, insira valores numéricos válidos");
         }
     }
-    
-    private void closeDialog(ActionEvent event) {
-    // Fecha a janela atual sem mudar a cena
-    Node source = (Node) event.getSource();
-    Stage stage = (Stage) source.getScene().getWindow();
-    stage.close();
-}
 
-
-     @FXML
-    private void handleCloseButtonAction() {
-        // Obtém o Stage atual a partir do botão
-        Stage stage = (Stage) voltarButton.getScene().getWindow();
-        // Fecha a janela
-        stage.close();
+    @FXML
+    private void handleCloseButtonAction(ActionEvent event) {
+        closeDialog(event);
     }
 }

@@ -1,13 +1,10 @@
 package Controllers;
 
-import java.io.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.stage.*;
 import javafx.event.*;
 import DAO.*;
 import Models.*;
-import javafx.scene.Node;
 
 public class CadastroClienteController extends PadraoController<ClienteModel>{
 
@@ -38,44 +35,34 @@ public class CadastroClienteController extends PadraoController<ClienteModel>{
         mascaraData(dataNascimentoField);
     }
 
-  @FXML
-private void handleCadastroCliente(ActionEvent event) {
-    try {
-        boolean isCadastrar = cadastrarButton.getText().equals("Cadastrar");
-
-        if (clienteDAO.consultaCPFCliente(cpfField.getText().replaceAll("[.\\-]", ""))) {
-            if (isCadastrar || (!isCadastrar && !clienteSelecionado.getCpf().replaceAll("[.\\-]", "").equals(cpfField.getText().replaceAll("[.\\-]", "")))) {
-                showAlert(Alert.AlertType.WARNING, "Erro", "CPF já existe");
-                return;
+    @FXML
+    private void handleCadastroCliente(ActionEvent event) {
+        try {
+            boolean isCadastrar = cadastrarButton.getText().equals("Cadastrar");
+            if (clienteDAO.consultaCPFCliente(cpfField.getText().replaceAll("[.\\-]", ""))) {
+                if (isCadastrar || (!isCadastrar && !clienteSelecionado.getCpf().replaceAll("[.\\-]", "").equals(cpfField.getText().replaceAll("[.\\-]", "")))) {
+                    showAlert(Alert.AlertType.WARNING, "Erro", "CPF já existe");
+                    return;
+                }
             }
-        }
-
-        if (validarCadastroCliente(cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText())) {
-            ClienteModel cliente = new ClienteModel(cpfField.getText().replaceAll("[.\\-]", ""), 
-            nomeCompletoField.getText(), inverterData(dataNascimentoField.getText()), enderecoField.getText());
-            boolean sucesso = isCadastrar ? clienteDAO.inserirCliente(cliente) : clienteDAO.modificarCliente(clienteSelecionado.getID(), cliente);
-            if (sucesso) {
-                showAlert(Alert.AlertType.INFORMATION, "Sucesso", isCadastrar ? "Cadastro de cliente bem-sucedido" : "Modificação de cliente bem-sucedida");
-                closeDialog(event);
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Erro", isCadastrar ? "Falha ao cadastrar o cliente" : "Falha ao modificar o cliente");
+            if (validarCadastroCliente(cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText())) {
+                ClienteModel cliente = new ClienteModel(cpfField.getText().replaceAll("[.\\-]", ""), 
+                nomeCompletoField.getText(), inverterData(dataNascimentoField.getText()), enderecoField.getText());
+                boolean sucesso = isCadastrar ? clienteDAO.inserirCliente(cliente) : clienteDAO.modificarCliente(clienteSelecionado.getID(), cliente);
+                if (sucesso) {
+                    showAlert(Alert.AlertType.INFORMATION, "Sucesso", isCadastrar ? "Cadastro de cliente bem-sucedido" : "Modificação de cliente bem-sucedida");
+                    closeDialog(event);
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Erro", isCadastrar ? "Falha ao cadastrar o cliente" : "Falha ao modificar o cliente");
+                }
             }
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar realizar a operação");
         }
-    } catch (Exception e) {
-        showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar realizar a operação");
     }
-}
-
-private void closeDialog(ActionEvent event) {
-    // Fecha a janela atual sem mudar a cena
-    Node source = (Node) event.getSource();
-    Stage stage = (Stage) source.getScene().getWindow();
-    stage.close();
-}
 
     @FXML
-    private void handleCloseButtonAction() {
-        Stage stage = (Stage) voltarButton.getScene().getWindow();
-        stage.close();
+    private void handleCloseButtonAction(ActionEvent event) {
+        closeDialog(event);
     }
 }

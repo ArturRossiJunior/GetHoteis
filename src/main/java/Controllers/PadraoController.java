@@ -7,11 +7,14 @@ import java.util.Optional;
 import java.util.regex.*;
 import DAO.*;
 import javafx.animation.*;
+import javafx.event.ActionEvent;
 import Models.*;
 import javafx.util.Duration;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 public class PadraoController <T extends PadraoModel> {
 
@@ -343,5 +346,11 @@ public class PadraoController <T extends PadraoModel> {
             return false;
         }
         return true;
+    }
+
+    protected void closeDialog(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

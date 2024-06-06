@@ -94,9 +94,9 @@ public class QuartoController extends PadraoController<QuartoModel> {
                 CadastroQuartoController controller = loader.getController();
                 controller.setQuartoSelecionado(quartosDisponiveis.get(selectedIndex).getID());
 
-                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.sizeToScene();
+                Stage newStage = new Stage();
+                newStage.setScene(new Scene(root));
+                newStage.show();
             } else {
                 showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, selecione um quarto para modificar");
             }

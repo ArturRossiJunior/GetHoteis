@@ -1,12 +1,8 @@
 package Controllers;
 
-import java.io.*;
 import java.util.*;
-import com.n2.hotelaria.*;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.stage.*;
 import javafx.event.*;
 import DAO.*;
 import Models.*;
@@ -75,19 +71,8 @@ public class CadastroQuartoController extends PadraoController<QuartoModel> {
         }
     }
     
-    private void closeDialog(ActionEvent event) {
-    // Fecha a janela atual sem mudar a cena
-    Node source = (Node) event.getSource();
-    Stage stage = (Stage) source.getScene().getWindow();
-    stage.close();
-}
-
-    
     @FXML
-    private void handleCloseButtonAction() {
-        // Obtém o Stage atual a partir do botão
-        Stage stage = (Stage) voltarButton.getScene().getWindow();
-        // Fecha a janela
-        stage.close();
+    private void handleCloseButtonAction(ActionEvent event) {
+        closeDialog(event);
     }
 }

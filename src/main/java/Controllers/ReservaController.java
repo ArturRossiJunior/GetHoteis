@@ -15,12 +15,10 @@ import java.util.stream.Collectors;
 
 public class ReservaController extends PadraoController<ReservaModel> {
 
-   
-  
     @FXML
     private Button btnBuscarReserva,cadastroReservaButton,excluirReservaButton;
     
-@FXML
+    @FXML
     private TextField consultaReservaField;
     @FXML
     private ListView<String> reservasListView;
@@ -73,9 +71,9 @@ public class ReservaController extends PadraoController<ReservaModel> {
                 CadastroReservaController controller = loader.getController();
                 controller.setReservaSelecionada(reservas.get(selectedIndex).getID());
 
-                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.sizeToScene();
+                Stage newStage = new Stage();
+                newStage.setScene(new Scene(root));
+                newStage.show();
             } else {
                 showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, selecione uma reserva para modificar");
             }

@@ -7,7 +7,6 @@ import com.n2.hotelaria.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.*;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.*;
 import DAO.*;
@@ -47,7 +46,6 @@ public class ClienteController extends PadraoController<ClienteModel> {
         }
     }
     
-    
     @FXML
     private void consultarCliente() {
         String cpf = consultaClienteField.getText().replaceAll("[.\\-]", "");
@@ -71,28 +69,27 @@ public class ClienteController extends PadraoController<ClienteModel> {
         }
     }
     
-@FXML
-private void modificarClienteSelecionado(ActionEvent event) {
-    try {
-        int selectedIndex = clientesListView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != -1) {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("CadastroCliente.fxml"));
+    @FXML
+    private void modificarClienteSelecionado(ActionEvent event) {
+        try {
+            int selectedIndex = clientesListView.getSelectionModel().getSelectedIndex();
+            if (selectedIndex != -1) {
+                FXMLLoader loader = new FXMLLoader(App.class.getResource("CadastroCliente.fxml"));
 
-            Parent root = loader.load();
-            CadastroClienteController controller = loader.getController();
-            controller.setClienteSelecionado(clientes.get(selectedIndex).getID());
+                Parent root = loader.load();
+                CadastroClienteController controller = loader.getController();
+                controller.setClienteSelecionado(clientes.get(selectedIndex).getID());
 
-            Stage newStage = new Stage();
-            newStage.setScene(new Scene(root));
-            newStage.show();
-        } else {
-            showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, selecione um cliente para modificar");
+                Stage newStage = new Stage();
+                newStage.setScene(new Scene(root));
+                newStage.show();
+            } else {
+                showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, selecione um cliente para modificar");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
-
     
     @FXML
     private void excluirClienteSelecionado() {

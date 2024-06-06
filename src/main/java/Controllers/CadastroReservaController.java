@@ -1,8 +1,7 @@
 package Controllers;
 
 import java.io.*;
-import java.util.List;
-
+import java.util.*;
 import com.n2.hotelaria.*;
 import javafx.fxml.*;
 import javafx.scene.*;
@@ -100,16 +99,8 @@ public class CadastroReservaController extends PadraoController<ReservaModel>{
         }
     }
 
-    private void closeDialog(ActionEvent event) {
-    // Fecha a janela atual sem mudar a cena
-    Node source = (Node) event.getSource();
-    Stage stage = (Stage) source.getScene().getWindow();
-    stage.close();
-}
-
     @FXML
-    private void handleCloseButtonAction() {
-            Stage stage = (Stage) voltarButton.getScene().getWindow();
-            stage.close();
-        }
+    private void handleCloseButtonAction(ActionEvent event) {
+        closeDialog(event);
     }
+}

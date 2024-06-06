@@ -215,25 +215,4 @@ public class HomeController extends PadraoController<PadraoModel> {
             showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, selecione um tipo quarto para excluir");
         }
     }
-
-    // @FXML
-    // private void openCadastroQuarto(ActionEvent event) {
-    //     try {
-    //         if(!tiposQuartos.isEmpty())
-    //             App.changeScene("CadastroQuarto", (Stage)((Node)event.getSource()).getScene().getWindow());
-    //         else
-    //             showAlert(Alert.AlertType.ERROR, "Erro", "Necessário criar ao menos um tipo de quarto");
-    //     } catch (IOException e) {
-    //         e.printStackTrace();
-    //     }
-    // }
-
-    // @FXML
-    // private void openCadastroTipoQuarto(ActionEvent event) {
-    //     try {
-    //         App.changeScene("CadastroTipoQuarto", (Stage)((Node)event.getSource()).getScene().getWindow());
-    //     } catch (IOException e) {
-    //         e.printStackTrace();
-    //     }
-    // }
 }
