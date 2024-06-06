@@ -53,7 +53,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button id="btnTipoQuartos_Menu" fx:id="btnTipoQuarto" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#showQuarto" prefHeight="40.0" prefWidth="200.0" styleClass="button-menuLateral" text="Tipo de Quartos">
+                <Button id="btnTipoQuartos_Menu" fx:id="btnTipoQuarto" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#showTipoQuarto" prefHeight="40.0" prefWidth="200.0" styleClass="button-menuLateral" text="Tipo de Quartos">
                   <graphic>
                     <ImageView fitHeight="50.0" fitWidth="20.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -89,7 +89,7 @@
                     <Insets />
                   </padding>
                 </Pane>
-                <Button fx:id="btnReserva_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showReserva" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="Reserva">
+                <Button fx:id="btnReserva_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showReserva" prefHeight="45.0" prefWidth="180.0" text="Reserva">
                   <graphic>
                     <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -101,7 +101,7 @@
                     <Insets />
                   </HBox.margin>
                 </Button>
-                <Button fx:id="btnCheckIn_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="CHECK-IN">
+                <Button fx:id="btnCheckIn_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="CHECK-IN">
                   <graphic>
                     <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -110,7 +110,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="btnCheckOut_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="CHECK-OUT">
+                <Button fx:id="btnCheckOut_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="CHECK-OUT">
                   <graphic>
                     <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -119,7 +119,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="btnDashboard_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showDash" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="Dashboard">
+                <Button fx:id="btnDashboard_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showDash" prefHeight="45.0" prefWidth="180.0" text="Dashboard">
                   <graphic>
                     <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>

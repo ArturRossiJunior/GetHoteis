@@ -19,7 +19,7 @@
         <Label text="Descrição:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
         <TextArea fx:id="descricaoArea" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         <Button fx:id="cadastrarButton" minWidth="100.0" onAction="#handleCadastroTipoQuarto" text="Cadastrar" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-        <Button fx:id="voltarButton" minWidth="100.0" onAction="#handleVoltar" text="Voltar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Button fx:id="voltarButton" minWidth="100.0" onAction="#handleCloseButtonAction" text="Voltar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
