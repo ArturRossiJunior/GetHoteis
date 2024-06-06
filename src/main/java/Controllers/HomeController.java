@@ -139,6 +139,17 @@ public class HomeController extends PadraoController<PadraoModel> {
             System.out.println(e.getMessage());
         }
     }
+    
+    @FXML
+       private void showCheckOut(javafx.event.ActionEvent event) throws IOException {
+        try {
+            Parent fxml = FXMLLoader.load(App.class.getResource("Checkout.fxml"));
+            telaHome.getChildren().removeAll();
+            telaHome.getChildren().setAll(fxml);
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
      
     @FXML
     private void irTelaClientes(ActionEvent event){
