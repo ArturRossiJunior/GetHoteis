@@ -2,7 +2,7 @@
 /*#region panes*/ 
 .AnchorPane
 {
-    -fx-background-color:#FAF9F6;
+    -fx-background-color:  linear-gradient(to right, #FAF9F6, #505fac);
     
    }
 
@@ -22,6 +22,9 @@
     -fx-background-color: #FAF9F6;
    }
 
+   .pane-Menubtn:hover{
+   -fx-font-weight: bold;
+   }
    .gridPaneCadastro{
 
     -fx-hgap: 15;
@@ -48,7 +51,7 @@
 
 .label{
 
-    -fx-text-fill: #282525;
+    -fx-text-fill: #0C090A;
     -fx-font-size: 18pt;
     -fx-font-family:"Comic Sans MS", SansSerif;
     
@@ -58,7 +61,7 @@
 {
     -fx-font-size: 20pt;
     -fx-font-weight: bold;
-    -fx-text-fill: #282525;
+    -fx-text-fill: #0C090A;
     
 }
 
@@ -68,6 +71,24 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size:100px 100px;
+}
+
+
+
+.label.menu{
+
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0C090A;
+    -fx-font-family:"Comic Sans MS", SansSerif;
+
+}
+
+.label.menu:hover{
+
+    -fx-font-weight: bold;
+    -fx-text-fill: #ac5095;
+
 }
 
 /*#endregion Labels*/
@@ -87,35 +108,42 @@
 
 .button-menuLateral
 {
+    -fx-font-weight:bold;
         -fx-text-fill: #0C090A;
-        -fx-font-size: 18pt;
+        -fx-font-size: 12pt;
        -fx-font-family:"Comic Sans MS", SansSerif;
        -fx-size: 230px 25px;
        -fx-background-color: #F9F5FA;
        -fx-background-radius: 15;
     -fx-border-radius: 15;
+}
+
+.button-menuLateral:hover{
+    -fx-background-color: #505fac;
+    -fx-border-color:#F9F5FA ;
+    -fx-text-fill:#F9F5FA;
+    -fx-font-weight:bold;
 }
 
 .button-menuSuperior
-{
+{        
+    -fx-font-weight:bold;
         -fx-text-fill: #0C090A;
-        -fx-font-size: 18pt;
+        -fx-font-size: 12pt;
        -fx-font-family:"Comic Sans MS", SansSerif;
        -fx-size: 230px 25px;
        -fx-background-color: #F9F5FA;
        -fx-background-radius: 15;
     -fx-border-radius: 15;
 
-    -fx-background-color:
-    linear-gradient(from 0% 93% to 0% 100%, #F9F5FA 0%,#b19bb6 100),
-            #e590fa,
-            #d2a2e9,
-            radial-gradient(center 50% 50%,radius 100%,#d150f8,#c01ee9);
+    
 }
 
-.button:pressed{
-    -fx-padding: 10 15 13 15;
-    -fx-background-insets: 2 0 0 0,2 0 3 0,2 0 4 0,2 0 5 0;
+.button-menuSuperior:hover{
+    -fx-background-color: #505fac;
+    -fx-border-color:#F9F5FA ;
+    -fx-text-fill:#F9F5FA;
+    -fx-font-weight:bold;
 }
 
 
