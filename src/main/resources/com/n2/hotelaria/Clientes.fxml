@@ -9,13 +9,13 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.ClienteController">
   <children>
-    <Button fx:id="btnCadastrarCliente" layoutX="518.0" layoutY="68.0" mnemonicParsing="false" onAction="#irCadastroCliente" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Cadastrar Cliente" />
-    <TextField fx:id="consultaClienteField" layoutX="100.0" layoutY="85.0" prefWidth="200.0" />
-    <Label layoutX="33.0" layoutY="42.0" text="Consultar Cliente:" />
-    <ListView fx:id="clientesListView" layoutX="14.0" layoutY="194.0" prefHeight="200.0" prefWidth="448.0" />
-    <Button id="btnConsultar_Cliente" layoutX="308.0" layoutY="85.0" mnemonicParsing="false" onAction="#consultarCliente" styleClass="button-padrao" text="Consultar" />
-    <Button fx:id="btnAlterarCliente" layoutX="518.0" layoutY="142.0" mnemonicParsing="false" onAction="#modificarClienteSelecionado" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Alterar Cliente" />
-    <Button fx:id="btnExcluirCliente" layoutX="511.0" layoutY="209.0" mnemonicParsing="false" onAction="#excluirClienteSelecionado" prefHeight="52.0" prefWidth="143.0" styleClass="button-padrao" text="Excluir Cliente" />
+    <Label layoutX="24.0" layoutY="4.0" text="Consultar Cliente:" />
+    <TextField fx:id="consultaClienteField" layoutX="24.0" layoutY="35.0" prefWidth="400.0" />
+    <Button fx:id="btnConsultarCliente" layoutX="434.0" layoutY="35.0" mnemonicParsing="false" onAction="#consultarCliente" styleClass="button-padrao" text="Consultar" />
+    <ListView fx:id="clientesListView" layoutX="24.0" layoutY="80.0" prefHeight="600.0" prefWidth="580.0" />
+    <Button fx:id="btnCadastrarCliente" layoutX="624.0" layoutY="80.0" onAction="#irCadastroCliente" prefWidth="150.0" styleClass="button-padrao" text="Cadastrar Cliente" />
+    <Button fx:id="btnAlterarCliente" layoutX="624.0" layoutY="120.0" onAction="#modificarClienteSelecionado" prefWidth="150.0" styleClass="button-padrao" text="Modificar Cliente" />
+    <Button fx:id="btnExcluirCliente" layoutX="624.0" layoutY="160.0" onAction="#excluirClienteSelecionado" prefWidth="150.0" styleClass="button-padrao" text="Excluir Cliente" />
   </children>
   <stylesheets>
     <URL value="@Style.css" />

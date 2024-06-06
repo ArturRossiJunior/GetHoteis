@@ -64,7 +64,7 @@ public class CadastroQuartoController extends PadraoController<QuartoModel> {
     
             if (sucesso) {
                 showAlert(Alert.AlertType.INFORMATION, "Sucesso", isCadastrar ? "Cadastro de quarto bem-sucedido" : "Modificação de quarto bem-sucedida");
-               closeDialog(event);
+                closeDialog(event);
             } else {
                 showAlert(Alert.AlertType.ERROR, "Erro", isCadastrar ? "Falha ao cadastrar o quarto" : "Falha ao modificar o quarto");
             }

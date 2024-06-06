@@ -9,12 +9,10 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.ReservaController">
   <children>
-    <Label layoutX="24.0" layoutY="4.0" text="Buscar Reservas:" />
+    <Label layoutX="24.0" layoutY="4.0" text="Consultar Reservas:" />
     <TextField fx:id="consultaReservaField" layoutX="24.0" layoutY="35.0" prefWidth="400.0" />
     <Button fx:id="btnBuscarReserva" layoutX="434.0" layoutY="35.0" mnemonicParsing="false" onAction="#consultarReserva" styleClass="button-padrao" text="Buscar" />
-    
     <ListView fx:id="reservasListView" layoutX="24.0" layoutY="80.0" prefHeight="600.0" prefWidth="580.0" />
-
     <Button fx:id="cadastroReservaButton" layoutX="624.0" layoutY="80.0" onAction="#irCadastroReserva" prefWidth="150.0" styleClass="button-padrao" text="Cadastrar Reserva" />
     <Button fx:id="modificarReservaButton" layoutX="624.0" layoutY="120.0" onAction="#modificarReservaSelecionada" prefWidth="150.0" styleClass="button-padrao" text="Modificar Reserva" />
     <Button fx:id="excluirReservaButton" layoutX="624.0" layoutY="160.0" onAction="#excluirReservaSelecionada" prefWidth="150.0" styleClass="button-padrao" text="Excluir Reserva" />

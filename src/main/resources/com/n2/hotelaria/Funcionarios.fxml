@@ -9,10 +9,10 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.FuncionarioController">
   <children>
-    <TextField layoutX="82.0" layoutY="82.0" prefWidth="200.0" />
-    <Label layoutX="31.0" layoutY="40.0" text="Consultar Funcionario:" />
-    <ListView layoutX="65.0" layoutY="128.0" prefHeight="200.0" prefWidth="461.0" />
-    <Button layoutX="295.0" layoutY="85.0" mnemonicParsing="false" styleClass="button-padrao" text="Consultar Funcionario" />
+    <Label layoutX="24.0" layoutY="4.0" text="Consultar Funcionario:" />
+    <TextField fx:id="consultaFuncionarioField" layoutX="24.0" layoutY="35.0" prefWidth="400.0" />
+    <Button fx:id="btnConsultarFuncionario" layoutX="434.0" layoutY="35.0" mnemonicParsing="false" styleClass="button-padrao" text="Consultar" />
+    <ListView fx:id="funcionariosListView" layoutX="24.0" layoutY="80.0" prefHeight="600.0" prefWidth="580.0" />
   </children>
   <stylesheets>
     <URL value="@Style.css" />

@@ -1,14 +1,11 @@
 package Controllers;
 
 import java.io.*;
-import com.n2.hotelaria.*;
 import DAO.*;
 import Models.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.*;
 import javafx.event.*;
-import javafx.stage.*;
 
 public class CadastroTipoQuartoController extends PadraoController<TipoQuartoModel> {
 
