@@ -47,6 +47,7 @@ public class ClienteController extends PadraoController<ClienteModel> {
         }
     }
     
+    
     @FXML
     private void consultarCliente() {
         String cpf = consultaClienteField.getText().replaceAll("[.\\-]", "");
