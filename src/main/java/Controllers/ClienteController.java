@@ -71,27 +71,28 @@ public class ClienteController extends PadraoController<ClienteModel> {
         }
     }
     
-    @FXML
-    private void modificarClienteSelecionado(ActionEvent event) {
-        try {
-            int selectedIndex = clientesListView.getSelectionModel().getSelectedIndex();
-            if (selectedIndex != -1) {
-                FXMLLoader loader = new FXMLLoader(App.class.getResource("CadastroCliente.fxml"));
+@FXML
+private void modificarClienteSelecionado(ActionEvent event) {
+    try {
+        int selectedIndex = clientesListView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex != -1) {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("CadastroCliente.fxml"));
 
-                Parent root = loader.load();
-                CadastroClienteController controller = loader.getController();
-                controller.setClienteSelecionado(clientes.get(selectedIndex).getID());
+            Parent root = loader.load();
+            CadastroClienteController controller = loader.getController();
+            controller.setClienteSelecionado(clientes.get(selectedIndex).getID());
 
-                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.sizeToScene();
-            } else {
-                showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, selecione um cliente para modificar");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Erro", "Por favor, selecione um cliente para modificar");
         }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
+
     
     @FXML
     private void excluirClienteSelecionado() {

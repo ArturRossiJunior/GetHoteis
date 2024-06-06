@@ -92,6 +92,8 @@
        -fx-font-family:"Comic Sans MS", SansSerif;
        -fx-size: 230px 25px;
        -fx-background-color: #F9F5FA;
+       -fx-background-radius: 15;
+    -fx-border-radius: 15;
 }
 
 .button-menuSuperior
@@ -101,6 +103,14 @@
        -fx-font-family:"Comic Sans MS", SansSerif;
        -fx-size: 230px 25px;
        -fx-background-color: #F9F5FA;
+       -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+.button:hover{
+    -fx-background-color: #a0a0a0; /* Cor de fundo ao passar o mouse */
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 7, 0.0 , 0 , 2 );
+
 }
 
 
