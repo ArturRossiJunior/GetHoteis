@@ -53,7 +53,7 @@ public class HomeController extends PadraoController<PadraoModel> {
     @FXML
     private void initialize() {
         slider.setTranslateX(-200);
-        Menu.setOnMouseClicked(event ->esconderMenu());
+        //Menu.setOnMouseClicked(event ->esconderMenu());
         MenuVisivel=true;
     }
     

@@ -73,22 +73,7 @@
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" style="" styleClass="pane_superior" AnchorPane.bottomAnchor="51.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.5" />
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" spacing="5.0" styleClass="AnchorPane-MenuSuperior" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
               <children>
-                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="200.0" styleClass="pane-Menubtn">
-                  <children>
-                    <Label id="menu" fx:id="Menu" alignment="CENTER" contentDisplay="LEFT" layoutX="55.0" layoutY="10.0" onMouseClicked="#modificarQuartoSelecionado" text="MENU">
-                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                          <image>
-                            <Image url="@Icons/list.png" />
-                          </image>
-                        </ImageView>
-                      </graphic>
-                    </Label>
-                  </children>
-                  <padding>
-                    <Insets />
-                  </padding>
-                </Pane>
+                <Button id="btnReserva_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#esconderMenu" prefHeight="45.0" prefWidth="180.0" text="MENU" />
                 <Button fx:id="btnReserva_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showReserva" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="Reserva">
                   <graphic>
                     <ImageView fitHeight="20.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
