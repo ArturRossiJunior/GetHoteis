@@ -71,7 +71,7 @@
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1000.0" styleClass="AnchorPane-MenuSuperior">
           <children>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" style="" styleClass="pane_superior" AnchorPane.bottomAnchor="51.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.5" />
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" spacing="5.0" styleClass="AnchorPane-MenuSuperior" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" spacing="5.0" styleClass="AnchorPane-MenuSuperior" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="1.5" AnchorPane.rightAnchor="-1.5" AnchorPane.topAnchor="51.0">
               <children>
                 <Button id="btnReserva_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#esconderMenu" prefHeight="45.0" prefWidth="180.0" text="MENU" />
                 <Button fx:id="btnReserva_Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showReserva" prefHeight="45.0" prefWidth="180.0" styleClass="button-menuSuperior" text="Reserva">
