@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class ReservaController extends PadraoController<ReservaModel> {
 
     @FXML
-    private Button btnBuscarReserva,cadastroReservaButton,excluirReservaButton;
+    private Button btnBuscarReserva, cadastroReservaButton, excluirReservaButton;
     
     @FXML
     private TextField consultaReservaField;

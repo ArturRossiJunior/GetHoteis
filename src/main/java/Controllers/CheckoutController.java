@@ -54,15 +54,22 @@ public class CheckoutController extends PadraoController<PadraoModel>{
         dialogVBox.setStyle("-fx-padding: 10;");
 
         Text message = new Text("Por favor, avalie sua experiência:");
-        Rating rating = new Rating(); // Supondo que você tenha uma classe Rating personalizada
+        
+        Slider ratingSlider = new Slider(1, 5, 3);
+        ratingSlider.setShowTickLabels(true);
+        ratingSlider.setShowTickMarks(true);
+        ratingSlider.setMajorTickUnit(1);
+        ratingSlider.setMinorTickCount(0);
+        ratingSlider.setSnapToTicks(true);
 
         Button submitButton = new Button("Enviar");
         submitButton.setOnAction(e -> {
+            int rating = (int) ratingSlider.getValue();
             dialog.close();
-            showAlert(AlertType.INFORMATION, "Obrigado", "Sua avaliação foi registrada.");
+            showAlert(AlertType.INFORMATION, "Obrigado", "Sua avaliação foi registrada. Nota: " + rating);
         });
 
-        dialogVBox.getChildren().addAll(message, rating, submitButton);
+        dialogVBox.getChildren().addAll(message, ratingSlider, submitButton);
 
         Scene dialogScene = new Scene(dialogVBox, 300, 200);
         dialog.setScene(dialogScene);
