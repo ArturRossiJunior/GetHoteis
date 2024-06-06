@@ -89,16 +89,23 @@ public class CadastroReservaController extends PadraoController<ReservaModel>{
 
             if (sucesso) {
                 showAlert(Alert.AlertType.INFORMATION, "Sucesso", isCadastrar ? "Cadastro de reserva bem-sucedido" : "Modificação de reserva bem-sucedida");
-                App.changeScene("Home", (Stage) ((Node) event.getSource()).getScene().getWindow());
+                closeDialog(event);
             } else {
                 showAlert(Alert.AlertType.ERROR, "Erro", isCadastrar ? "Falha ao cadastrar a reserva" : "Falha ao modificar a reserva");
             }
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Por favor, insira valores numéricos válidos para quantidade de pessoas e valor de entrada.");
-        } catch (IOException e) {
+        } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }
     }
+
+    private void closeDialog(ActionEvent event) {
+    // Fecha a janela atual sem mudar a cena
+    Node source = (Node) event.getSource();
+    Stage stage = (Stage) source.getScene().getWindow();
+    stage.close();
+}
 
     @FXML
     private void handleCloseButtonAction() {

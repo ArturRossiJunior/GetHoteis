@@ -56,7 +56,7 @@ public class CadastroTipoQuartoController extends PadraoController<TipoQuartoMod
                 
                 if (sucesso) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", cadastrarButton.getText().equals("Cadastrar") ? "Cadastro bem-sucedido" : "Modificação bem-sucedida");
-                    App.changeScene("Home", (Stage)((Node) event.getSource()).getScene().getWindow());
+                    closeDialog(event);
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Erro", "Falha ao " + (cadastrarButton.getText().equals("Cadastrar") ? "cadastrar" : "modificar"));
                 }
@@ -65,6 +65,14 @@ public class CadastroTipoQuartoController extends PadraoController<TipoQuartoMod
             showAlert(Alert.AlertType.ERROR, "Erro", "Por favor, insira valores numéricos válidos");
         }
     }
+    
+    private void closeDialog(ActionEvent event) {
+    // Fecha a janela atual sem mudar a cena
+    Node source = (Node) event.getSource();
+    Stage stage = (Stage) source.getScene().getWindow();
+    stage.close();
+}
+
 
      @FXML
     private void handleCloseButtonAction() {
