@@ -353,4 +353,9 @@ public class PadraoController <T extends PadraoModel> {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
+
+    protected String formatarUsuario(UsuarioModel usuario) {
+        return  "Nome Completo: " + usuario.getNomeCompleto() + 
+                " - CPF: " + usuario.getCPF();
+    }
 }
