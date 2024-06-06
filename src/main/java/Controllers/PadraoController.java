@@ -318,7 +318,7 @@ public class PadraoController <T extends PadraoModel> {
     }
 
     protected String formatarReserva(ReservaModel reserva) {
-        return  "ID: " + reserva.getID() +
+        return  "Código da Reserva: " + reserva.getID() +
                 " - Nome do Cliente: " + reserva.getCliente().getNome() +
                 " - Numero do Quarto: " + reserva.getQuarto().getNumeroQuarto() +
                 " - Quantidade de Pessoas: " + reserva.getQtdPessoas() +
