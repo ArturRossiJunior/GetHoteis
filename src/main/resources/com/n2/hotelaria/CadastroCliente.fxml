@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.CadastroClienteController">
+  <children>
+    <GridPane hgap="10.0" vgap="10.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="50.0">
+      <children>
+        <Label text="Nome Completo:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="nomeCompletoField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="CPF:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="cpfField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Data de Nascimento:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="dataNascimentoField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Endereço:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="enderecoField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Button fx:id="cadastrarButton" minWidth="100.0" onAction="#handleCadastroCliente" styleClass="button-padrao" text="Cadastrar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0" />
+    <Button fx:id="voltarButton" minWidth="100.0" onAction="#handleCloseButtonAction" prefWidth="100.0" styleClass="button-padrao" text="Voltar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="350.0" />
+  </children>
+  <stylesheets>
+    <URL value="@Style.css" />
+  </stylesheets>
+</AnchorPane>

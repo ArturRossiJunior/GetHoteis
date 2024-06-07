@@ -3,13 +3,14 @@ package Controllers;
 import java.io.*;
 import com.n2.hotelaria.*;
 import DAO.*;
+import Models.PadraoModel;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.stage.Stage;
+import javafx.event.*;
+import javafx.scene.*;
+import javafx.stage.*;
 
-public class EnvioEmailController extends PadraoController {
+public class EnvioEmailController extends PadraoController<PadraoModel> {
 
     @FXML
     private TextField emailField;
