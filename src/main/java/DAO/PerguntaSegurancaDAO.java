@@ -7,7 +7,7 @@ public class PerguntaSegurancaDAO extends PadraoDAO {
         return executarOperacao(sql, senhaNova, email, perguntaSeguranca, resposta);
     }
 
-    public String consultaCampo(String campo, String email){
+    public String consultaEmail(String campo, String email){
         String sql = "SELECT " + campo + " FROM Usuario WHERE Email = ?";
         return consultarCampo(sql, email);
     }

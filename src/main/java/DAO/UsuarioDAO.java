@@ -1,8 +1,10 @@
 package DAO;
 
-import Models.UsuarioModel;
+import java.util.List;
 
-public class CadastroDAO extends PadraoDAO {
+import Models.*;
+
+public class UsuarioDAO extends PadraoDAO {
 
     public boolean inserirUsuario(UsuarioModel usuario) {
         String sql = "INSERT INTO Usuario (CPF, Nome_Completo, Data_Nascimento, Email, Senha, Pergunta_Seguranca, Resposta) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -12,5 +14,10 @@ public class CadastroDAO extends PadraoDAO {
     public boolean existeEmailouCPF(String email, String cpf) {
         String sql = "SELECT * FROM Usuario WHERE Email = ? OR CPF = ?";
         return executarOperacao(sql, email, cpf);
+    }
+
+    public List<UsuarioModel> listaUsuarios() {
+        String sql = "SELECT * FROM Usuario";
+        return montaListaModelUsuario(sql);
     }
 }

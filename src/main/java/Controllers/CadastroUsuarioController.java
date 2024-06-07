@@ -1,16 +1,16 @@
 package Controllers;
 
-import java.io.IOException;
+import java.io.*;
 import com.n2.hotelaria.*;
 import DAO.*;
 import Models.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.Node;
-import javafx.event.ActionEvent;
-import javafx.stage.Stage;
+import javafx.scene.*;
+import javafx.event.*;
+import javafx.stage.*;
 
-public class CadastroController extends PadraoController<UsuarioModel> {
+public class CadastroUsuarioController extends PadraoController<UsuarioModel> {
 
     @FXML
     private TextField cpfField, nomeCompletoField, dataNascimentoField, emailField, respostaField;
@@ -19,7 +19,7 @@ public class CadastroController extends PadraoController<UsuarioModel> {
     @FXML
     private Button cadastrarButton, voltarButton;
 
-    private final CadastroDAO cadastroDao = new CadastroDAO();
+    private final UsuarioDAO cadastroDao = new UsuarioDAO();
 
     @FXML
     private void initialize() {
@@ -35,7 +35,7 @@ public class CadastroController extends PadraoController<UsuarioModel> {
     @FXML
     private void handleCadastro(ActionEvent event) {
         try {
-            if (validacaoCadastro(cadastroDao, cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText(), emailField.getText(), senhaField.getText(), confirmaSenhaField.getText())) {
+            if (validacaoCadastroUsuario(cadastroDao, cpfField.getText(), nomeCompletoField.getText(), dataNascimentoField.getText(), emailField.getText(), senhaField.getText(), confirmaSenhaField.getText())) {
                 if (cadastroDao.inserirUsuario(new UsuarioModel(cpfField.getText().replaceAll("[.\\-]", ""), nomeCompletoField.getText(), inverterData(dataNascimentoField.getText()), 
                         emailField.getText(), criptografar(senhaField.getText()), perguntaSegurancaCombo.getValue(), criptografar(respostaField.getText())))) {
                     showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Cadastro bem-sucedido");

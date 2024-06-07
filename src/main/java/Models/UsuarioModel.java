@@ -1,5 +1,6 @@
 package Models;
 public class UsuarioModel extends PadraoModel {
+    
     private String CPF;
     private String nomeCompleto;
     private String dataNascimento;

@@ -3,17 +3,18 @@ package Controllers;
 
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert.*;
 import javafx.scene.control.ButtonBar.*;
 import java.io.*;
 import java.util.*;
 import com.n2.hotelaria.*;
 import DAO.*;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.stage.Stage;
+import Models.UsuarioModel;
+import javafx.event.*;
+import javafx.scene.*;
+import javafx.stage.*;
 
-public class LoginController extends PadraoController {
+public class LoginController extends PadraoController<UsuarioModel> {
     
     @FXML
     private Button loginButton, cadastroButton, esqueciMinhaSenhaButton;
@@ -34,10 +35,11 @@ public class LoginController extends PadraoController {
     }
 
     @FXML
-    private void handleLogin() {
+    private void handleLogin(ActionEvent event) throws IOException {
         if (loginDao.login(emailField.getText(), criptografar(senhaField.getText()))) {
             showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Login bem-sucedido!");
             tentativasFalhadas = 0;
+            App.changeScene("Home", (Stage)((Node)event.getSource()).getScene().getWindow());
         } else {
             tentativasFalhadas++;
             if (tentativasFalhadas >= 3) {
@@ -56,7 +58,7 @@ public class LoginController extends PadraoController {
     @FXML
     private void handleCadastro(ActionEvent event) {
         try {
-            App.changeScene("Cadastro", (Stage)((Node)event.getSource()).getScene().getWindow());
+            App.changeScene("CadastroUsuario", (Stage)((Node)event.getSource()).getScene().getWindow());
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao tentar mudar de cena");
         }

@@ -1,14 +1,60 @@
-AnchorPane
+
+/*#region panes*/ 
+.AnchorPane
 {
-    -fx-background-color:#FAF9F6;
+    -fx-background-color:  linear-gradient(to right, #FAF9F6, #505fac);
     
    }
 
+   .AnchorPane-MenuSuperior
+{
+    -fx-background-color: #0C090A;
+    -fx-border-color: #0C090A;
+    -fx-border-width: 1.5;   
+    -fx-border-style: solid;
+    
+   }
+
+   .pane-Menubtn{
+    -fx-border-color: #0C090A;
+    -fx-border-width: 1.5;   
+    -fx-border-style: solid;
+    -fx-background-color: #FAF9F6;
+   }
+
+   .pane-Menubtn:hover{
+   -fx-font-weight: bold;
+   }
+   .gridPaneCadastro{
+
+    -fx-hgap: 15;
+    -fx-vgap: 10;
+    -fx-pref-width: 550;
+}
+
+.pane_superior
+{
+    -fx-background-color:  #0C090A;
+}
+
+.pane_menu
+{
+    -fx-background-color:  #0C090A;
+}
+
+
+/*#endregion Panes*/
+
+
+/*#region Labels*/
+
+
 .label{
 
-    -fx-text-fill: #282525;
-    -fx-font-size: 18pt;
+    -fx-text-fill: #0C090A;
+    -fx-font-size: 14pt;
     -fx-font-family:"Comic Sans MS", SansSerif;
+    -fx-font-weight: bold;
     
 }
 
@@ -16,7 +62,7 @@ AnchorPane
 {
     -fx-font-size: 20pt;
     -fx-font-weight: bold;
-    -fx-text-fill: #282525;
+    -fx-text-fill: #0C090A;
     
 }
 
@@ -25,23 +71,113 @@ AnchorPane
     -fx-background-image:url("logo.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
-    -fx-background-size:50px 100px;
+    -fx-background-size:100px 100px;
 }
 
-.button
+
+
+.label.menu{
+
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FAF9F6;
+    -fx-font-family:"Comic Sans MS", SansSerif;
+
+}
+
+
+
+
+/*#endregion Labels*/
+
+
+
+/*#region Botões*/
+.button-padrao
 {
         -fx-text-fill: #FAF9F6;
         -fx-font-size: 10pt;
        -fx-font-family:"Comic Sans MS", SansSerif;
-       -fx-size: 230px 25px;
-       -fx-background-color: #282525;
+        -fx-background-color: #0C090A;
+       
        
 }
 
-.gridPaneCadastro{
+.button-padrao:hover{
 
-    -fx-hgap: 15;
-    -fx-vgap: 10;
-    -fx-pref-width: 550;
+    -fx-border-color:#7d7b7e ;
+    
+    -fx-border-width: 2px;
 }
+
+.button-menuLateral
+{
+    -fx-font-weight:bold;
+        -fx-text-fill: #0C090A;
+        -fx-font-size: 12pt;
+       -fx-font-family:"Comic Sans MS", SansSerif;
+       -fx-size: 230px 25px;
+       -fx-background-color: #F9F5FA;
+       -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+.button-menuLateral:hover{
+    -fx-background-color: #505fac;
+    -fx-border-color:#F9F5FA ;
+    -fx-text-fill:#F9F5FA;
+    -fx-font-weight:bold;
+}
+
+.button-menuSuperior
+{        
+    -fx-font-weight:bold;
+        -fx-text-fill: #0C090A;
+        -fx-font-size: 12pt;
+       -fx-font-family:"Comic Sans MS", SansSerif;
+       -fx-size: 230px 25px;
+       -fx-background-color: #F9F5FA;
+       -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width: 3px;
+    
+}
+
+.button-menuSuperior:hover{
+    -fx-background-color: #505fac;
+    -fx-border-color:#F9F5FA ;
+    -fx-text-fill:#F9F5FA;
+    -fx-font-weight:bold;
+}
+
+
+.button-menu
+{        
+    -fx-font-weight:bold;
+        -fx-text-fill: #0C090A;
+        -fx-font-size: 12pt;
+       -fx-font-family:"Comic Sans MS", SansSerif;
+       -fx-size: 230px 25px;
+       -fx-background-color: #F9F5FA;
+       -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width: 3px;
+    
+}
+
+.button-menu:hover{
+    -fx-background-color: #41d3bf;
+    -fx-border-color:#F9F5FA ;
+    -fx-text-fill:#F9F5FA;
+    -fx-font-weight:bold;
+}
+
+
+/*#endregion Botões*/
+
+
+
+
+
+
 

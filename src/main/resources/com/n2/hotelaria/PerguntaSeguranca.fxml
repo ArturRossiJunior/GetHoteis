@@ -83,8 +83,8 @@
         </GridPane>
         <GridPane GridPane.columnIndex="0" GridPane.rowIndex="5">
           <children>
-            <Button fx:id="recuperarSenhaButton" mnemonicParsing="false" onAction="#handlePerguntaSeguranca" prefWidth="150.0" text="Recuperar Senha" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Button fx:id="voltarButton" mnemonicParsing="false" onAction="#handleVoltar" prefWidth="150.0" text="Voltar" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Button fx:id="recuperarSenhaButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePerguntaSeguranca" prefHeight="25.0" prefWidth="100.0" styleClass="button-padrao" text="Recuperar Senha" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
+            <Button fx:id="voltarButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="25.0" prefWidth="100.0" styleClass="button-padrao" text="Voltar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
