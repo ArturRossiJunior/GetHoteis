@@ -26,8 +26,9 @@ public class CadastroTipoQuartoController extends PadraoController<TipoQuartoMod
         mascaraValor(valorDiariaField);
     }
 
-    public void setQuartoSelecionado(int quartoSelecionadoID) {
-        quartoSelecionado = cadastroTipoQuartoDAO.montaTipoQuartoModel(quartoSelecionadoID);
+    @FXML
+    public void setTipoQuartoSelecionado(int tipoQuartoSelecionado) {
+        quartoSelecionado = cadastroTipoQuartoDAO.montaTipoQuartoModel(tipoQuartoSelecionado);
         if (quartoSelecionado != null) {
             nomeTipoQuartoField.setText(String.valueOf(quartoSelecionado.getNome()));
             quantidadeCamasField.setText(String.valueOf(quartoSelecionado.getQuantidadeCamas()));

@@ -10,8 +10,8 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.DashController">
   <children>
-    <Label layoutX="281.0" layoutY="67.0" text="Reservas por Mes" />
-    <BarChart fx:id="chartReserva" layoutX="142.0" layoutY="130.0">
+    <Label layoutX="353.0" layoutY="59.0" styleClass="titulo" text="Reservas:" />
+    <BarChart fx:id="chartReserva" layoutX="113.0" layoutY="130.0" prefWidth="576.0">
       <xAxis>
         <CategoryAxis side="BOTTOM" />
       </xAxis>

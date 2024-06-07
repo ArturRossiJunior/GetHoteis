@@ -52,8 +52,9 @@
 .label{
 
     -fx-text-fill: #0C090A;
-    -fx-font-size: 18pt;
+    -fx-font-size: 14pt;
     -fx-font-family:"Comic Sans MS", SansSerif;
+    -fx-font-weight: bold;
     
 }
 
@@ -79,17 +80,13 @@
 
     -fx-font-size: 20pt;
     -fx-font-weight: bold;
-    -fx-text-fill: #0C090A;
+    -fx-text-fill: #FAF9F6;
     -fx-font-family:"Comic Sans MS", SansSerif;
 
 }
 
-.label.menu:hover{
 
-    -fx-font-weight: bold;
-    -fx-text-fill: #ac5095;
 
-}
 
 /*#endregion Labels*/
 
@@ -101,9 +98,16 @@
         -fx-text-fill: #FAF9F6;
         -fx-font-size: 10pt;
        -fx-font-family:"Comic Sans MS", SansSerif;
-       -fx-size: 230px 25px;
-       -fx-background-color: #0C090A;
+        -fx-background-color: #0C090A;
        
+       
+}
+
+.button-padrao:hover{
+
+    -fx-border-color:#7d7b7e ;
+    
+    -fx-border-width: 2px;
 }
 
 .button-menuLateral
@@ -135,7 +139,7 @@
        -fx-background-color: #F9F5FA;
        -fx-background-radius: 15;
     -fx-border-radius: 15;
-
+    -fx-border-width: 3px;
     
 }
 
@@ -147,31 +151,31 @@
 }
 
 
+.button-menu
+{        
+    -fx-font-weight:bold;
+        -fx-text-fill: #0C090A;
+        -fx-font-size: 12pt;
+       -fx-font-family:"Comic Sans MS", SansSerif;
+       -fx-size: 230px 25px;
+       -fx-background-color: #F9F5FA;
+       -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width: 3px;
+    
+}
+
+.button-menu:hover{
+    -fx-background-color: #41d3bf;
+    -fx-border-color:#F9F5FA ;
+    -fx-text-fill:#F9F5FA;
+    -fx-font-weight:bold;
+}
+
+
 /*#endregion Botões*/
 
 
-/*#region Menu*/
-.menu-item{
-    -fx-background: darkgray ;
-}
-.menu-button:showing {
-    -fx-base: rgb(252, 15, 15) ;
-  }
-
-.menu-button{
-            
-       -fx-background-color: #4c76c5;
-}
-.menu-button .label {
-    -fx-text-fill: #FAF9F6;
-    -fx-font-size: 12pt;
-    -fx-font-family:"Comic Sans MS", SansSerif;
-}
-.menu{
-    -fx-text-fill: #FAF9F6;
-}
-
-/*#endregion Menu*/
 
 
 

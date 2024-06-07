@@ -28,7 +28,7 @@ public class HomeController extends PadraoController<PadraoModel> {
     private Label Menu, MenuBack;
     
      @FXML
-    private Button btnCheckIn_Menu, btnCheckOut_Menu, btnClientes_Menu, btnDashboard_Menu, btnFuncionarios_Menu, btnQuartos_Menu, btnReserva_Menu;
+    private Button btnCheckIn_Menu, btnCheckOut_Menu, btnClientes_Menu, btnDashboard_Menu, btnUsuario_Menu, btnQuartos_Menu, btnReserva_Menu;
 
     @FXML
     private AnchorPane slider,rootPane;;
@@ -97,9 +97,9 @@ public class HomeController extends PadraoController<PadraoModel> {
     }
     
     @FXML
-    private void showFuncionario(javafx.event.ActionEvent event) throws IOException {
+    private void showUsuario(javafx.event.ActionEvent event) throws IOException {
         try{
-        Parent fxml = FXMLLoader.load(App.class.getResource("Funcionarios.fxml"));
+        Parent fxml = FXMLLoader.load(App.class.getResource("Usuarios.fxml"));
         telaHome.getChildren().removeAll();
         telaHome.getChildren().setAll(fxml);
         } catch (IOException exception){
@@ -129,7 +129,7 @@ public class HomeController extends PadraoController<PadraoModel> {
         }
     }
     
-      @FXML
+    @FXML
     private void showTipoQuarto(javafx.event.ActionEvent event) throws IOException {
         try {
             Parent fxml = FXMLLoader.load(App.class.getResource("TipoQuarto.fxml"));
@@ -191,7 +191,7 @@ public class HomeController extends PadraoController<PadraoModel> {
 
                 Parent root = loader.load();
                 CadastroTipoQuartoController controller = loader.getController();
-                controller.setQuartoSelecionado(tiposQuartos.get(selectedIndex).getID());
+                controller.setTipoQuartoSelecionado(tiposQuartos.get(selectedIndex).getID());
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));

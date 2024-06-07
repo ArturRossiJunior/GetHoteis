@@ -10,12 +10,12 @@
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.QuartoController">
   <children>
     <Label layoutX="24.0" layoutY="4.0" text="Consultar Quarto:" />
-    <TextField fx:id="consultaQuartoField" layoutX="24.0" layoutY="35.0" prefWidth="400.0" />
-    <Button fx:id="btnConsultarQuarto" layoutX="434.0" layoutY="35.0" mnemonicParsing="false" onAction="#consultarQuarto" styleClass="button-padrao" text="Consultar" />
+    <TextField fx:id="consultaQuartoField" layoutX="24.0" layoutY="35.0" prefWidth="400.0" promptText="Numero do Quarto" />
+    <Button fx:id="btnConsultarQuarto" layoutX="434.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#consultarQuarto" prefHeight="25.0" prefWidth="100.0" styleClass="button-padrao" text="Consultar" />
     <ListView fx:id="quartosListView" layoutX="24.0" layoutY="80.0" prefHeight="600.0" prefWidth="580.0" />
-    <Button fx:id="btnCadastrarQuarto" layoutX="624.0" layoutY="80.0" onAction="#irTelaQuarto" prefWidth="150.0" styleClass="button-padrao" text="Cadastrar Quarto" />
-    <Button fx:id="btnModificarQuarto" layoutX="624.0" layoutY="120.0" onAction="#modificarQuartoSelecionado" prefWidth="150.0" styleClass="button-padrao" text="Modificar Quarto" />
-    <Button fx:id="btnExcluirQuarto" layoutX="624.0" layoutY="160.0" onAction="#excluirQuartoSelecionado" prefWidth="150.0" styleClass="button-padrao" text="Excluir Quarto" />
+    <Button fx:id="btnCadastrarQuarto" layoutX="624.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#irTelaQuarto" prefHeight="30.0" prefWidth="150.0" styleClass="button-padrao" text="Cadastrar" />
+    <Button fx:id="btnModificarQuarto" layoutX="624.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#modificarQuartoSelecionado" prefHeight="30.0" prefWidth="150.0" styleClass="button-padrao" text="Modificar" />
+    <Button fx:id="btnExcluirQuarto" layoutX="624.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#excluirQuartoSelecionado" prefHeight="30.0" prefWidth="150.0" styleClass="button-padrao" text="Excluir" />
   </children>
   <stylesheets>
     <URL value="@Style.css" />

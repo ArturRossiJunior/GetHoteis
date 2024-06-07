@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.ClienteController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.ClienteController">
   <children>
     <Label layoutX="24.0" layoutY="4.0" text="Consultar Cliente:" />
-    <TextField fx:id="consultaClienteField" layoutX="24.0" layoutY="35.0" prefWidth="400.0" />
-    <Button fx:id="btnConsultarCliente" layoutX="434.0" layoutY="35.0" mnemonicParsing="false" onAction="#consultarCliente" styleClass="button-padrao" text="Consultar" />
+    <TextField fx:id="consultaClienteField" layoutX="24.0" layoutY="35.0" prefWidth="400.0" promptText="CPF:" />
+    <Button fx:id="btnConsultarCliente" layoutX="434.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#consultarCliente" prefHeight="25.0" prefWidth="150.0" styleClass="button-padrao" text="Consultar" />
     <ListView fx:id="clientesListView" layoutX="24.0" layoutY="80.0" prefHeight="600.0" prefWidth="580.0" />
-    <Button fx:id="btnCadastrarCliente" layoutX="624.0" layoutY="80.0" onAction="#irCadastroCliente" prefWidth="150.0" styleClass="button-padrao" text="Cadastrar Cliente" />
-    <Button fx:id="btnAlterarCliente" layoutX="624.0" layoutY="120.0" onAction="#modificarClienteSelecionado" prefWidth="150.0" styleClass="button-padrao" text="Modificar Cliente" />
-    <Button fx:id="btnExcluirCliente" layoutX="624.0" layoutY="160.0" onAction="#excluirClienteSelecionado" prefWidth="150.0" styleClass="button-padrao" text="Excluir Cliente" />
+    <Button fx:id="btnCadastrarCliente" layoutX="624.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#irCadastroCliente" prefHeight="30.0" prefWidth="150.0" styleClass="button-padrao" text="Cadastrar" />
+    <Button fx:id="btnAlterarCliente" layoutX="624.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#modificarClienteSelecionado" prefHeight="30.0" prefWidth="150.0" styleClass="button-padrao" text="Modificar" />
+    <Button fx:id="btnExcluirCliente" layoutX="624.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#excluirClienteSelecionado" prefHeight="30.0" prefWidth="150.0" styleClass="button-padrao" text="Excluir" />
   </children>
   <stylesheets>
     <URL value="@Style.css" />

@@ -30,23 +30,23 @@ public class UsuarioController extends PadraoController<UsuarioModel> {
     }
 
     @FXML
-    private void consultarusuario() {
-        String cpf = consultausuarioField.getText().replaceAll("[.\\-]", "");
+    private void consultarUsuario() {
+        String cpf = consultaUsuarioField.getText().replaceAll("[.\\-]", "");
         if(cpf.isEmpty()){
-            usuariosListView.getItems().clear();
-            for (usuarioModel usuario : usuarios) {
-                usuariosListView.getItems().add(formatarUsuario(usuario));
+            UsuariosListView.getItems().clear();
+            for (UsuarioModel usuario : usuarios) {
+                UsuariosListView.getItems().add(formatarUsuario(usuario));
             }
         } else {
-            List<usuarioModel> usuariosFiltrados = usuarios.stream()
-                .filter(usuario -> usuario.getCpf().replaceAll("[.\\-]", "").equals(cpf))
+            List<UsuarioModel> usuariosFiltrados = usuarios.stream()
+                .filter(usuario -> usuario.getCPF().replaceAll("[.\\-]", "").equals(cpf))
                 .collect(Collectors.toList());
-            usuariosListView.getItems().clear();
+            UsuariosListView.getItems().clear();
             if (usuariosFiltrados.isEmpty()) {
                 showAlert(Alert.AlertType.WARNING, "Erro", "Usuario não encontrado");
             } else {
-                for (usuarioModel usuario : usuariosFiltrados) {
-                    usuariosListView.getItems().add(formatarUsuario(usuario));
+                for (UsuarioModel usuario : usuariosFiltrados) {
+                    UsuariosListView.getItems().add(formatarUsuario(usuario));
                 }
             }
         }
